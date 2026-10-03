@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: Hori
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Hori
-  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
+  npcSprite: {fileID: -2256948484998397059, guid: 75acfd848ff0e7816aa2a2b5f8732369, type: 3}
   dialogueBubbles:
   - snippets:
     - I am Hori of Heliopolis.
-    - I managed the state granaries.
-    - I tracked every sack with my reed pen.
+    - I managed the state granaries, tracking every sack with my reed pen.
   - snippets:
-    - I kept hidden copies of ledgers.
-    - I never trusted the honesty of other men.
+    - I kept hidden copies of ledgers because I never trusted the honesty of other men.
   - snippets:
-    - I confronted a corrupt priest alone with my evidence.
-    - His thugs simply drowned me in a canal.
+    - I confronted a corrupt priest alone with my evidence. His thugs simply drowned me in a canal.
+  - snippets:
+    - I blindly follow the rules, but I lack strategic sense. I act without thinking of survival.

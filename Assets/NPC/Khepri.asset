@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: Khepri
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Khepri
-  npcSprite: {fileID: 0}
+  npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
     - My name was Khepri.
-    - I sailed from Memphis.
-    - I traded linen for copper in a society without coins.
+    - I sailed from Memphis, trading linen for copper in a society without coins.
   - snippets:
-    - I was a master of words.
-    - I convinced people that common lapis amulets were blessed by Ptah.
+    - I was a master of words, convincing people that common lapis amulets were blessed by Ptah.
   - snippets:
-    - A rival merchant grew tired of my lies.
-    - He poisoned my beer during a festival.
-    - I swindled the wrong man.
+    - But a rival merchant grew tired of my lies and poisoned my beer during a festival.
+  - snippets:
+    - I swindled the wrong man. I make bitter enemies because I always prioritize my own profit over ethics.

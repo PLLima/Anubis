@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: Senenmut
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Senenmut
-  npcSprite: {fileID: 0}
+  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
     - I am Senenmut.
-    - I managed the irrigation canals.
-    - A broken dam meant the entire village would starve.
+    - I managed the irrigation canals. A broken dam meant the entire village would starve.
   - snippets:
-    - I had to think fast when floods rose.
-    - I once saved the harvest by building a mud wall in the dark.
+    - I had to think fast when floods rose. I once saved the harvest by building a mud wall in the dark.
   - snippets:
-    - I refused to let my workers secure a heavy sluice gate.
-    - I insisted on doing it myself.
-    - I slipped and drowned in the current.
+    - But I refused to let my workers secure a heavy sluice gate, insisting on doing it myself.
+  - snippets:
+    - I slipped and drowned in the current. I micromanage and refuse to trust others with the real work.

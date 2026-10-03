@@ -17,12 +17,10 @@ MonoBehaviour:
   dialogueBubbles:
   - snippets:
     - Call me Ahmose.
-    - I lived in the workers' village.
-    - I carved royal tombs in the Valley of the Kings.
+    - I lived in the workers' village, carving royal tombs in the Valley of the Kings.
   - snippets:
-    - Unofficially, I knew exactly how to bypass the false doors.
-    - I stole many lapis amulets.
+    - Unofficially, I knew exactly how to bypass the false doors, and I stole many lapis amulets.
   - snippets:
-    - I bragged about my thefts to a friend.
-    - He betrayed me for a reward.
-    - The guards impaled me.
+    - I bragged about my thefts to a friend, who betrayed me for a reward. The guards impaled me.
+  - snippets:
+    - I am fundamentally dishonest. I will steal from my employer and I choose my allies poorly.

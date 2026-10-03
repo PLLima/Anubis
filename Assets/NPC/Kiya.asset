@@ -13,16 +13,14 @@ MonoBehaviour:
   m_Name: Kiya
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Kiya
-  npcSprite: {fileID: 0}
+  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
     - My name was Kiya.
-    - I shook the sistrum for the gods.
-    - My true audience was the royal court.
+    - I shook the sistrum for the gods, but my true audience was the royal court.
   - snippets:
-    - Musicians are invisible.
-    - I gathered many dark secrets.
-    - I heard viziers whispering treason.
+    - Musicians are invisible. I gathered many dark secrets whispered between viziers.
   - snippets:
-    - I tried to blackmail a general with my secrets.
-    - My next cup of lotus wine was poisoned.
+    - I tried to blackmail a general with what I knew. My next cup of lotus wine was poisoned.
+  - snippets:
+    - I am too greedy with information. I overplay my hand and become a liability.
