@@ -1,4 +1,22 @@
 using UnityEngine;
+public DialogueLinkHandler dialogueLinkHandler;
+public TextMeshProUGUI dialogueTextComponent;
+
+public string FormatDialogueForClicking(DialogueBubble bubble) {
+    string combinedText = "";
+    
+    for (int i = 0; i < bubble.snippets.Length; i++) {
+        combinedText += $"<link=\"{i}\">{bubble.snippets[i]}</link> ";
+    }
+    
+    return combinedText.TrimEnd();
+}
+
+public void ShowDialogue(DialogueBubble bubble) {
+    dialogueTextComponent.text = FormatDialogueForClicking(bubble);
+    
+    dialogueLinkHandler.SetCurrentBubble(bubble);
+}
 
 public class UIManager : MonoBehaviour
 {
@@ -7,7 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject papyrusPanel;
     public GameObject selectionPanel;
     public GameObject scalesPanel;
-    public GameObject foregroundWallImage; // For the layering trick
+    public GameObject foregroundWallImage;
 
     private void OnEnable() {
         GameManager.OnStateChanged += HandleStateChange;
@@ -18,14 +36,10 @@ public class UIManager : MonoBehaviour
     }
 
     private void HandleStateChange(GameState state) {
-        // 1. Reset: Turn off situation-specific panels by default
         speechBubblePanel.SetActive(false);
         selectionPanel.SetActive(false);
         scalesPanel.SetActive(false);
         
-        // Papyrus stays open most of the game, so we leave it alone here unless we want to hide it at the very end.
-
-        // 2. Activate specific UI based on state
         switch (state) {
             case GameState.AnubisIntro:
             case GameState.Interview:
@@ -34,7 +48,6 @@ public class UIManager : MonoBehaviour
             
             case GameState.CandidateEnter:
             case GameState.CandidateExit:
-                // Trigger your ActiveCharacter sliding coroutines here
                 break;
 
             case GameState.Deliberation:
