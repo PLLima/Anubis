@@ -214,6 +214,10 @@ public class GameManager : MonoBehaviour
     public void StartGameLoop()
     {
         currentNPCIndex = 0;
+        currentDialogueIndex = 0;
+        CurrentNPCClues.Clear();
+        SavedCluesByNPC.Clear();
+        OnPapyrusCleared?.Invoke();
         ChangeState(GameState.CandidateEnter);
     }
 
