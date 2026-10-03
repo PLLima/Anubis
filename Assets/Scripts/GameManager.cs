@@ -72,7 +72,18 @@ public class GameManager : MonoBehaviour
 
     public void OnCandidateEntered() {
         if (CurrentState == GameState.CandidateEnter) {
+            if (currentLevel == null || currentLevel.npcsInLevel == null || currentLevel.npcsInLevel.Length == 0) {
+                Debug.LogError("Current Level is missing or empty! Please assign Level1 to GameManager in the Inspector.");
+                return;
+            }
+
             NPCData currentNPC = currentLevel.npcsInLevel[currentNPCIndex];
+            
+            if (currentNPC == null) {
+                Debug.LogError($"NPC at index {currentNPCIndex} in Level1 is empty! Please drag an NPC asset into this slot in the Inspector.");
+                return;
+            }
+
             OnNPCChanged?.Invoke(currentNPC);
             
             currentDialogueIndex = 0;
@@ -83,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     public void OnCandidateExited() {
         if (CurrentState == GameState.CandidateExit) {
+            if (currentLevel == null || currentLevel.npcsInLevel == null) return;
+
             currentNPCIndex++;
             if (currentNPCIndex < currentLevel.npcsInLevel.Length) {
                 ChangeState(GameState.CandidateEnter);

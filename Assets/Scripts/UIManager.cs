@@ -46,6 +46,16 @@ public class UIManager : MonoBehaviour
     }
 
     public void ShowDialogue(DialogueBubble bubble) {
+        if (dialogueTextComponent == null) {
+            Debug.LogError("DialogueTextComponent is not assigned in the UIManager Inspector!");
+            return;
+        }
+        if (dialogueLinkHandler == null) {
+            Debug.LogError("DialogueLinkHandler is not assigned in the UIManager Inspector!");
+            return;
+        }
+        if (bubble == null) return;
+
         dialogueTextComponent.text = FormatDialogueForClicking(bubble);
         dialogueLinkHandler.SetCurrentBubble(bubble);
     }

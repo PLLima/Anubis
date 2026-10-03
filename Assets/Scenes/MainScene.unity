@@ -437,7 +437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &316819903
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1800,7 +1800,7 @@ MonoBehaviour:
   slideDuration: 0.5
   activeCharacterImage: {fileID: 0}
   offScreenLeftX: -1200
-  targetScreenX: -370
+  targetScreenX: -470
 --- !u!1 &1245904522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,8 +2111,8 @@ MonoBehaviour:
   selectionPanel: {fileID: 100869024}
   scalesPanel: {fileID: 1415111689}
   foregroundWallImage: {fileID: 316819902}
-  dialogueLinkHandler: {fileID: 0}
-  dialogueTextComponent: {fileID: 0}
+  dialogueLinkHandler: {fileID: 515035548}
+  dialogueTextComponent: {fileID: 515035546}
 --- !u!1 &1565658509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,11 +2220,11 @@ RectTransform:
   - {fileID: 1217084348}
   m_Father: {fileID: 1511848227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1873852044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625895e02e00edf91a965e38e8009b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentLevel: {fileID: 0}
+  currentLevel: {fileID: 11400000, guid: 836cc714c1a35fa1eb6b81cc3baee60c, type: 2}
   currentNPCClues: []
 --- !u!1 &1983034787
 GameObject:
