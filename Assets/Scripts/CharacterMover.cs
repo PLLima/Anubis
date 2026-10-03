@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CharacterSliding : MonoBehaviour
+public class CharacterMover : MonoBehaviour
 {
     public RectTransform activeCharacterRect;
     public float slideDuration = 0.5f;

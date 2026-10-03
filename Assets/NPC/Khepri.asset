@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Khepri
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Khepri
+  npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
+  dialogueBubbles:
+  - snippets:
+    - My name was Khepri.
+    - I came from Memphis.
+  - snippets:
+    - I spent most of my life traveling from city to city.
+    - I was a merchant of fabrics and jewelry.
+  - snippets:
+    - A good sale was never only about the product.
+    - I always tried to understand what people wanted to hear.
+  - snippets:
+    - Sometimes I told customers an item was rare, even when I had many more.
+    - People liked to believe they had gotten a special deal.

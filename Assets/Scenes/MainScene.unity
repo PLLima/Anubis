@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 515035545}
   - component: {fileID: 515035547}
   - component: {fileID: 515035546}
+  - component: {fileID: 515035548}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -632,6 +633,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515035544}
   m_CullTransparentMesh: 1
+--- !u!114 &515035548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515035544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92648587657fa7d6597d34f4da54211b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,6 +1719,7 @@ GameObject:
   - component: {fileID: 1217084348}
   - component: {fileID: 1217084350}
   - component: {fileID: 1217084349}
+  - component: {fileID: 1217084351}
   m_Layer: 5
   m_Name: ActiveCharacter
   m_TagString: Untagged
@@ -1770,6 +1784,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217084347}
   m_CullTransparentMesh: 1
+--- !u!114 &1217084351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217084347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864db4d5730ae7caa8f29d79f1ae4894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMover
+  activeCharacterRect: {fileID: 0}
+  slideDuration: 0.5
 --- !u!1 &1245904522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2108,8 @@ MonoBehaviour:
   selectionPanel: {fileID: 100869024}
   scalesPanel: {fileID: 1415111689}
   foregroundWallImage: {fileID: 316819902}
+  dialogueLinkHandler: {fileID: 0}
+  dialogueTextComponent: {fileID: 0}
 --- !u!1 &1565658509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,6 +2266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625895e02e00edf91a965e38e8009b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  currentNPCClues: []
 --- !u!1 &1983034787
 GameObject:
   m_ObjectHideFlags: 0

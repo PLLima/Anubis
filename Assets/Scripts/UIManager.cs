@@ -1,31 +1,19 @@
+using System;
 using UnityEngine;
-public DialogueLinkHandler dialogueLinkHandler;
-public TextMeshProUGUI dialogueTextComponent;
-
-public string FormatDialogueForClicking(DialogueBubble bubble) {
-    string combinedText = "";
-    
-    for (int i = 0; i < bubble.snippets.Length; i++) {
-        combinedText += $"<link=\"{i}\">{bubble.snippets[i]}</link> ";
-    }
-    
-    return combinedText.TrimEnd();
-}
-
-public void ShowDialogue(DialogueBubble bubble) {
-    dialogueTextComponent.text = FormatDialogueForClicking(bubble);
-    
-    dialogueLinkHandler.SetCurrentBubble(bubble);
-}
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-[Header("UI Panels")]
+    [Header("UI Panels")]
     public GameObject speechBubblePanel;
     public GameObject papyrusPanel;
     public GameObject selectionPanel;
     public GameObject scalesPanel;
-    public GameObject foregroundWallImage;
+    public GameObject foregroundWallImage; 
+
+    [Header("Dialogue Dependencies")]
+    public DialogueLinkHandler dialogueLinkHandler; 
+    public TextMeshProUGUI dialogueTextComponent;   
 
     private void OnEnable() {
         GameManager.OnStateChanged += HandleStateChange;
@@ -45,19 +33,26 @@ public class UIManager : MonoBehaviour
             case GameState.Interview:
                 speechBubblePanel.SetActive(true);
                 break;
-            
-            case GameState.CandidateEnter:
-            case GameState.CandidateExit:
-                break;
-
             case GameState.Deliberation:
             case GameState.Judgment:
                 selectionPanel.SetActive(true);
                 break;
-
             case GameState.ScaleEvaluation:
                 scalesPanel.SetActive(true);
                 break;
         }
+    }
+
+    public void ShowDialogue(DialogueBubble bubble) {
+        dialogueTextComponent.text = FormatDialogueForClicking(bubble);
+        dialogueLinkHandler.SetCurrentBubble(bubble);
+    }
+
+    public string FormatDialogueForClicking(DialogueBubble bubble) {
+        string combinedText = "";
+        for (int i = 0; i < bubble.snippets.Length; i++) {
+            combinedText += $"<link=\"{i}\"> {bubble.snippets[i]}</link> ";
+        }
+        return combinedText.TrimEnd();
     }
 }
