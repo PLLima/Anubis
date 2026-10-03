@@ -2427,17 +2427,14 @@ MonoBehaviour:
   - What's up man! It's me, Anubis, Egyptian God of the dead!
   - So basically, that means that you died. But you weren't good enough of a person to get to the afterlife!
   - Good thing is, you came at a good time. I decided that being a God doesn't pay enough, so I want to create a start-up.
-  - And you're going to help me with that!
   - People who have died are gonna start coming in soon. They'll tell you about their lives and what kind of person they were.
   - 'I gave you a pen and some papyrus sheets. '
   - Unfortunately, because of budget cuts, you can only record four things about each person!
   - When people are talking, click on the things you think are important to write them down.
   - Be careful! You can't ask them to repeat themselves, so think hard about what you write down!
-  - I'm a busy guy, since I'm a God and stuff, so I have to go think about my start-up idea.
-  - I'll come back later to tell you what kind of person I need.
+  - I have to go think about my start-up idea. I'll come back later to tell you what kind of person I need.
   - If you can give me someone who fits the position, I'll think about letting you into the afterlife.
   - But if you keep sending me people who are useless, I'll have to feed your heart to Ammit!
-  - Alright, I have to go do my God duties. I'll see you later!
   textDisplayDuration: 2
 --- !u!1 &1415111689
 GameObject:
@@ -2834,9 +2831,10 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 836cc714c1a35fa1eb6b81cc3baee60c, type: 2}
   audioSource: {fileID: 845876979}
   advanceDialogueSound: {fileID: 8300000, guid: 7f91d741956c522419ceaad4aa60e3ad, type: 3}
-  cursorNormal: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
-  cursorClicked: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
-  cursorHover: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
+  cursorNormal: {fileID: 0}
+  cursorClicked: {fileID: 0}
+  cursorHover: {fileID: 0}
+  cursorSize: {x: 32, y: 32}
   cursorHotSpot: {x: 0, y: 0}
   cursorMode: 0
 --- !u!1 &1983034787
