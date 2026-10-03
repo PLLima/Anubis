@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
+  m_Name: Khepri
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Khepri
+  npcSprite: {fileID: 0}
+  dialogueBubbles:
+  - snippets:
+    - My name was Khepri.
+    - I sailed from Memphis, trading linen for copper in a society without coins.
+  - snippets:
+    - I was a master of words, convincing people that common lapis amulets were blessed by Ptah.
+  - snippets:
+    - But a rival merchant grew tired of my lies and poisoned my beer during a festival.
+  - snippets:
+    - I swindled the wrong man. I make bitter enemies because I always prioritize my own profit over ethics.

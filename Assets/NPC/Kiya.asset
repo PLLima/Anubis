@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
+  m_Name: Kiya
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Kiya
+  npcSprite: {fileID: 0}
+  dialogueBubbles:
+  - snippets:
+    - My name was Kiya.
+    - I shook the sistrum for the gods, but my true audience was the royal court.
+  - snippets:
+    - Musicians are invisible. I gathered many dark secrets whispered between viziers.
+  - snippets:
+    - I tried to blackmail a general with what I knew. My next cup of lotus wine was poisoned.
+  - snippets:
+    - I am too greedy with information. I overplay my hand and become a liability.

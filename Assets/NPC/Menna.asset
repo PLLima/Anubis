@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
+  m_Name: Menna
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Menna
+  npcSprite: {fileID: 0}
+  dialogueBubbles:
+  - snippets:
+    - I am Menna.
+    - I led trade caravans beyond the southern borders to bring back gold and myrrh.
+  - snippets:
+    - I spoke the tongues of Nubian kings. The one who controls the language controls the deal.
+  - snippets:
+    - To save time, I ignored local guides and marched my caravan directly into a massive sandstorm.
+  - snippets:
+    - We were buried alive. I am arrogant and refuse to listen to advice from those beneath me.

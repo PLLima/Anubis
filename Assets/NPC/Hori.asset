@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
+  m_Name: Hori
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Hori
+  npcSprite: {fileID: 0}
+  dialogueBubbles:
+  - snippets:
+    - I am Hori of Heliopolis.
+    - I managed the state granaries, tracking every sack with my reed pen.
+  - snippets:
+    - I kept hidden copies of ledgers because I never trusted the honesty of other men.
+  - snippets:
+    - I confronted a corrupt priest alone with my evidence. His thugs simply drowned me in a canal.
+  - snippets:
+    - I blindly follow the rules, but I lack strategic sense. I act without thinking of survival.

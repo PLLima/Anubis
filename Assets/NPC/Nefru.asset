@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
+  m_Name: Nefru
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Nefru
+  npcSprite: {fileID: 0}
+  dialogueBubbles:
+  - snippets:
+    - My name was Nefru.
+    - During the flood season, we paid taxes by hauling stones for the temples.
+  - snippets:
+    - I was incredibly strong, but I hated delays. Give me a task, and I just want it done.
+  - snippets:
+    - I ordered my crew to use frayed lifting ropes to finish early. A pillar fell and crushed my chest.
+  - snippets:
+    - I am reckless. I value finishing the job quickly over planning and safety.
