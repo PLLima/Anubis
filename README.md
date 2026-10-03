@@ -18,7 +18,7 @@ Game developed during the CStudio Game Jam 2026 at CentraleSupélec using Unity.
 
 The project utilizes a single-scene, UI-driven architecture in Unity:
 
-* **GameManager (`GameManager.cs`)**: Central state machine controlling the game flow via the `GameState` enum (`AnubisIntro`, `CandidateEnter`, `Interview`, `CandidateExit`, `Deliberation`, `Judgment`, `ScaleEvaluation`, `EndGame`). It tracks collected clues, manages `LastDeliberationResult`, and broadcasts state changes.
+* **GameManager (`GameManager.cs`)**: Central state machine controlling the game flow via the `GameState` enum (`TitleScreen`, `AnubisIntro`, `CandidateEnter`, `Interview`, `CandidateExit`, `Deliberation`, `Judgment`, `ScaleEvaluation`, `EndGame`). It tracks collected clues, manages `LastDeliberationResult`, and broadcasts state changes.
 * **UIManager (`UIManager.cs`)**: Subscribes to `GameManager` events to manage overall visibility of UI panels.
 * **SpeechBubbleUI (`SpeechBubbleUI.cs`)**: A modular component attached to the speech bubble panel that listens to dialogue changes, manages dialogue layout, and controls dynamic text typing animations.
 * **DialogueLinkHandler (`DialogueLinkHandler.cs`)**: Implements `IPointerClickHandler` and utilizes `TMP_TextUtilities.FindIntersectingLink` to detect user clicks on specific words within TextMeshPro elements, dispatching the data to the `GameManager`. Includes visual hover feedback.
@@ -27,6 +27,8 @@ The project utilizes a single-scene, UI-driven architecture in Unity:
 * **AnubisTutorialManager (`AnubisTutorialManager.cs`)**: Controls the opening tutorial dialog.
 * **Deliberation Phase**: Managed by `DeliberationManager.cs`, `DeliberationPapyrusManager.cs`, and `DeliberationPapyrusDrag.cs`. Handles spawning draggable clues, dialogue logic for Anubis during deliberation, and Anubis's final win/loss verdict.
 * **ScalesManager (`ScalesManager.cs`)**: Handles the Scale Evaluation sequence. Drops the scales, swaps the result sprites (Heart vs Feather), and controls the fading animations to highlight the outcome.
+* **MainMenuManager (`MainMenuManager.cs`)**: Handles the Title Screen logic (Play, Settings, Quit buttons).
+* **AnimatedMenuButton (`AnimatedMenuButton.cs`)**: Attaches to UI buttons to provide premium hover/click scaling animations and color transitions, replacing standard button backgrounds.
 * **Data Management (`GameData.cs`)**: Uses Unity ScriptableObjects (`DialogueBubble`, `NPCData`, `LevelData`) to define and serialize narrative and character data.
 
 ## NPCs
