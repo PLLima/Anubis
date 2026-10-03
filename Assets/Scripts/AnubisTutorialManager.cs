@@ -126,18 +126,16 @@ public class AnubisTutorialManager : MonoBehaviour
             Debug.LogError("AnubisTutorialManager: Anubis Sprite is not assigned!");
         }
 
-        // Show speech bubble (this used to happen immediately, but we might want it immediately before typing, but it's fine here)
-        if (speechBubbleUI != null)
-        {
-            speechBubbleUI.SetActive(true);
-        }
-
         // We DO NOT start the dialogue or slide here!
         // CharacterMover will automatically detect the GameState.AnubisIntro and start the animation!
     }
 
     private void HandleAnubisEnterFinished()
     {
+        if (speechBubbleUI != null)
+        {
+            speechBubbleUI.SetActive(true);
+        }
         DisplayCurrentPhrase();
     }
 

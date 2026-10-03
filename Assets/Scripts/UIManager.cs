@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     private void HandleStateChange(GameState state) 
     {
         // Toggle visibility based on states
-        bool showSpeechBubble = state == GameState.AnubisIntro || state == GameState.Interview;
+        bool showSpeechBubble = state == GameState.Interview;
         bool showSelection = state == GameState.Deliberation || state == GameState.Judgment;
         bool showScales = state == GameState.ScaleEvaluation;
 

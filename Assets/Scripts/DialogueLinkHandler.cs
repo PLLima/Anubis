@@ -38,6 +38,10 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
 
     public void SetCurrentBubble(DialogueBubble bubble) {
         currentBubble = bubble;
+        
+        // Ensure the mesh will fully generate before we process vertices in ResetHover
+        SetVisibleCharacters(999999);
+        
         if (shadowText != null && textMeshPro != null)
         {
             shadowText.text = textMeshPro.text;
@@ -56,6 +60,8 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
         if (textMeshPro != null)
         {
             currentLink = -1;
+            if (GameManager.Instance != null) GameManager.Instance.SetCursorHoverState(false);
+            
             textMeshPro.ForceMeshUpdate();
             if (shadowText != null)
             {
@@ -76,7 +82,11 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
 
             int matIndex = charInfo.materialReferenceIndex;
             int vertIndex = charInfo.vertexIndex;
+            
+            if (matIndex >= textInfo.meshInfo.Length) continue;
             Color32[] vertexColors = textInfo.meshInfo[matIndex].colors32;
+            
+            if (vertexColors == null || vertIndex + 3 >= vertexColors.Length) continue;
 
             Color32 clear = new Color32(0, 0, 0, 0);
             vertexColors[vertIndex + 0] = clear;
@@ -106,8 +116,9 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
     {
         if (textMeshPro == null || currentBubble == null) return;
         
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, eventData.pressEventCamera);
-
+        // Fallback to the highly reliable currentLink tracked by the hover system!
+        // This bypasses any EventSystem/Camera raycast bugs that happen on the exact frame of the click.
+        int linkIndex = currentLink;
 
         if (linkIndex != -1) {
             TMP_LinkInfo linkInfo = textMeshPro.textInfo.linkInfo[linkIndex];
@@ -125,13 +136,19 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
     {
         if (textMeshPro == null) return;
 
-        // enterEventCamera is usually populated during PointerEnter and PointerMove for Canvas operations.
+        // enterEventCamera is used for hover raycasting
         Camera targetCamera = eventData.enterEventCamera;
         int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, targetCamera);
 
         if (linkIndex != currentLink)
         {
             currentLink = linkIndex;
+            
+            if (GameManager.Instance != null) 
+            {
+                GameManager.Instance.SetCursorHoverState(currentLink != -1);
+            }
+
             textMeshPro.ForceMeshUpdate(); 
             if (shadowText != null)
             {
@@ -167,8 +184,11 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
             int materialIndex = charInfo.materialReferenceIndex;
             int vertexIndex = charInfo.vertexIndex;
 
+            if (materialIndex >= textInfo.meshInfo.Length) continue;
             Color32[] vertexColors = textInfo.meshInfo[materialIndex].colors32;
             Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
+            
+            if (vertexColors == null || vertexIndex + 3 >= vertexColors.Length) continue;
 
             // PARENT TEXT BECOMES THE SHADOW (Renders Underneath)
             vertexColors[vertexIndex + 0] = shadowColor;
@@ -186,8 +206,12 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
                     int popMatIndex = popCharInfo.materialReferenceIndex;
                     int popVertIndex = popCharInfo.vertexIndex;
 
+                    if (popMatIndex >= popTextInfo.meshInfo.Length) continue;
+
                     Color32[] popVertexColors = popTextInfo.meshInfo[popMatIndex].colors32;
                     Vector3[] popVertices = popTextInfo.meshInfo[popMatIndex].vertices;
+                    
+                    if (popVertexColors == null || popVertIndex + 3 >= popVertexColors.Length) continue;
 
                     popVertexColors[popVertIndex + 0] = hoverColor;
                     popVertexColors[popVertIndex + 1] = hoverColor;

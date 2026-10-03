@@ -35,6 +35,16 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip advanceDialogueSound;
 
+    [Header("Cursor Settings")]
+    public Texture2D cursorNormal;
+    public Texture2D cursorClicked;
+    public Texture2D cursorHover;
+    public Vector2 cursorSize = new Vector2(32, 32);
+    public Vector2 cursorHotSpot = Vector2.zero;
+    public CursorMode cursorMode = CursorMode.Auto;
+
+    private bool isHoveringInteractable = false;
+
     // State
     public GameState CurrentState { get; private set; }
 
@@ -68,7 +78,106 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // Resize cursors so they aren't massive, which offsets the hotspot and breaks raycasts
+        cursorNormal = ResizeCursorTexture(cursorNormal, (int)cursorSize.x, (int)cursorSize.y);
+        cursorClicked = ResizeCursorTexture(cursorClicked, (int)cursorSize.x, (int)cursorSize.y);
+        cursorHover = ResizeCursorTexture(cursorHover, (int)cursorSize.x, (int)cursorSize.y);
+
+        SetCursor(cursorNormal);
         ChangeState(GameState.AnubisIntro);
+    }
+
+    private Texture2D ResizeCursorTexture(Texture2D source, int width, int height)
+    {
+        if (source == null) return null;
+
+        RenderTexture rt = RenderTexture.GetTemporary(width, height);
+        RenderTexture.active = rt;
+        
+        // Copy the texture using the GPU
+        Graphics.Blit(source, rt);
+        
+        Texture2D result = new Texture2D(width, height, TextureFormat.RGBA32, false);
+        result.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        result.Apply();
+        
+        RenderTexture.active = null;
+        RenderTexture.ReleaseTemporary(rt);
+        
+        return result;
+    }
+
+    private void Update()
+    {
+        bool isDown = false;
+        bool isUp = false;
+
+#if ENABLE_INPUT_SYSTEM
+        if (UnityEngine.InputSystem.Mouse.current != null)
+        {
+            isDown = UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame;
+            isUp = UnityEngine.InputSystem.Mouse.current.leftButton.wasReleasedThisFrame;
+        }
+#else
+        isDown = Input.GetMouseButtonDown(0);
+        isUp = Input.GetMouseButtonUp(0);
+#endif
+
+        if (isDown)
+        {
+            if (isHoveringInteractable)
+            {
+                SetCursor(cursorClicked);
+            }
+        }
+        else if (isUp)
+        {
+            UpdateCursorToCurrentState();
+        }
+    }
+
+    /// <summary>
+    /// Call this method from UI elements (e.g. OnPointerEnter/Exit) to change the cursor state.
+    /// </summary>
+    public void SetCursorHoverState(bool isHovering)
+    {
+        isHoveringInteractable = isHovering;
+        
+        bool isPressed = false;
+#if ENABLE_INPUT_SYSTEM
+        if (UnityEngine.InputSystem.Mouse.current != null)
+        {
+            isPressed = UnityEngine.InputSystem.Mouse.current.leftButton.isPressed;
+        }
+#else
+        isPressed = Input.GetMouseButton(0);
+#endif
+
+        // Don't override the clicked texture if the user is currently holding the mouse button down
+        if (!isPressed)
+        {
+            UpdateCursorToCurrentState();
+        }
+    }
+
+    private void UpdateCursorToCurrentState()
+    {
+        if (isHoveringInteractable && cursorHover != null)
+        {
+            SetCursor(cursorHover);
+        }
+        else
+        {
+            SetCursor(cursorNormal);
+        }
+    }
+
+    private void SetCursor(Texture2D cursorTexture)
+    {
+        if (cursorTexture != null)
+        {
+            Cursor.SetCursor(cursorTexture, cursorHotSpot, cursorMode);
+        }
     }
 
     public void ChangeState(GameState newState)
