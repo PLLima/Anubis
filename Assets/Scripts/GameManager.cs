@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     [Header("Level Configuration")]
     public LevelData currentLevel;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip advanceDialogueSound;
+
     // State
     public GameState CurrentState { get; private set; }
 
@@ -50,6 +54,11 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+
+            if (audioSource == null) 
+            {
+                audioSource = GetComponent<AudioSource>();
+            }
         }
         else
         {
@@ -101,6 +110,11 @@ public class GameManager : MonoBehaviour
 
     public void AdvanceDialogue()
     {
+        if (audioSource != null && advanceDialogueSound != null)
+        {
+            audioSource.PlayOneShot(advanceDialogueSound);
+        }
+
         if (
             currentLevel == null ||
             currentLevel.npcsInLevel == null ||

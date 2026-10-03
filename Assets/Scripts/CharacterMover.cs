@@ -21,6 +21,10 @@ public class CharacterMover : MonoBehaviour
     public float dropYOffset = -30f;
     public float slideDuration = 0.5f;
 
+    [Header("Audio Settings")]
+    public AudioSource footstepSource;
+    public AudioClip footstepClip;
+
     private float baseY;
     private Coroutine activeCoroutine;
 
@@ -29,6 +33,11 @@ public class CharacterMover : MonoBehaviour
         if (activeCharacterRect != null) 
         {
             baseY = activeCharacterRect.anchoredPosition.y;
+        }
+
+        if (footstepSource == null)
+        {
+            footstepSource = GetComponent<AudioSource>();
         }
     }
 
@@ -127,6 +136,13 @@ public class CharacterMover : MonoBehaviour
     {
         if (activeCharacterRect == null) yield break;
 
+        if (footstepSource != null && footstepClip != null)
+        {
+            footstepSource.clip = footstepClip;
+            footstepSource.loop = true; // Força o som a repetir
+            footstepSource.Play();
+        }
+
         float timeElapsed = 0;
         Vector2 pos = activeCharacterRect.anchoredPosition;
         pos.x = startX;
@@ -143,5 +159,10 @@ public class CharacterMover : MonoBehaviour
 
         pos.x = endX;
         activeCharacterRect.anchoredPosition = pos;
+
+        if (footstepSource != null)
+        {
+            footstepSource.Stop();
+        }
     }
 }

@@ -7,19 +7,15 @@ using TMPro;
 /// Handles hover effects highlighting the text snippets with Ancient Egyptian styling.
 /// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
-[RequireComponent(typeof(AudioSource))]
 public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointerMoveHandler, IPointerExitHandler, IPointerEnterHandler
 {
     private TextMeshProUGUI textMeshPro;
     private TextMeshProUGUI shadowText;
     private DialogueBubble currentBubble; 
     private int currentLink = -1;
-    private AudioSource audioSource;
 
     private void Awake() {
         textMeshPro = GetComponent<TextMeshProUGUI>();
-
-        audioSource = GetComponent<AudioSource>();
         
         GameObject shadowObj = new GameObject("ShadowText");
         shadowObj.transform.SetParent(textMeshPro.transform, false);
@@ -109,11 +105,6 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
     public void OnPointerClick(PointerEventData eventData) 
     {
         if (textMeshPro == null || currentBubble == null) return;
-
-        if (audioSource != null && audioSource.clip != null)
-        {
-            audioSource.PlayOneShot(audioSource.clip);
-        }
         
         int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, eventData.pressEventCamera);
 
