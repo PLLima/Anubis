@@ -37,6 +37,62 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
 
     public void SetCurrentBubble(DialogueBubble bubble) {
         currentBubble = bubble;
+        if (shadowText != null && textMeshPro != null)
+        {
+            shadowText.text = textMeshPro.text;
+        }
+        ResetHover();
+    }
+
+    private void ResetHover()
+    {
+        if (textMeshPro != null)
+        {
+            currentLink = -1;
+            textMeshPro.ForceMeshUpdate();
+            if (shadowText != null)
+            {
+                shadowText.ForceMeshUpdate();
+                HideAllShadowVertices();
+            }
+        }
+    }
+
+    private void HideAllShadowVertices()
+    {
+        if (shadowText == null) return;
+        TMP_TextInfo textInfo = shadowText.textInfo;
+        for (int i = 0; i < textInfo.characterCount; i++)
+        {
+            TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
+            if (!charInfo.isVisible) continue;
+
+            int matIndex = charInfo.materialReferenceIndex;
+            int vertIndex = charInfo.vertexIndex;
+            Color32[] vertexColors = textInfo.meshInfo[matIndex].colors32;
+
+            Color32 clear = new Color32(0, 0, 0, 0);
+            vertexColors[vertIndex + 0] = clear;
+            vertexColors[vertIndex + 1] = clear;
+            vertexColors[vertIndex + 2] = clear;
+            vertexColors[vertIndex + 3] = clear;
+        }
+        shadowText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        CheckHover(eventData);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        CheckHover(eventData);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ResetHover();
     }
 
     public void OnPointerClick(PointerEventData eventData) 
@@ -54,111 +110,6 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
                 
                 GameManager.Instance.TrySaveClue(clickedText);
             }
-        } else {
-            // They clicked the speech bubble, but not a clue. 
-            // This could be your trigger to advance to the next dialogue piece!
-            Debug.Log("Clicked background to continue dialogue.");
-            GameManager.Instance.AdvanceDialogue();
-        }
-    }
-
-    private void CheckHover(PointerEventData eventData)
-    {
-        if (textMeshPro == null) return;
-
-        // enterEventCamera is usually populated during PointerEnter and PointerMove for Canvas operations.
-        Camera targetCamera = eventData.enterEventCamera;
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, targetCamera);
-
-        if (linkIndex != currentLink)
-        {
-            currentLink = linkIndex;
-            textMeshPro.ForceMeshUpdate(); 
-            if (shadowText != null)
-            {
-                shadowText.ForceMeshUpdate();
-                HideAllShadowVertices();
-            }
-            
-            if (currentLink != -1)
-            {
-                ApplyHoverEffect(currentLink);
-            }
-        }
-    }
-
-    private void ApplyHoverEffect(int linkIndex)
-    {
-        TMP_TextInfo textInfo = textMeshPro.textInfo;
-        TMP_LinkInfo linkInfo = textInfo.linkInfo[linkIndex];
-
-        TMP_TextInfo popTextInfo = shadowText != null ? shadowText.textInfo : null;
-
-        // Updated visual identity colors
-        Color32 hoverColor = new Color32(222, 134, 1, 255); // Primary Color
-        Color32 shadowColor = new Color32(87, 59, 18, 255); // Accent Color (Dark brown shadow)
-
-        for (int i = 0; i < linkInfo.linkTextLength; i++)
-        {
-            int charIndex = linkInfo.linkTextfirstCharacterIndex + i;
-            TMP_CharacterInfo charInfo = textInfo.characterInfo[charIndex];
-
-            if (!charInfo.isVisible) continue;
-
-            int materialIndex = charInfo.materialReferenceIndex;
-            int vertexIndex = charInfo.vertexIndex;
-
-            Color32[] vertexColors = textInfo.meshInfo[materialIndex].colors32;
-            Vector3[] vertices = textInfo.meshInfo[materialIndex].vertices;
-
-            // PARENT TEXT BECOMES THE SHADOW (Renders Underneath)
-            vertexColors[vertexIndex + 0] = shadowColor;
-            vertexColors[vertexIndex + 1] = shadowColor;
-            vertexColors[vertexIndex + 2] = shadowColor;
-            vertexColors[vertexIndex + 3] = shadowColor;
-            // No shift or scale applied to the parent text so it stays in its original spot as an anchor
-
-            // CHILD TEXT BECOMES THE POPPED TEXT (Renders On Top)
-            if (popTextInfo != null && charIndex < popTextInfo.characterInfo.Length)
-            {
-                TMP_CharacterInfo popCharInfo = popTextInfo.characterInfo[charIndex];
-                if (popCharInfo.isVisible)
-                {
-                    int popMatIndex = popCharInfo.materialReferenceIndex;
-                    int popVertIndex = popCharInfo.vertexIndex;
-
-                    Color32[] popVertexColors = popTextInfo.meshInfo[popMatIndex].colors32;
-                    Vector3[] popVertices = popTextInfo.meshInfo[popMatIndex].vertices;
-
-                    popVertexColors[popVertIndex + 0] = hoverColor;
-                    popVertexColors[popVertIndex + 1] = hoverColor;
-                    popVertexColors[popVertIndex + 2] = hoverColor;
-                    popVertexColors[popVertIndex + 3] = hoverColor;
-
-                    // Pop effect scaling - softened to 1.08f
-                    Vector3 offset = (popVertices[popVertIndex + 0] + popVertices[popVertIndex + 2]) / 2;
-                    float scale = 1.08f;
-                    
-                    popVertices[popVertIndex + 0] = offset + (popVertices[popVertIndex + 0] - offset) * scale;
-                    popVertices[popVertIndex + 1] = offset + (popVertices[popVertIndex + 1] - offset) * scale;
-                    popVertices[popVertIndex + 2] = offset + (popVertices[popVertIndex + 2] - offset) * scale;
-                    popVertices[popVertIndex + 3] = offset + (popVertices[popVertIndex + 3] - offset) * scale;
-
-                    // Shift popped text very slightly left and up
-                    Vector3 popShift = new Vector3(-1.5f, 0.5f, 0);
-                    popVertices[popVertIndex + 0] += popShift;
-                    popVertices[popVertIndex + 1] += popShift;
-                    popVertices[popVertIndex + 2] += popShift;
-                    popVertices[popVertIndex + 3] += popShift;
-                }
-            }
-        }
-
-        // Push the changes
-        textMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32 | TMP_VertexDataUpdateFlags.Vertices);
-        if (shadowText != null)
-        {
-            shadowText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32 | TMP_VertexDataUpdateFlags.Vertices);
         }
     }
 

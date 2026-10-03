@@ -1,7 +1,9 @@
-using System;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Handles the visibility of UI panels based on game states and populates dialogue data.
+/// </summary>
 public class UIManager : MonoBehaviour
 {
     [Header("UI Panels")]
@@ -14,57 +16,68 @@ public class UIManager : MonoBehaviour
     [Header("Dialogue Dependencies")]
     public DialogueLinkHandler dialogueLinkHandler; 
     public TextMeshProUGUI dialogueTextComponent;   
+    public TextMeshProUGUI npcNameText;
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         GameManager.OnStateChanged += HandleStateChange;
         GameManager.OnDialogueChanged += ShowDialogue;
+        GameManager.OnNPCChanged += UpdateNPCName;
     }
 
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         GameManager.OnStateChanged -= HandleStateChange;
         GameManager.OnDialogueChanged -= ShowDialogue;
+        GameManager.OnNPCChanged -= UpdateNPCName;
     }
 
-    private void HandleStateChange(GameState state) {
-        speechBubblePanel.SetActive(false);
-        selectionPanel.SetActive(false);
-        scalesPanel.SetActive(false);
-        
-        switch (state) {
-            case GameState.AnubisIntro:
-            case GameState.Interview:
-                speechBubblePanel.SetActive(true);
-                break;
-            case GameState.Deliberation:
-            case GameState.Judgment:
-                selectionPanel.SetActive(true);
-                break;
-            case GameState.ScaleEvaluation:
-                scalesPanel.SetActive(true);
-                break;
-        }
+    private void HandleStateChange(GameState state) 
+    {
+        // Toggle visibility based on states
+        bool showSpeechBubble = state == GameState.AnubisIntro || state == GameState.Interview;
+        bool showSelection = state == GameState.Deliberation || state == GameState.Judgment;
+        bool showScales = state == GameState.ScaleEvaluation;
+
+        if (speechBubblePanel != null) speechBubblePanel.SetActive(showSpeechBubble);
+        if (selectionPanel != null) selectionPanel.SetActive(showSelection);
+        if (scalesPanel != null) scalesPanel.SetActive(showScales);
     }
 
-    public void ShowDialogue(DialogueBubble bubble) {
-        if (dialogueTextComponent == null) {
+    private void ShowDialogue(DialogueBubble bubble) 
+    {
+        if (dialogueTextComponent == null) 
+        {
             Debug.LogError("DialogueTextComponent is not assigned in the UIManager Inspector!");
             return;
         }
-        if (dialogueLinkHandler == null) {
+        if (dialogueLinkHandler == null) 
+        {
             Debug.LogError("DialogueLinkHandler is not assigned in the UIManager Inspector!");
             return;
         }
-        if (bubble == null) return;
+        if (bubble == null) 
+            return;
 
         dialogueTextComponent.text = FormatDialogueForClicking(bubble);
         dialogueLinkHandler.SetCurrentBubble(bubble);
     }
 
-    public string FormatDialogueForClicking(DialogueBubble bubble) {
-        string combinedText = "";
-        for (int i = 0; i < bubble.snippets.Length; i++) {
-            combinedText += $"<link=\"{i}\"> {bubble.snippets[i]}</link> ";
+    private void UpdateNPCName(NPCData npc) 
+    {
+        if (npcNameText != null && npc != null) 
+        {
+            npcNameText.text = npc.npcName;
         }
-        return combinedText.TrimEnd();
+    }
+
+    private string FormatDialogueForClicking(DialogueBubble bubble) 
+    {
+        System.Text.StringBuilder combinedText = new System.Text.StringBuilder();
+        for (int i = 0; i < bubble.snippets.Length; i++) 
+        {
+            combinedText.Append($"<link=\"{i}\"> {bubble.snippets[i]}</link> ");
+        }
+        return combinedText.ToString().TrimEnd();
     }
 }

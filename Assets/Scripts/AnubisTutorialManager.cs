@@ -44,6 +44,7 @@ public class AnubisTutorialManager : MonoBehaviour
     };
 
     private int currentPhraseIndex = 0;
+    private bool introActive = false;
 
     private void Start()
     {
@@ -58,6 +59,7 @@ public class AnubisTutorialManager : MonoBehaviour
     public void StartIntroSequence()
     {
         currentPhraseIndex = 0;
+        introActive = true;
 
         if (activeCharacter != null)
             activeCharacter.SetActive(true);

@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(GameState.AnubisIntro);
+        ChangeState(GameState.CandidateEnter);
     }
 
     public void ChangeState(GameState newState)
