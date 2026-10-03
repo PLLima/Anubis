@@ -1315,7 +1315,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 1920, y: 1700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918125664
 MonoBehaviour:
@@ -1899,8 +1899,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1987113648}
   - {fileID: 918125663}
+  - {fileID: 1987113648}
   - {fileID: 1217084348}
   m_Father: {fileID: 1511848227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2018,7 +2018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.764038, y: 157.40149}
+  m_AnchoredPosition: {x: 65, y: 157.40149}
   m_SizeDelta: {x: 790, y: 1040}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1987113649
@@ -2108,14 +2108,6 @@ MonoBehaviour:
   speechText: {fileID: 515035546}
   nextButton: {fileID: 885926456}
   anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
-  activeCharacterRect: {fileID: 1217084348}
-  slideDuration: 0.5
-  offScreenLeftX: -1200
-  targetScreenX: -400
-  dialoguePhrases:
-  - Yo dude, I'm back! Did you interview everyone?
-  - I've got a great idea for a start-up.
-  - I'm going to start a pyramid construction company! Drag the papyrus of who you think would do the best job to me.
 --- !u!1 &2030260393
 GameObject:
   m_ObjectHideFlags: 0
