@@ -19,9 +19,11 @@ Game developed during the CStudio Game Jam 2026 at CentraleSupélec using Unity.
 The project utilizes a single-scene, UI-driven architecture in Unity:
 
 * **GameManager (`GameManager.cs`)**: Central state machine controlling the game flow via the `GameState` enum (`AnubisIntro`, `CandidateEnter`, `Interview`, `CandidateExit`, `Deliberation`, `Judgment`, `ScaleEvaluation`, `EndGame`). It tracks collected clues and broadcasts state changes.
-* **UIManager (`UIManager.cs`)**: Subscribes to `GameManager` events to manage UI panels (speech bubbles, selections, scales, and the papyrus menu) and formats dialogue snippets.
-* **DialogueLinkHandler (`DialogueLinkHandler.cs`)**: Implements `IPointerClickHandler` and utilizes `TMP_TextUtilities.FindIntersectingLink` to detect user clicks on specific words within TextMeshPro elements, dispatching the data to the `GameManager`.
-* **CharacterMover (`CharacterMover.cs`)**: Handles 2D sprite sliding animations and character transitions via coroutines, reacting to `OnStateChanged` and `OnNPCChanged` events.
+* **UIManager (`UIManager.cs`)**: Subscribes to `GameManager` events to manage UI panels (speech bubbles, selections, scales) and formats dialogue snippets with typing animations.
+* **DialogueLinkHandler (`DialogueLinkHandler.cs`)**: Implements `IPointerClickHandler` and utilizes `TMP_TextUtilities.FindIntersectingLink` to detect user clicks on specific words within TextMeshPro elements, dispatching the data to the `GameManager`. Includes visual hover feedback (`Color` & `Scale`).
+* **CharacterMover (`CharacterMover.cs`)**: Handles 2D sprite sliding animations, drop-in effects, and footstep audio via coroutines, reacting to `OnStateChanged` and `OnNPCChanged` events. Emits `OnCharacterEnterFinished`, `OnCharacterExitFinished`, and `OnAnubisEnterFinished`.
+* **PapyrusMover (`PapyrusMover.cs`)**: Manages the papyrus scroll UI panel animation, hiding it offscreen and animating it into place alongside typing out the character's header name using `TextMeshPro`.
+* **AnubisTutorialManager (`AnubisTutorialManager.cs`)**: Controls the opening tutorial dialog, integrating seamlessly with `CharacterMover` for initial Anubis animations.
 * **Data Management (`GameData.cs`)**: Uses Unity ScriptableObjects (`DialogueBubble`, `NPCData`, `LevelData`) to define and serialize narrative and character data.
 
 ## NPCs
