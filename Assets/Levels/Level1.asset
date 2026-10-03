@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   npcsInLevel:
+  - {fileID: 11400000, guid: af7c83a8684ec26f2a61e14b5caf5d34, type: 2}
+  - {fileID: 11400000, guid: bec72944b045c19289fa4b08678b0d1b, type: 2}
   - {fileID: 11400000, guid: 50cc3f929bd2be6a7b4248be6bad41f7, type: 2}
-  - {fileID: 11400000, guid: 6899bf5850f21ad73b9bcc59ecb9f43c, type: 2}
-  - {fileID: 11400000, guid: 293077d37b92412dab4a5e909a64f503, type: 2}
   deliberationDialogue:
   - Yo dude, I'm back! Did you interview everyone?
   - I've got a great idea for a start-up.

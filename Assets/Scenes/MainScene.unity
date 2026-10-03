@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PapyrusUI
   audioSource: {fileID: 255724485}
-  clickSound: {fileID: 8300000, guid: da6448e53aa8fa1a7a936a7b15648e3c, type: 3}
+  clickSound: {fileID: 8300000, guid: 45601ee83076f838e9f8547fdf8f26b7, type: 3}
   typingSpeed: 40
 --- !u!114 &255724484
 MonoBehaviour:
@@ -2099,7 +2099,6 @@ MonoBehaviour:
   selectionPanel: {fileID: 0}
   scalesPanel: {fileID: 1415111689}
   foregroundWallImage: {fileID: 316819902}
-  deliberationManager: {fileID: 1511848229}
 --- !u!114 &1511848229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2117,14 +2116,6 @@ MonoBehaviour:
   speechText: {fileID: 515035546}
   nextButton: {fileID: 885926456}
   anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
-  activeCharacterRect: {fileID: 1771196112}
-  slideDuration: 0.5
-  offScreenLeftX: -1200
-  targetScreenX: -400
-  dialoguePhrases:
-  - Yo dude, I'm back! Did you interview everyone?
-  - I've got a great idea for a start-up.
-  - I'm going to start a pyramid construction company! Drag the papyrus of who you think would do the best job to me.
 --- !u!1 &1565658509
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Ipuwer
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Ipuwer
-  npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
+  npcSprite: {fileID: 0}
   dialogueBubbles:
   - snippets:
     - They called me Ipuwer.
-    - I prepared bodies for eternity in the purification tents of Abydos.
+    - I prepared bodies for eternity.
+    - I worked in the purification tents of Abydos.
   - snippets:
-    - I pulled brains through noses and packed bodies with natron salt. It is a precise art.
+    - I pulled brains through noses.
+    - I packed bodies with natron salt.
+    - It is a precise art.
   - snippets:
-    - But I grew too comfortable. I forgot to clean my bronze blade and cut my hand on a diseased lung.
-  - snippets:
-    - The rot spread to my blood. I become dangerously careless when tasks feel too routine.
+    - I grew too comfortable.
+    - I forgot to clean my bronze blade.
+    - I cut my hand on a diseased lung.
+    - The rot spread to my blood.

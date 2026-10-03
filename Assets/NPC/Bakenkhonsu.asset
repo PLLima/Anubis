@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Bakenkhonsu
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Bakenkhonsu
-  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
+  npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
     - I am Bakenkhonsu.
-    - I commanded the Medjay patrols guarding the Pharaoh's gold mines.
+    - I commanded the Medjay patrols.
+    - We guarded the Pharaoh's gold mines.
   - snippets:
-    - My laws were unforgiving. When my brother stole a chisel, I sent him to the quarries.
+    - My laws were unforgiving.
+    - My brother stole a chisel.
+    - I sent him to the quarries.
   - snippets:
-    - I refused to retreat from a massive desert raid because orders strictly forbade losing any gold.
-  - snippets:
-    - A spear took my throat. I am completely inflexible and will throw away lives for a rule.
+    - I refused to retreat from a massive desert raid.
+    - Orders strictly forbade losing any gold.
+    - A spear took my throat.
