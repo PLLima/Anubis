@@ -1821,7 +1821,7 @@ MonoBehaviour:
   resultFadeDuration: 1
   finalFadeDuration: 1
   pauseAfterNeutral: 1
-  pauseAfterResult: 2
+  pauseAfterResult: 2.1
 --- !u!1 &1511848223
 GameObject:
   m_ObjectHideFlags: 0
