@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ea7e8bf99631847a89e1be619d78b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PapyrusUI
+  clueTypingDuration: 0.8
 --- !u!114 &255724484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +434,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.4627451, b: 0, a: 1}
+  m_fontColor: {r: 0.87058824, g: 0.5254902, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
