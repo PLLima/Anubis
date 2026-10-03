@@ -29,11 +29,6 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler
                 
                 GameManager.Instance.TrySaveClue(clickedText);
             }
-        } else {
-            // They clicked the speech bubble, but not a clue. 
-            // This could be your trigger to advance to the next dialogue piece!
-            Debug.Log("Clicked background to continue dialogue.");
-            GameManager.Instance.AdvanceDialogue();
         }
     }
 }

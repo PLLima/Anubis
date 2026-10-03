@@ -45,6 +45,16 @@ public class GameManager : MonoBehaviour
     public void ChangeState(GameState newState) {
         CurrentState = newState;
         Debug.Log($"Game State Changed To: {newState}");
+
+        if (newState == GameState.CandidateEnter) {
+            if (currentLevel != null && currentLevel.npcsInLevel != null && currentNPCIndex < currentLevel.npcsInLevel.Length) {
+                NPCData npc = currentLevel.npcsInLevel[currentNPCIndex];
+                if (npc != null) {
+                    OnNPCChanged?.Invoke(npc);
+                }
+            }
+        }
+
         OnStateChanged?.Invoke(newState);
     }
 
@@ -87,8 +97,6 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            OnNPCChanged?.Invoke(currentNPC);
-            
             currentDialogueIndex = 0;
             ChangeState(GameState.Interview);
             OnDialogueChanged?.Invoke(currentNPC.dialogueBubbles[currentDialogueIndex]);

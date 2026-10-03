@@ -12,6 +12,9 @@ public class AnubisTutorialManager : MonoBehaviour
     public Button nextButton;
     public GameObject gameplayCanvas;
 
+    [Header("Scripts to Enable")]
+    // DialogueLinkHandler dialogueTextScript;
+
     [Header("Dialogue Content")]
     [TextArea(2, 5)]
     public List<string> dialoguePhrases = new List<string>()
@@ -85,48 +88,30 @@ public class AnubisTutorialManager : MonoBehaviour
             EndIntroSequence();
         }
     }
-
+    // Update is called once per frame
+    
     public void AdvanceDialogue()
     {
-        if (!introActive)
-            return;
-
         currentPhraseIndex++;
         DisplayCurrentPhrase();
     }
 
-    private void EndIntroSequence()
+    public void EndIntroSequence()
     {
-        introActive = false;
-
-        if (activeCharacter != null)
-            activeCharacter.SetActive(false);
-
-        if (speechBubbleUI != null)
-            speechBubbleUI.SetActive(false);
-
+        speechBubbleUI.SetActive(false);
+        activeCharacter.SetActive(false);
         if (gameplayCanvas != null)
             gameplayCanvas.SetActive(true);
-
-        GameManager.Instance.StartGameLoop();
-    }
-
-    private void Update()
-    {
-        if (!introActive)
-            return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            AdvanceDialogue();
+            
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.AnubisIntro) {
+            GameManager.Instance.StartGameLoop();
         }
     }
-
-    private void OnDestroy()
-    {
-        if (nextButton != null)
-        {
-            nextButton.onClick.RemoveListener(AdvanceDialogue);
-        }
-    }
+    // void Update()
+    // {
+    //     if (speechBubbleUI.activeSelf && Input.GetMouseButtonDown(0))
+    //     {
+    //         AdvanceDialogue();
+    //     }
+    // }
 }

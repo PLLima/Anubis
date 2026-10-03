@@ -14,15 +14,18 @@ public class UIManager : MonoBehaviour
     [Header("Dialogue Dependencies")]
     public DialogueLinkHandler dialogueLinkHandler; 
     public TextMeshProUGUI dialogueTextComponent;   
+    public TextMeshProUGUI npcNameText;
 
     private void OnEnable() {
         GameManager.OnStateChanged += HandleStateChange;
         GameManager.OnDialogueChanged += ShowDialogue;
+        GameManager.OnNPCChanged += UpdateNPCName;
     }
 
     private void OnDisable() {
         GameManager.OnStateChanged -= HandleStateChange;
         GameManager.OnDialogueChanged -= ShowDialogue;
+        GameManager.OnNPCChanged -= UpdateNPCName;
     }
 
     private void HandleStateChange(GameState state) {
@@ -58,6 +61,12 @@ public class UIManager : MonoBehaviour
 
         dialogueTextComponent.text = FormatDialogueForClicking(bubble);
         dialogueLinkHandler.SetCurrentBubble(bubble);
+    }
+
+    private void UpdateNPCName(NPCData npc) {
+        if (npcNameText != null && npc != null) {
+            npcNameText.text = npc.npcName;
+        }
     }
 
     public string FormatDialogueForClicking(DialogueBubble bubble) {

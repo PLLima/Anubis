@@ -48,6 +48,7 @@ public class NPCDataGenerator {
         
         NPCData existing = AssetDatabase.LoadAssetAtPath<NPCData>(path);
         if (existing != null) {
+            npc.npcSprite = existing.npcSprite;
             EditorUtility.CopySerialized(npc, existing);
         } else {
             AssetDatabase.CreateAsset(npc, path);
