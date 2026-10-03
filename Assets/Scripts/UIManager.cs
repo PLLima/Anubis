@@ -11,9 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject papyrusPanel;
     public GameObject selectionPanel;
     public GameObject scalesPanel;
-    public GameObject foregroundWallImage; 
-
-
+    public GameObject foregroundWallImage;
+    
     private void OnEnable() 
     {
         GameManager.OnStateChanged += HandleStateChange;

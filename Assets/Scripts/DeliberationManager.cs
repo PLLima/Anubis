@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
@@ -15,193 +14,119 @@ public class DeliberationManager : MonoBehaviour
     [Header("Anubis")]
     public Sprite anubisSprite;
 
-    [Header("Character Movement")]
-    public RectTransform activeCharacterRect;
-    public float slideDuration = 0.5f;
-    public float offScreenLeftX = -1200f;
-    public float targetScreenX = -400f;
-
-    [Header("Dialogue")]
-    [TextArea(2, 5)]
-    public List<string> dialoguePhrases = new List<string>()
-    {
-        "Yo dude, I'm back! Did you interview everyone?",
-        "I've got a great idea for a start-up.",
-        "I'm going to start a pyramid construction company! Drag the papyrus of who you think would do the best job to me."
-    };
-
     private int currentPhraseIndex = 0;
     private bool deliberationActive = false;
-    private Coroutine slideCoroutine;
+    private List<string> dialoguePhrases = new List<string>();
 
-    private void Start()
+    private void OnEnable()
     {
-        // Clear any dialogue left over from the previous NPC.
-        if (speechText != null)
-        {
-            speechText.text = "";
-        }
-
-        // Connect the Next button.
+        GameManager.OnStateChanged += HandleStateChanged;
+        CharacterMover.OnAnubisEnterFinished += HandleAnubisEnterFinished;
+        
         if (nextButton != null)
         {
             nextButton.onClick.AddListener(AdvanceDialogue);
         }
     }
 
-    private void OnEnable()
-    {
-        GameManager.OnStateChanged += HandleStateChanged;
-    }
-
     private void OnDisable()
     {
         GameManager.OnStateChanged -= HandleStateChanged;
-    }
-
-    private void HandleStateChanged(GameState newState)
-    {
-        if (newState == GameState.Deliberation)
-        {
-            StartDeliberation();
-        }
-    }
-
-
-    private void StartDeliberation()
-    {
-        if (deliberationActive)
-            return;
-
-        deliberationActive = true;
-        currentPhraseIndex = 0;
-
-        // 1. Force clear text first
-        if (speechText != null)
-        {
-            speechText.text = string.Empty;
-        }
-
-        // 2. Setup Anubis sprite
-        if (activeCharacter != null)
-        {
-            activeCharacter.SetActive(true);
-        }
-
-        if (activeCharacterRect == null && activeCharacter != null)
-        {
-            activeCharacterRect = activeCharacter.GetComponent<RectTransform>();
-        }
-
-        if (activeCharacterRect == null)
-        {
-            Debug.LogError("DeliberationManager: Active Character needs a RectTransform.");
-            return;
-        }
-
-        Image characterImage = activeCharacter.GetComponent<Image>();
-        if (characterImage != null && anubisSprite != null)
-        {
-            characterImage.sprite = anubisSprite;
-        }
-
-        // 3. Set off-screen starting position
-        Vector2 startPosition = activeCharacterRect.anchoredPosition;
-        startPosition.x = offScreenLeftX;
-        activeCharacterRect.anchoredPosition = startPosition;
-
-        // 4. Show speech bubble & set Anubis's first phrase
-        if (speechBubbleUI != null)
-        {
-            speechBubbleUI.SetActive(true);
-        }
-
-        DisplayCurrentPhrase(); // Display "Yo dude, I'm back!..."
-
-        // 5. Start sliding animation
-        if (slideCoroutine != null)
-        {
-            StopCoroutine(slideCoroutine);
-        }
-
-        slideCoroutine = StartCoroutine(SlideAnubisIn());
-    }
-
-    private IEnumerator SlideAnubisIn()
-    {
-
-        float timeElapsed = 0f;
-
-        Vector2 position =
-            activeCharacterRect.anchoredPosition;
-
-        position.x = offScreenLeftX;
-
-        activeCharacterRect.anchoredPosition = position;
-
-        while (timeElapsed < slideDuration)
-        {
-            timeElapsed += Time.deltaTime;
-
-            float t =
-                Mathf.SmoothStep(
-                    0f,
-                    1f,
-                    timeElapsed / slideDuration
-                );
-
-            position.x =
-                Mathf.Lerp(
-                    offScreenLeftX,
-                    targetScreenX,
-                    t
-                );
-
-            activeCharacterRect.anchoredPosition = position;
-
-            yield return null;
-        }
-
-        position.x = targetScreenX;
-        activeCharacterRect.anchoredPosition = position;
-    }
-
-    public void AdvanceDialogue()
-    {
-        if (!deliberationActive)
-            return;
-
-        // If we're already on the final sentence,
-        // don't advance anywhere yet.
-        if (currentPhraseIndex >= dialoguePhrases.Count - 1)
-        {
-            return;
-        }
-
-        currentPhraseIndex++;
-
-        DisplayCurrentPhrase();
-    }
-
-    private void DisplayCurrentPhrase()
-    {
-        if (speechText == null)
-            return;
-
-        if (currentPhraseIndex < dialoguePhrases.Count)
-        {
-            speechText.text =
-                dialoguePhrases[currentPhraseIndex];
-        }
-    }
-
-    private void OnDestroy()
-    {
+        CharacterMover.OnAnubisEnterFinished -= HandleAnubisEnterFinished;
+        
         if (nextButton != null)
         {
             nextButton.onClick.RemoveListener(AdvanceDialogue);
         }
     }
 
+    private void HandleStateChanged(GameState newState)
+    {
+        if (newState == GameState.Deliberation)
+        {
+            StartDeliberationLogic();
+        }
+    }
 
+    private void StartDeliberationLogic()
+    {
+        if (deliberationActive) return;
+        deliberationActive = true;
+        currentPhraseIndex = 0;
+
+        // Clear text
+        if (speechText != null) speechText.text = string.Empty;
+
+        // Load dialogue from LevelData
+        dialoguePhrases.Clear();
+        if (GameManager.Instance != null && GameManager.Instance.currentLevel != null && GameManager.Instance.currentLevel.deliberationDialogue != null)
+        {
+            dialoguePhrases.AddRange(GameManager.Instance.currentLevel.deliberationDialogue);
+        }
+
+        // Fallback if level data has no dialogue
+        if (dialoguePhrases.Count == 0)
+        {
+            dialoguePhrases.Add("Yo dude, I'm back! Drag the papyrus of who you think would do the best job to me.");
+        }
+
+        // Set Anubis Sprite
+        if (activeCharacter != null)
+        {
+            activeCharacter.SetActive(true);
+            Image characterImage = activeCharacter.GetComponent<Image>();
+            if (characterImage != null && anubisSprite != null)
+            {
+                characterImage.sprite = anubisSprite;
+            }
+        }
+        
+        // CharacterMover will automatically slide Anubis in, 
+        // which triggers HandleAnubisEnterFinished when done.
+    }
+
+    private void HandleAnubisEnterFinished()
+    {
+        // Only trigger dialogue typing if we are actually in the Deliberation state
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Deliberation)
+        {
+            if (speechBubbleUI != null) speechBubbleUI.SetActive(true);
+            DisplayCurrentPhrase();
+        }
+    }
+
+    public void AdvanceDialogue()
+    {
+        if (!deliberationActive) return;
+
+        if (currentPhraseIndex >= dialoguePhrases.Count - 1)
+        {
+            // Reached the end of the deliberation dialogue. 
+            // In the future, this might enable dragging or transition state.
+            return;
+        }
+
+        currentPhraseIndex++;
+        DisplayCurrentPhrase();
+    }
+
+    private void DisplayCurrentPhrase()
+    {
+        if (speechText == null) return;
+
+        if (currentPhraseIndex < dialoguePhrases.Count)
+        {
+            if (speechBubbleUI != null)
+            {
+                var bubbleComponent = speechBubbleUI.GetComponent<SpeechBubbleUI>();
+                if (bubbleComponent != null)
+                {
+                    bubbleComponent.TypeStandardText(dialoguePhrases[currentPhraseIndex]);
+                    return;
+                }
+            }
+
+            speechText.text = dialoguePhrases[currentPhraseIndex];
+        }
+    }
 }

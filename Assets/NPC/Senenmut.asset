@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Senenmut
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Senenmut
-  npcSprite: {fileID: 0}
+  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
     - I am Senenmut.

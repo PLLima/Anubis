@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Khepri
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Khepri
-  npcSprite: {fileID: 0}
+  npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
     - My name was Khepri.

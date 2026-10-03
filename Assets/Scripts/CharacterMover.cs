@@ -67,7 +67,7 @@ public class CharacterMover : MonoBehaviour
         {
             StartAnimation(ExitSequence());
         }
-        else if (state == GameState.AnubisIntro)
+        else if (state == GameState.AnubisIntro || state == GameState.Deliberation)
         {
             StartAnimation(EnterSequence(true));
         }

@@ -47,8 +47,43 @@ public class SpeechBubbleUI : MonoBehaviour
         dialogueLinkHandler.SetCurrentBubble(bubble);
         dialogueTextComponent.ForceMeshUpdate();
 
+        yield return StartCoroutine(RunTypingLoop());
+    }
+
+    /// <summary>
+    /// Types a standard string without hyperlink formatting (used for Anubis).
+    /// </summary>
+    public void TypeStandardText(string text)
+    {
+        if (dialogueTextComponent == null) return;
+        
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+        typingCoroutine = StartCoroutine(TypeStandardCoroutine(text));
+    }
+
+    private System.Collections.IEnumerator TypeStandardCoroutine(string text)
+    {
+        if (dialogueArrow != null) dialogueArrow.SetActive(false);
+
+        dialogueTextComponent.text = text;
+        // Unbind any previous bubble links
+        if (dialogueLinkHandler != null)
+        {
+            dialogueLinkHandler.SetCurrentBubble(null);
+        }
+        dialogueTextComponent.ForceMeshUpdate();
+
+        yield return StartCoroutine(RunTypingLoop());
+    }
+
+    private System.Collections.IEnumerator RunTypingLoop()
+    {
         int totalChars = dialogueTextComponent.textInfo.characterCount;
-        dialogueLinkHandler.SetVisibleCharacters(0);
+        if (dialogueLinkHandler != null) dialogueLinkHandler.SetVisibleCharacters(0);
+        else dialogueTextComponent.maxVisibleCharacters = 0;
 
         float floatVisible = 0f;
         while (floatVisible < totalChars)
@@ -59,11 +94,15 @@ public class SpeechBubbleUI : MonoBehaviour
             }
 
             floatVisible += Time.deltaTime * typingSpeed;
-            dialogueLinkHandler.SetVisibleCharacters(Mathf.FloorToInt(floatVisible));
+            
+            if (dialogueLinkHandler != null) dialogueLinkHandler.SetVisibleCharacters(Mathf.FloorToInt(floatVisible));
+            else dialogueTextComponent.maxVisibleCharacters = Mathf.FloorToInt(floatVisible);
+            
             yield return null;
         }
 
-        dialogueLinkHandler.SetVisibleCharacters(totalChars);
+        if (dialogueLinkHandler != null) dialogueLinkHandler.SetVisibleCharacters(totalChars);
+        else dialogueTextComponent.maxVisibleCharacters = totalChars;
         
         if (dialogueArrow != null) dialogueArrow.SetActive(true);
     }
