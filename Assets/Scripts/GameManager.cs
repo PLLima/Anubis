@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnStateChanged;
 
     public static event Action<string> OnClueAdded;
+    public static event Action<DialogueBubble> OnDialogueChanged;
+    public static event Action<NPCData> OnNPCChanged;
+
+    public LevelData currentLevel;
+    private int currentNPCIndex = 0;
+    private int currentDialogueIndex = 0;
 
     public GameState CurrentState { get; private set; }
 
@@ -30,7 +36,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        ChangeState(GameState.AnubisIntro);
+        ChangeState(GameState.CandidateEnter);
     }
 
     public void ChangeState(GameState newState) {
@@ -38,11 +44,57 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Game State Changed To: {newState}");
         OnStateChanged?.Invoke(newState);
     }
+
+    public void StartGameLoop() {
+        currentNPCIndex = 0;
+        ChangeState(GameState.CandidateEnter);
+    }
+
+    public void AdvanceDialogue() {
+        if (currentLevel == null || currentLevel.npcsInLevel == null || currentLevel.npcsInLevel.Length == 0) return;
+
+        if (CurrentState == GameState.AnubisIntro) {
+            StartGameLoop();
+            return;
+        }
+
+        if (CurrentState == GameState.Interview) {
+            NPCData currentNPC = currentLevel.npcsInLevel[currentNPCIndex];
+            currentDialogueIndex++;
+            
+            if (currentDialogueIndex < currentNPC.dialogueBubbles.Length) {
+                OnDialogueChanged?.Invoke(currentNPC.dialogueBubbles[currentDialogueIndex]);
+            } else {
+                ChangeState(GameState.CandidateExit);
+            }
+        }
+    }
+
+    public void OnCandidateEntered() {
+        if (CurrentState == GameState.CandidateEnter) {
+            NPCData currentNPC = currentLevel.npcsInLevel[currentNPCIndex];
+            OnNPCChanged?.Invoke(currentNPC);
+            
+            currentDialogueIndex = 0;
+            ChangeState(GameState.Interview);
+            OnDialogueChanged?.Invoke(currentNPC.dialogueBubbles[currentDialogueIndex]);
+        }
+    }
+
+    public void OnCandidateExited() {
+        if (CurrentState == GameState.CandidateExit) {
+            currentNPCIndex++;
+            if (currentNPCIndex < currentLevel.npcsInLevel.Length) {
+                ChangeState(GameState.CandidateEnter);
+            } else {
+                ChangeState(GameState.Deliberation);
+            }
+        }
+    }
     
     public void TrySaveClue(string clueText) {
         if (currentNPCClues.Count >= 4) {
             Debug.Log("Papyrus is full! Max 4 clues allowed.");
-            // Optional: Trigger a "fail" sound or shake the UI
             return; 
         }
 

@@ -18,7 +18,7 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, Input.mousePosition, null);
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, eventData.pressEventCamera);
 
         if (linkIndex != -1) {
             TMP_LinkInfo linkInfo = textMeshPro.textInfo.linkInfo[linkIndex];
@@ -33,6 +33,7 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler
             // They clicked the speech bubble, but not a clue. 
             // This could be your trigger to advance to the next dialogue piece!
             Debug.Log("Clicked background to continue dialogue.");
+            GameManager.Instance.AdvanceDialogue();
         }
     }
 }

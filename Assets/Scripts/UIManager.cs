@@ -17,10 +17,12 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable() {
         GameManager.OnStateChanged += HandleStateChange;
+        GameManager.OnDialogueChanged += ShowDialogue;
     }
 
     private void OnDisable() {
         GameManager.OnStateChanged -= HandleStateChange;
+        GameManager.OnDialogueChanged -= ShowDialogue;
     }
 
     private void HandleStateChange(GameState state) {

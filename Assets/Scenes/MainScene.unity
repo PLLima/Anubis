@@ -528,11 +528,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1565658510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -25, y: -50}
+  m_SizeDelta: {x: 675, y: 250}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &515035546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,7 +1759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1796,8 +1796,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864db4d5730ae7caa8f29d79f1ae4894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMover
-  activeCharacterRect: {fileID: 0}
+  activeCharacterRect: {fileID: 1217084348}
   slideDuration: 0.5
+  activeCharacterImage: {fileID: 0}
+  offScreenLeftX: -1200
+  targetScreenX: -370
 --- !u!1 &1245904522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,8 +2148,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 588.1927, y: 469.93518}
+  m_AnchoredPosition: {x: 75, y: -50}
+  m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1565658511
 MonoBehaviour:
@@ -2168,7 +2171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5007465203087833557, guid: cdee716b98e3f0173bbff9901669a482, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2266,6 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625895e02e00edf91a965e38e8009b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  currentLevel: {fileID: 0}
   currentNPCClues: []
 --- !u!1 &1983034787
 GameObject:
