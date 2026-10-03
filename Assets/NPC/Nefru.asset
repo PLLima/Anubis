@@ -10,17 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
-  m_Name: Nefru
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Nefru
   npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
-    - My name was Nefru.
-    - During the flood season, we paid taxes by hauling stones for the temples.
+    - I hauled stones for the temples.
+    - Labor was how many of us paid taxes.
   - snippets:
-    - I was incredibly strong, but I hated delays. Give me a task, and I just want it done.
+    - Strength was never a problem for me.
+    - I could not stand delays.
+    - I wanted every task finished quickly.
   - snippets:
-    - I ordered my crew to use frayed lifting ropes to finish early. A pillar fell and crushed my chest.
+    - My crew used frayed lifting ropes.
+    - I refused to replace them.
+    - New ropes would have slowed us down.
+    - A pillar fell and crushed me.
   - snippets:
-    - I am reckless. I value finishing the job quickly over planning and safety.
+    - Speed mattered more than planning.
+    - I often ignored safety.
+    - Impatience was my greatest weakness.

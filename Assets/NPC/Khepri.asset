@@ -10,17 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
-  m_Name: Khepri
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Khepri
   npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
-    - My name was Khepri.
-    - I sailed from Memphis, trading linen for copper in a society without coins.
+    - I sailed from Memphis.
+    - Trade was how I made my living.
+    - Linen and copper were common goods.
   - snippets:
-    - I was a master of words, convincing people that common lapis amulets were blessed by Ptah.
+    - Words were my greatest weapon.
+    - I knew what people wanted to hear.
+    - I sold ordinary lapis amulets.
+    - I claimed they were blessed by Ptah.
   - snippets:
-    - But a rival merchant grew tired of my lies and poisoned my beer during a festival.
+    - A rival merchant grew tired of my lies.
+    - He poisoned my beer during a festival.
+    - I finally swindled the wrong man.
   - snippets:
-    - I swindled the wrong man. I make bitter enemies because I always prioritize my own profit over ethics.
+    - Profit mattered more than honesty.
+    - That earned me many enemies.
+    - Ethics rarely stopped a good deal.

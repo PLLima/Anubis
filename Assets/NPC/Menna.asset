@@ -10,17 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
-  m_Name: Menna
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Menna
-  npcSprite: {fileID: -2256948484998397059, guid: 75acfd848ff0e7816aa2a2b5f8732369, type: 3}
+  npcSprite: {fileID: 0}
   dialogueBubbles:
   - snippets:
     - I am Menna.
-    - I led trade caravans beyond the southern borders to bring back gold and myrrh.
+    - I led trade caravans south.
+    - We brought back gold and myrrh.
   - snippets:
-    - I spoke the tongues of Nubian kings. The one who controls the language controls the deal.
+    - I learned the tongues of Nubian kings.
+    - Language gave me an advantage.
+    - Control the talk, control the deal.
   - snippets:
-    - To save time, I ignored local guides and marched my caravan directly into a massive sandstorm.
+    - I wanted to save time.
+    - The local guides warned me.
+    - I ignored them.
+    - A sandstorm buried my caravan.
   - snippets:
-    - We were buried alive. I am arrogant and refuse to listen to advice from those beneath me.
+    - Advice rarely impressed me.
+    - I looked down on local guides.
+    - I trusted my own judgment too much.

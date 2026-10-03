@@ -10,17 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
-  m_Name: Hori
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Hori
   npcSprite: {fileID: -2256948484998397059, guid: 75acfd848ff0e7816aa2a2b5f8732369, type: 3}
   dialogueBubbles:
   - snippets:
-    - I am Hori of Heliopolis.
-    - I managed the state granaries, tracking every sack with my reed pen.
+    - I am from Heliopolis.
+    - I managed the state granaries.
+    - Every sack passed through my records.
   - snippets:
-    - I kept hidden copies of ledgers because I never trusted the honesty of other men.
+    - I kept hidden copies of the ledgers.
+    - I did not trust other people's memories.
+    - Written evidence felt safer.
   - snippets:
-    - I confronted a corrupt priest alone with my evidence. His thugs simply drowned me in a canal.
+    - My records exposed a corrupt priest.
+    - I confronted him alone.
+    - His thugs drowned me in a canal.
   - snippets:
-    - I blindly follow the rules, but I lack strategic sense. I act without thinking of survival.
+    - Rules guided almost everything I did.
+    - Proof mattered more than instinct.
+    - Strategy was never my strength.
+    - Being right mattered more than survival.

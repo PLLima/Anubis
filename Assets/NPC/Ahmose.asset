@@ -10,17 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
-  m_Name: Ahmose
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Ahmose
-  npcSprite: {fileID: -2256948484998397059, guid: 75acfd848ff0e7816aa2a2b5f8732369, type: 3}
+  npcSprite: {fileID: 0}
   dialogueBubbles:
   - snippets:
     - Call me Ahmose.
-    - I lived in the workers' village, carving royal tombs in the Valley of the Kings.
+    - I carved royal tombs.
+    - I lived in the workers' village.
   - snippets:
-    - Unofficially, I knew exactly how to bypass the false doors, and I stole many lapis amulets.
+    - I knew where the false doors were.
+    - I knew the hidden paths.
+    - I stole lapis amulets.
   - snippets:
-    - I bragged about my thefts to a friend, who betrayed me for a reward. The guards impaled me.
+    - Stealing did not expose me.
+    - Bragging did.
+    - A friend betrayed me for a reward.
+    - The guards impaled me.
   - snippets:
-    - I am fundamentally dishonest. I will steal from my employer and I choose my allies poorly.
+    - Loyalty mattered little to me.
+    - I trusted the wrong people.
+    - Dishonesty came naturally.
