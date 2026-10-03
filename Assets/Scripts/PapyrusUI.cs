@@ -17,6 +17,11 @@ public class PapyrusUI : MonoBehaviour
     private void Awake()
     {
         papyrusText = GetComponent<TextMeshProUGUI>();
+        
+        if (papyrusText != null)
+        {
+            papyrusText.color = Color.black;
+        }
 
         if (papyrusText == null)
         {
@@ -61,7 +66,7 @@ public class PapyrusUI : MonoBehaviour
         }
         else
         {
-            newText = $"{oldText}\n- {clue}";
+            newText = $"{oldText}\n\n- {clue}";
         }
 
         if (typingCoroutine != null)

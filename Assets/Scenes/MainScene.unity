@@ -378,10 +378,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 827837106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 75, y: 0}
-  m_SizeDelta: {x: 0, y: 800}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 625, y: 625}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &255724482
 CanvasRenderer:
@@ -2831,9 +2831,9 @@ MonoBehaviour:
   currentLevel: {fileID: 11400000, guid: 836cc714c1a35fa1eb6b81cc3baee60c, type: 2}
   audioSource: {fileID: 845876979}
   advanceDialogueSound: {fileID: 8300000, guid: 7f91d741956c522419ceaad4aa60e3ad, type: 3}
-  cursorNormal: {fileID: 0}
-  cursorClicked: {fileID: 0}
-  cursorHover: {fileID: 0}
+  cursorNormal: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
+  cursorClicked: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
+  cursorHover: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
   cursorSize: {x: 32, y: 32}
   cursorHotSpot: {x: 0, y: 0}
   cursorMode: 0

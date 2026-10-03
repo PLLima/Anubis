@@ -116,9 +116,7 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
     {
         if (textMeshPro == null || currentBubble == null) return;
         
-        // Fallback to the highly reliable currentLink tracked by the hover system!
-        // This bypasses any EventSystem/Camera raycast bugs that happen on the exact frame of the click.
-        int linkIndex = currentLink;
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMeshPro, eventData.position, eventData.pressEventCamera);
 
         if (linkIndex != -1) {
             TMP_LinkInfo linkInfo = textMeshPro.textInfo.linkInfo[linkIndex];
