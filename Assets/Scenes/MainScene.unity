@@ -1312,15 +1312,9 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-<<<<<<< Updated upstream
-    m_PressedColor: {r: 0.5764706, g: 0, b: 0.02745098, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.5764706, g: 0, b: 0.02745098, a: 0.5019608}
-=======
     m_PressedColor: {r: 0.5764706, g: 0.007843138, b: 0.02745098, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.5764706, g: 0.007843138, b: 0.02745098, a: 0.5019608}
->>>>>>> Stashed changes
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3048,8 +3042,5 @@ SceneRoots:
   - {fileID: 1245904525}
   - {fileID: 1511848227}
   - {fileID: 845876980}
-<<<<<<< Updated upstream
   - {fileID: 886291341}
-=======
   - {fileID: 1309990394}
->>>>>>> Stashed changes

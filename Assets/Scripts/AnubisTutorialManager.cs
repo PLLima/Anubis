@@ -183,15 +183,11 @@ public class AnubisTutorialManager : MonoBehaviour
         {
             if (speechText != null)
             {
-<<<<<<< Updated upstream
                 if (typingCoroutine != null)
                 {
                     StopCoroutine(typingCoroutine);
                 }
                 typingCoroutine = StartCoroutine(TypeDialogue(dialoguePhrases[currentPhraseIndex]));
-=======
-                speechText.text = dialoguePhrases[currentPhraseIndex];
->>>>>>> Stashed changes
             }
         }
         else
@@ -234,23 +230,6 @@ public class AnubisTutorialManager : MonoBehaviour
 
     private void EndIntroSequence()
     {
-<<<<<<< Updated upstream
-        introActive = false;
-
-        if (activeCharacter != null)
-            activeCharacter.SetActive(false);
-
-        if (speechBubbleUI != null)
-            speechBubbleUI.SetActive(false);
-
-        if (gameplayCanvas != null)
-            gameplayCanvas.SetActive(true);
-
-        GameManager.Instance.StartGameLoop();
-    }
-
-    // Update method removed to prevent clicking background to advance
-=======
         if (!introActive)
             return;
 
@@ -276,7 +255,8 @@ public class AnubisTutorialManager : MonoBehaviour
             GameManager.Instance.StartGameLoop();
         }
     }
->>>>>>> Stashed changes
+
+    // Update method removed to prevent clicking background to advance
 
     private void OnDestroy()
     {
