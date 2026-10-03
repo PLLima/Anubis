@@ -60,9 +60,7 @@ public class AnubisTutorialManager : MonoBehaviour
     private bool introActive = false;
     private Coroutine typingCoroutine;
 
-    [Header("Typing Effect")]
-    public float typingSpeed = 40f; // characters per second
-
+    // Typing speed is now controlled by the SpeechBubbleUI script to respect modularity
     private void Start()
     {
         if (nextButton != null)
@@ -169,13 +167,25 @@ public class AnubisTutorialManager : MonoBehaviour
         speechText.maxVisibleCharacters = 0;
 
         float floatVisible = 0f;
+        
+        // Fetch the global typing speed from the SpeechBubbleUI script
+        float currentTypingSpeed = 40f;
+        if (speechBubbleUI != null)
+        {
+            var uiComponent = speechBubbleUI.GetComponent<SpeechBubbleUI>();
+            if (uiComponent != null)
+            {
+                currentTypingSpeed = uiComponent.typingSpeed;
+            }
+        }
+
         while (floatVisible < totalChars)
         {
             if (GameManager.Instance != null && GameManager.Instance.WasClickedThisFrame())
             {
                 break; // skip typing
             }
-            floatVisible += Time.deltaTime * typingSpeed;
+            floatVisible += Time.deltaTime * currentTypingSpeed;
             speechText.maxVisibleCharacters = Mathf.FloorToInt(floatVisible);
             yield return null;
         }

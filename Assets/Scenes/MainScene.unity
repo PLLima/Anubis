@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PapyrusMover
   npcNameText: {fileID: 2030260395}
   papyrusSlideDuration: 0.5
-  typingSpeed: 100
+  typingSpeed: 75
   offScreenRightX: 1500
   offScreenBottomY: -1500
 --- !u!1 &845876978
@@ -2203,7 +2203,6 @@ GameObject:
   - component: {fileID: 1217084348}
   - component: {fileID: 1217084350}
   - component: {fileID: 1217084349}
-  - component: {fileID: 1217084351}
   m_Layer: 5
   m_Name: ActiveCharacter
   m_TagString: Untagged
@@ -2268,28 +2267,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217084347}
   m_CullTransparentMesh: 1
---- !u!114 &1217084351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217084347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864db4d5730ae7caa8f29d79f1ae4894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterMover
-  activeCharacterRect: {fileID: 1217084348}
-  activeCharacterImage: {fileID: 1217084349}
-  offScreenLeftX: -1500
-  targetScreenX: -470
-  waitBeforeDropTime: 0.5
-  dropDuration: 0.5
-  dropYOffset: -125
-  slideDuration: 0.8
-  footstepSource: {fileID: 886291340}
-  footstepClip: {fileID: 8300000, guid: d5071d7707f8e86a3b7f72779b675e1c, type: 3}
 --- !u!1 &1245904522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,10 +2644,6 @@ MonoBehaviour:
   selectionPanel: {fileID: 100869024}
   scalesPanel: {fileID: 1415111689}
   foregroundWallImage: {fileID: 316819902}
-  dialogueLinkHandler: {fileID: 515035548}
-  dialogueTextComponent: {fileID: 515035546}
-  typingSpeed: 100
-  dialogueArrow: {fileID: 885926454}
 --- !u!1 &1565658509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,6 +2655,7 @@ GameObject:
   - component: {fileID: 1565658510}
   - component: {fileID: 1565658512}
   - component: {fileID: 1565658511}
+  - component: {fileID: 1565658513}
   m_Layer: 5
   m_Name: SpeechBubblePanel
   m_TagString: Untagged
@@ -2748,6 +2722,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565658509}
   m_CullTransparentMesh: 1
+--- !u!114 &1565658513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565658509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf409142c8425587a6ef035a279a86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeechBubbleUI
+  dialogueLinkHandler: {fileID: 515035548}
+  dialogueTextComponent: {fileID: 515035546}
+  dialogueArrow: {fileID: 885926454}
+  typingSpeed: 75
 --- !u!1 &1771196111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,6 +2747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1771196112}
+  - component: {fileID: 1771196113}
   m_Layer: 5
   m_Name: CharacterContainer
   m_TagString: Untagged
@@ -2784,6 +2775,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 674, y: 738}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1771196113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771196111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864db4d5730ae7caa8f29d79f1ae4894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMover
+  activeCharacterRect: {fileID: 1217084348}
+  activeCharacterImage: {fileID: 1217084349}
+  offScreenLeftX: -1500
+  targetScreenX: -470
+  waitBeforeDropTime: 0.5
+  dropDuration: 0.5
+  dropYOffset: -125
+  slideDuration: 0.8
+  footstepSource: {fileID: 886291340}
+  footstepClip: {fileID: 8300000, guid: d5071d7707f8e86a3b7f72779b675e1c, type: 3}
 --- !u!1 &1873852044
 GameObject:
   m_ObjectHideFlags: 0
