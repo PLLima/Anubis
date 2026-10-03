@@ -14,6 +14,9 @@ public class DeliberationManager : MonoBehaviour
     [Header("Anubis")]
     public Sprite anubisSprite;
 
+    [Header("Papyrus Mechanics")]
+    public DeliberationPapyrusManager papyrusManager;
+
     private int currentPhraseIndex = 0;
     private bool deliberationActive = false;
     private List<string> dialoguePhrases = new List<string>();
@@ -116,17 +119,29 @@ public class DeliberationManager : MonoBehaviour
 
         if (currentPhraseIndex < dialoguePhrases.Count)
         {
+            bool isLastPhrase = currentPhraseIndex == (dialoguePhrases.Count - 1);
+            
             if (speechBubbleUI != null)
             {
                 var bubbleComponent = speechBubbleUI.GetComponent<SpeechBubbleUI>();
                 if (bubbleComponent != null)
                 {
-                    bubbleComponent.TypeStandardText(dialoguePhrases[currentPhraseIndex]);
+                    bubbleComponent.TypeStandardText(dialoguePhrases[currentPhraseIndex], !isLastPhrase, () => {
+                        if (isLastPhrase && papyrusManager != null)
+                        {
+                            papyrusManager.SpawnPapyruses();
+                        }
+                    });
                     return;
                 }
             }
 
             speechText.text = dialoguePhrases[currentPhraseIndex];
+            
+            if (isLastPhrase && papyrusManager != null)
+            {
+                papyrusManager.SpawnPapyruses();
+            }
         }
     }
 }
