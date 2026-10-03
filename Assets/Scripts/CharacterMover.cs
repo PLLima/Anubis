@@ -7,6 +7,9 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterMover : MonoBehaviour
 {
+    public static event System.Action OnCharacterEnterFinished;
+    public static event System.Action OnCharacterExitFinished;
+
     [Header("Core References")]
     public RectTransform activeCharacterRect;
     public Image activeCharacterImage;
@@ -92,7 +95,7 @@ public class CharacterMover : MonoBehaviour
         
         yield return StartCoroutine(AnimateYOffset(dropYOffset));
         
-        GameManager.Instance.OnCandidateEntered();
+        OnCharacterEnterFinished?.Invoke();
     }
 
     private IEnumerator ExitSequence() 
@@ -103,7 +106,7 @@ public class CharacterMover : MonoBehaviour
 
         yield return StartCoroutine(SlideRoutine(targetScreenX, offScreenLeftX));
         
-        GameManager.Instance.OnCandidateExited();
+        OnCharacterExitFinished?.Invoke();
     }
 
     private void SetCharacterYPosition(float yPos)
