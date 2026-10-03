@@ -53,7 +53,7 @@ public class SpeechBubbleUI : MonoBehaviour
     /// <summary>
     /// Types a standard string without hyperlink formatting (used for Anubis).
     /// </summary>
-    public void TypeStandardText(string text)
+    public void TypeStandardText(string text, bool showArrowAtEnd = true, System.Action onComplete = null)
     {
         if (dialogueTextComponent == null) return;
         
@@ -61,10 +61,10 @@ public class SpeechBubbleUI : MonoBehaviour
         {
             StopCoroutine(typingCoroutine);
         }
-        typingCoroutine = StartCoroutine(TypeStandardCoroutine(text));
+        typingCoroutine = StartCoroutine(TypeStandardCoroutine(text, showArrowAtEnd, onComplete));
     }
 
-    private System.Collections.IEnumerator TypeStandardCoroutine(string text)
+    private System.Collections.IEnumerator TypeStandardCoroutine(string text, bool showArrowAtEnd, System.Action onComplete)
     {
         if (dialogueArrow != null) dialogueArrow.SetActive(false);
 
@@ -76,10 +76,12 @@ public class SpeechBubbleUI : MonoBehaviour
         }
         dialogueTextComponent.ForceMeshUpdate();
 
-        yield return StartCoroutine(RunTypingLoop());
+        yield return StartCoroutine(RunTypingLoop(showArrowAtEnd));
+        
+        onComplete?.Invoke();
     }
 
-    private System.Collections.IEnumerator RunTypingLoop()
+    private System.Collections.IEnumerator RunTypingLoop(bool showArrow = true)
     {
         int totalChars = dialogueTextComponent.textInfo.characterCount;
         if (dialogueLinkHandler != null) dialogueLinkHandler.SetVisibleCharacters(0);
@@ -104,7 +106,7 @@ public class SpeechBubbleUI : MonoBehaviour
         if (dialogueLinkHandler != null) dialogueLinkHandler.SetVisibleCharacters(totalChars);
         else dialogueTextComponent.maxVisibleCharacters = totalChars;
         
-        if (dialogueArrow != null) dialogueArrow.SetActive(true);
+        if (dialogueArrow != null && showArrow) dialogueArrow.SetActive(true);
     }
 
     private string FormatDialogueForClicking(DialogueBubble bubble) 
