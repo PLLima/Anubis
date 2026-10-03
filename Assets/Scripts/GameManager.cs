@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     // State
     public GameState CurrentState { get; private set; }
+    public bool LastDeliberationResult { get; private set; }
 
     // Data tracking
     private int currentNPCIndex = 0;
@@ -385,6 +386,7 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.ScaleEvaluation);
         
         bool isCorrect = (currentLevel != null && currentLevel.correctNPC == chosenNPC);
+        LastDeliberationResult = isCorrect;
         OnDeliberationSubmitted?.Invoke(isCorrect);
     }
 }

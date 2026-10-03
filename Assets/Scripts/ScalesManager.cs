@@ -149,12 +149,17 @@ public class ScaleManager : MonoBehaviour
 
 
         // ----------------------------------------
-        // 5. EVERYTHING FADES OUT
+        // 5. OVERLAY FADES OUT
         // ----------------------------------------
 
         yield return StartCoroutine(
-            FadeEverythingOut()
+            FadeOverlayOut()
         );
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ChangeState(GameState.EndGame);
+        }
     }
 
     private IEnumerator FadeOverlay(
@@ -349,14 +354,9 @@ public class ScaleManager : MonoBehaviour
         Destroy(resultObject);
     }
 
-    private IEnumerator FadeEverythingOut()
+    private IEnumerator FadeOverlayOut()
     {
         float elapsed = 0f;
-
-        Color scaleColor =
-            scaleImage != null
-                ? scaleImage.color
-                : Color.clear;
 
         Color overlayColor =
             blackOverlay != null
@@ -374,21 +374,6 @@ public class ScaleManager : MonoBehaviour
                     elapsed / finalFadeDuration
                 );
 
-
-            if (scaleImage != null)
-            {
-                Color color = scaleColor;
-                color.a =
-                    Mathf.Lerp(
-                        1f,
-                        0f,
-                        t
-                    );
-
-                scaleImage.color = color;
-            }
-
-
             if (blackOverlay != null)
             {
                 Color color = overlayColor;
@@ -403,14 +388,6 @@ public class ScaleManager : MonoBehaviour
             }
 
             yield return null;
-        }
-
-
-        if (scaleImage != null)
-        {
-            Color color = scaleImage.color;
-            color.a = 0f;
-            scaleImage.color = color;
         }
 
         if (blackOverlay != null)

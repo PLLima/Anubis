@@ -49,6 +49,10 @@ public class DeliberationManager : MonoBehaviour
         {
             StartDeliberationLogic();
         }
+        else if (newState == GameState.EndGame)
+        {
+            StartEndGameLogic();
+        }
     }
 
     private void StartDeliberationLogic()
@@ -86,6 +90,36 @@ public class DeliberationManager : MonoBehaviour
         
         // CharacterMover will automatically slide Anubis in, 
         // which triggers HandleAnubisEnterFinished when done.
+    }
+
+    private void StartEndGameLogic()
+    {
+        deliberationActive = false;
+
+        bool won = GameManager.Instance.LastDeliberationResult;
+        string text = won 
+            ? "This person is perfect! Thanks a lot, I'll take some weight off your soul for you!" 
+            : "This person is completely useless! I'm adding more weight to your soul! Pay more attention next time!";
+
+        if (activeCharacter != null)
+        {
+            activeCharacter.SetActive(true);
+            Image characterImage = activeCharacter.GetComponent<Image>();
+            if (characterImage != null && anubisSprite != null)
+            {
+                characterImage.sprite = anubisSprite;
+            }
+        }
+
+        if (speechBubbleUI != null)
+        {
+            speechBubbleUI.SetActive(true);
+            var bubbleComponent = speechBubbleUI.GetComponent<SpeechBubbleUI>();
+            if (bubbleComponent != null)
+            {
+                bubbleComponent.TypeStandardText(text, false, null);
+            }
+        }
     }
 
     private void HandleAnubisEnterFinished()
