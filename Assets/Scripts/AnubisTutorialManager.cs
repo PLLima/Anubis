@@ -69,7 +69,7 @@ public class AnubisTutorialManager : MonoBehaviour
         }
 
         CharacterMover.OnAnubisEnterFinished += HandleAnubisEnterFinished;
-        StartIntroSequence();
+        GameManager.OnStateChanged += HandleStateChange;
     }
 
     private void OnDestroy()
@@ -79,6 +79,15 @@ public class AnubisTutorialManager : MonoBehaviour
             nextButton.onClick.RemoveListener(AdvanceDialogue);
         }
         CharacterMover.OnAnubisEnterFinished -= HandleAnubisEnterFinished;
+        GameManager.OnStateChanged -= HandleStateChange;
+    }
+
+    private void HandleStateChange(GameState state)
+    {
+        if (state == GameState.AnubisIntro)
+        {
+            StartIntroSequence();
+        }
     }
 
     public void StartIntroSequence()

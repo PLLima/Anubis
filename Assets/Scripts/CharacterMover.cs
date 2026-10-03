@@ -59,7 +59,17 @@ public class CharacterMover : MonoBehaviour
 
     private void HandleStateChange(GameState state) 
     {
-        if (state == GameState.CandidateEnter) 
+        if (state == GameState.TitleScreen)
+        {
+            SetCharacterYPosition(baseY);
+            if (activeCharacterRect != null)
+            {
+                Vector2 pos = activeCharacterRect.anchoredPosition;
+                pos.x = offScreenLeftX;
+                activeCharacterRect.anchoredPosition = pos;
+            }
+        }
+        else if (state == GameState.CandidateEnter) 
         {
             StartAnimation(EnterSequence(false));
         } 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public enum GameState
 {
+    TitleScreen,
     AnubisIntro,
     CandidateEnter,
     Interview,
@@ -86,7 +87,7 @@ public class GameManager : MonoBehaviour
         cursorHover = ResizeCursorTexture(cursorHover, (int)cursorSize.x, (int)cursorSize.y);
 
         SetCursor(cursorNormal);
-        ChangeState(GameState.AnubisIntro);
+        ChangeState(GameState.TitleScreen);
     }
 
     private Texture2D ResizeCursorTexture(Texture2D source, int width, int height)
@@ -388,5 +389,15 @@ public class GameManager : MonoBehaviour
         bool isCorrect = (currentLevel != null && currentLevel.correctNPC == chosenNPC);
         LastDeliberationResult = isCorrect;
         OnDeliberationSubmitted?.Invoke(isCorrect);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game...");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

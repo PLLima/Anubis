@@ -11,7 +11,9 @@ public class UIManager : MonoBehaviour
     public GameObject papyrusPanel;
     public GameObject selectionPanel;
     public GameObject scalesPanel;
-    public GameObject foregroundWallImage;
+    public GameObject titleScreenPanel;
+    [Header("Environment")]
+    public GameObject background;
     
     private void OnEnable() 
     {
@@ -26,6 +28,7 @@ public class UIManager : MonoBehaviour
     private void HandleStateChange(GameState state) 
     {
         // Toggle visibility based on states
+        bool isTitleScreen = state == GameState.TitleScreen;
         bool showSpeechBubble = state == GameState.Interview;
         bool showSelection = state == GameState.Deliberation || state == GameState.Judgment;
         bool showScales = state == GameState.ScaleEvaluation;
@@ -33,6 +36,10 @@ public class UIManager : MonoBehaviour
         if (speechBubblePanel != null) speechBubblePanel.SetActive(showSpeechBubble);
         if (selectionPanel != null) selectionPanel.SetActive(showSelection);
         if (scalesPanel != null) scalesPanel.SetActive(showScales);
+        if (titleScreenPanel != null) titleScreenPanel.SetActive(isTitleScreen);
+
+        // Hide environment during Title Screen
+        if (background != null) background.SetActive(!isTitleScreen);
     }
 
 }
