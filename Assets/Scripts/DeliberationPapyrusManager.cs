@@ -17,6 +17,10 @@ public class DeliberationPapyrusManager : MonoBehaviour
     public float slideDownDistance = 600f;
     public float slideRightDistance = 400f;
 
+    [Header("Drag Settings")]
+    public float dragScale = 0.8f;
+    public Vector2 dragOffset = new Vector2(-100f, 0f);
+
     private List<GameObject> activePapyruses = new List<GameObject>();
     private bool isAnimating = false;
 
@@ -90,6 +94,9 @@ public class DeliberationPapyrusManager : MonoBehaviour
                 }
             }
 
+            DeliberationPapyrusDrag dragger = papyrusObj.AddComponent<DeliberationPapyrusDrag>();
+            dragger.Initialize(this, npcs[i]);
+
             activePapyruses.Add(papyrusObj);
         }
 
@@ -158,15 +165,14 @@ public class DeliberationPapyrusManager : MonoBehaviour
         RectTransform rt = frontPapyrus.GetComponent<RectTransform>();
         
         Vector2 startPos = rt.anchoredPosition;
-        Vector2 downPos = new Vector2(startPos.x, startPos.y - slideDownDistance);
-        Vector2 rightPos = new Vector2(startPos.x + slideRightDistance, startPos.y - slideDownDistance);
+        Vector2 rightPos = new Vector2(startPos.x + slideRightDistance, startPos.y);
 
-        // 1. Pull down
+        // 1. Slide out to the right
         float elapsed = 0;
         while (elapsed < animationDuration / 2)
         {
             elapsed += Time.deltaTime;
-            rt.anchoredPosition = Vector2.Lerp(startPos, downPos, elapsed / (animationDuration / 2));
+            rt.anchoredPosition = Vector2.Lerp(startPos, rightPos, elapsed / (animationDuration / 2));
             yield return null;
         }
 
@@ -174,25 +180,49 @@ public class DeliberationPapyrusManager : MonoBehaviour
         activePapyruses.RemoveAt(0);
         activePapyruses.Add(frontPapyrus);
         
-        // Update siblings to visually put it in the back immediately before sliding up
-        // We pass 'true' for ignoreLast because we will custom animate the back papyrus below.
+        // Update siblings to visually put it in the back
         UpdateStackPositions(true, true); 
 
-        // 2. Move right and up (to the back position)
+        // 2. Slide into the back position strictly horizontally
         Vector2 finalPos = new Vector2(offsetPerItem.x * (activePapyruses.Count - 1), offsetPerItem.y * (activePapyruses.Count - 1));
+        Vector2 backRightPos = new Vector2(finalPos.x + slideRightDistance, finalPos.y);
         
-        // Snap to right so it slides in from right side
-        rt.anchoredPosition = new Vector2(finalPos.x + slideRightDistance, finalPos.y);
+        rt.anchoredPosition = backRightPos;
         
         elapsed = 0;
         while (elapsed < animationDuration / 2)
         {
             elapsed += Time.deltaTime;
-            rt.anchoredPosition = Vector2.Lerp(new Vector2(finalPos.x + slideRightDistance, finalPos.y), finalPos, elapsed / (animationDuration / 2));
+            rt.anchoredPosition = Vector2.Lerp(backRightPos, finalPos, elapsed / (animationDuration / 2));
             yield return null;
         }
         
         rt.anchoredPosition = finalPos;
         isAnimating = false;
+    }
+
+    public bool IsFrontPapyrus(GameObject papyrus)
+    {
+        return activePapyruses.Count > 0 && activePapyruses[0] == papyrus;
+    }
+
+    public bool IsAnimating
+    {
+        get { return isAnimating; }
+    }
+
+    public void ForceUpdatePositions()
+    {
+        UpdateStackPositions(false);
+    }
+
+    public float GetDragScale()
+    {
+        return dragScale;
+    }
+
+    public Vector2 GetDragOffset()
+    {
+        return dragOffset;
     }
 }

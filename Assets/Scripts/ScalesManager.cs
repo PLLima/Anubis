@@ -62,15 +62,15 @@ public class ScaleManager : MonoBehaviour
         }
     }
 
-    //private IEnumerator Start()
-    //{
-     //   Debug.Log("ScaleManager STARTED!");
+    private void OnEnable()
+    {
+        GameManager.OnDeliberationSubmitted += PlayScaleEvaluation;
+    }
 
-        // Wait until end of frame to ensure UI elements are rendered at full Canvas dimensions
-     //   yield return new WaitForEndOfFrame();
-    //
-     //   PlayScaleEvaluation(true);
-    //}
+    private void OnDisable()
+    {
+        GameManager.OnDeliberationSubmitted -= PlayScaleEvaluation;
+    }
 
     public void PlayScaleEvaluation(bool playerWasCorrect)
     {

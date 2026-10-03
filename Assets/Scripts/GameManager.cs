@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public static event Action OnPapyrusCleared;
     public static event Action<DialogueBubble> OnDialogueChanged;
     public static event Action<NPCData> OnNPCChanged;
+    public static event Action<bool> OnDeliberationSubmitted;
 
     [Header("Level Configuration")]
     public LevelData currentLevel;
@@ -375,5 +376,15 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Clue Saved: {clueText}");
 
         OnClueAdded?.Invoke(clueText);
+    }
+
+    public void SubmitDeliberationChoice(NPCData chosenNPC)
+    {
+        if (CurrentState != GameState.Deliberation && CurrentState != GameState.Judgment) return;
+        
+        ChangeState(GameState.ScaleEvaluation);
+        
+        bool isCorrect = (currentLevel != null && currentLevel.correctNPC == chosenNPC);
+        OnDeliberationSubmitted?.Invoke(isCorrect);
     }
 }
