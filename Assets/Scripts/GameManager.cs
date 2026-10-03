@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnStateChanged;
 
     public static event Action<string> OnClueAdded;
+    public static event Action DeleteTextPapyrus;
     public static event Action<DialogueBubble> OnDialogueChanged;
     public static event Action<NPCData> OnNPCChanged;
 
@@ -120,7 +121,8 @@ public class GameManager : MonoBehaviour
                 ChangeState(GameState.Deliberation);
             }
         }
-    }
+        DeleteTextPapyrus?.Invoke();
+}
 
     public void TrySaveClue(string clueText) {
         if (currentNPCClues.Count >= 4) {

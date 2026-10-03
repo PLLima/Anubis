@@ -20,11 +20,13 @@ public class PapyrusUI : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnClueAdded += AddClue;
+        GameManager.DeleteTextPapyrus += ClearPapyrus;
     }
 
     private void OnDisable()
     {
         GameManager.OnClueAdded -= AddClue;
+        GameManager.DeleteTextPapyrus -= ClearPapyrus;
     }
 
     private void Start()
