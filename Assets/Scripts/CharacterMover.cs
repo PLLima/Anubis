@@ -9,6 +9,7 @@ public class CharacterMover : MonoBehaviour
 {
     public static event System.Action OnCharacterEnterFinished;
     public static event System.Action OnCharacterExitFinished;
+    public static event System.Action OnAnubisEnterFinished;
 
     [Header("Core References")]
     public RectTransform activeCharacterRect;
@@ -60,11 +61,15 @@ public class CharacterMover : MonoBehaviour
     {
         if (state == GameState.CandidateEnter) 
         {
-            StartAnimation(EnterSequence());
+            StartAnimation(EnterSequence(false));
         } 
         else if (state == GameState.CandidateExit) 
         {
             StartAnimation(ExitSequence());
+        }
+        else if (state == GameState.AnubisIntro)
+        {
+            StartAnimation(EnterSequence(true));
         }
     }
 
@@ -85,7 +90,7 @@ public class CharacterMover : MonoBehaviour
         activeCoroutine = StartCoroutine(sequence);
     }
 
-    private IEnumerator EnterSequence() 
+    private IEnumerator EnterSequence(bool isAnubis) 
     {
         SetCharacterYPosition(baseY);
         
@@ -95,7 +100,14 @@ public class CharacterMover : MonoBehaviour
         
         yield return StartCoroutine(AnimateYOffset(dropYOffset));
         
-        OnCharacterEnterFinished?.Invoke();
+        if (isAnubis)
+        {
+            OnAnubisEnterFinished?.Invoke();
+        }
+        else
+        {
+            OnCharacterEnterFinished?.Invoke();
+        }
     }
 
     private IEnumerator ExitSequence() 

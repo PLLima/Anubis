@@ -70,7 +70,17 @@ public class AnubisTutorialManager : MonoBehaviour
             nextButton.onClick.AddListener(AdvanceDialogue);
         }
 
+        CharacterMover.OnAnubisEnterFinished += HandleAnubisEnterFinished;
         StartIntroSequence();
+    }
+
+    private void OnDestroy()
+    {
+        if (nextButton != null)
+        {
+            nextButton.onClick.RemoveListener(AdvanceDialogue);
+        }
+        CharacterMover.OnAnubisEnterFinished -= HandleAnubisEnterFinished;
     }
 
     public void StartIntroSequence()
@@ -116,65 +126,19 @@ public class AnubisTutorialManager : MonoBehaviour
             Debug.LogError("AnubisTutorialManager: Anubis Sprite is not assigned!");
         }
 
-        // Show speech bubble.
+        // Show speech bubble (this used to happen immediately, but we might want it immediately before typing, but it's fine here)
         if (speechBubbleUI != null)
         {
             speechBubbleUI.SetActive(true);
         }
 
-        // Put Anubis off-screen BEFORE starting the animation.
-        Vector2 position = activeCharacterRect.anchoredPosition;
-        position.x = offScreenLeftX;
-        activeCharacterRect.anchoredPosition = position;
+        // We DO NOT start the dialogue or slide here!
+        // CharacterMover will automatically detect the GameState.AnubisIntro and start the animation!
+    }
 
-        // Display first dialogue.
+    private void HandleAnubisEnterFinished()
+    {
         DisplayCurrentPhrase();
-
-        // Start Anubis sliding in.
-        StartCoroutine(SlideAnubisIn());
-    }
-
-    private IEnumerator SlideAnubisIn()
-    {
-        yield return StartCoroutine(
-            SlideRoutine(offScreenLeftX, targetScreenX)
-        );
-    }
-
-    private IEnumerator SlideRoutine(float startX, float endX)
-    {
-        if (activeCharacterRect == null)
-            yield break;
-
-        float timeElapsed = 0f;
-
-        Vector2 pos = activeCharacterRect.anchoredPosition;
-
-        // Same starting position as CharacterMover.
-        pos.x = startX;
-        activeCharacterRect.anchoredPosition = pos;
-
-        while (timeElapsed < slideDuration)
-        {
-            timeElapsed += Time.deltaTime;
-
-            // EXACT same animation calculation as CharacterMover.
-            float t = Mathf.SmoothStep(
-                0f,
-                1f,
-                timeElapsed / slideDuration
-            );
-
-            pos.x = Mathf.Lerp(startX, endX, t);
-
-            activeCharacterRect.anchoredPosition = pos;
-
-            yield return null;
-        }
-
-        // Make absolutely sure we end at the target.
-        pos.x = endX;
-        activeCharacterRect.anchoredPosition = pos;
     }
 
     private void DisplayCurrentPhrase()
@@ -258,12 +222,5 @@ public class AnubisTutorialManager : MonoBehaviour
 
     // Update method removed to prevent clicking background to advance
 
-    private void OnDestroy()
-    {
-        if (nextButton != null)
-        {
-            nextButton.onClick.RemoveListener(AdvanceDialogue);
-        }
-    }
 }
 
