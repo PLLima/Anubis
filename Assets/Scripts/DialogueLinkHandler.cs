@@ -32,6 +32,7 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
         shadowText.alignment = textMeshPro.alignment;
         shadowText.textWrappingMode = textMeshPro.textWrappingMode;
         shadowText.margin = textMeshPro.margin;
+        shadowText.color = textMeshPro.color;
         shadowText.raycastTarget = false; 
     }
 
@@ -42,6 +43,12 @@ public class DialogueLinkHandler : MonoBehaviour, IPointerClickHandler, IPointer
             shadowText.text = textMeshPro.text;
         }
         ResetHover();
+    }
+
+    public void SetVisibleCharacters(int count)
+    {
+        if (textMeshPro != null) textMeshPro.maxVisibleCharacters = count;
+        if (shadowText != null) shadowText.maxVisibleCharacters = count;
     }
 
     private void ResetHover()

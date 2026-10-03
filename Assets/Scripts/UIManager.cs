@@ -44,23 +44,47 @@ public class UIManager : MonoBehaviour
         if (scalesPanel != null) scalesPanel.SetActive(showScales);
     }
 
+    [Header("Typing Effect")]
+    public float textDisplayDuration = 2.0f;
+    public GameObject dialogueArrow;
+    
+    private Coroutine typingCoroutine;
+
     private void ShowDialogue(DialogueBubble bubble) 
     {
-        if (dialogueTextComponent == null) 
+        if (dialogueTextComponent == null || dialogueLinkHandler == null || bubble == null) 
+            return;
+
+        if (typingCoroutine != null)
         {
-            Debug.LogError("DialogueTextComponent is not assigned in the UIManager Inspector!");
-            return;
+            StopCoroutine(typingCoroutine);
         }
-        if (dialogueLinkHandler == null) 
-        {
-            Debug.LogError("DialogueLinkHandler is not assigned in the UIManager Inspector!");
-            return;
-        }
-        if (bubble == null) 
-            return;
+        typingCoroutine = StartCoroutine(TypeDialogue(bubble));
+    }
+
+    private System.Collections.IEnumerator TypeDialogue(DialogueBubble bubble)
+    {
+        if (dialogueArrow != null) dialogueArrow.SetActive(false);
 
         dialogueTextComponent.text = FormatDialogueForClicking(bubble);
         dialogueLinkHandler.SetCurrentBubble(bubble);
+        dialogueTextComponent.ForceMeshUpdate();
+
+        int totalChars = dialogueTextComponent.textInfo.characterCount;
+        dialogueLinkHandler.SetVisibleCharacters(0);
+
+        float timeElapsed = 0f;
+        while (timeElapsed < textDisplayDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            float percent = Mathf.Clamp01(timeElapsed / textDisplayDuration);
+            dialogueLinkHandler.SetVisibleCharacters(Mathf.RoundToInt(percent * totalChars));
+            yield return null;
+        }
+
+        dialogueLinkHandler.SetVisibleCharacters(totalChars);
+        
+        if (dialogueArrow != null) dialogueArrow.SetActive(true);
     }
 
     private void UpdateNPCName(NPCData npc) 

@@ -45,6 +45,10 @@ public class AnubisTutorialManager : MonoBehaviour
 
     private int currentPhraseIndex = 0;
     private bool introActive = false;
+    private Coroutine typingCoroutine;
+
+    [Header("Typing Effect")]
+    public float textDisplayDuration = 2.0f;
 
     private void Start()
     {
@@ -78,12 +82,41 @@ public class AnubisTutorialManager : MonoBehaviour
         if (currentPhraseIndex < dialoguePhrases.Count)
         {
             if (speechText != null)
-                speechText.text = dialoguePhrases[currentPhraseIndex];
+            {
+                if (typingCoroutine != null)
+                {
+                    StopCoroutine(typingCoroutine);
+                }
+                typingCoroutine = StartCoroutine(TypeDialogue(dialoguePhrases[currentPhraseIndex]));
+            }
         }
         else
         {
             EndIntroSequence();
         }
+    }
+
+    private System.Collections.IEnumerator TypeDialogue(string textToType)
+    {
+        if (nextButton != null) nextButton.gameObject.SetActive(false);
+
+        speechText.text = textToType;
+        speechText.ForceMeshUpdate();
+
+        int totalChars = speechText.textInfo.characterCount;
+        speechText.maxVisibleCharacters = 0;
+
+        float timeElapsed = 0f;
+        while (timeElapsed < textDisplayDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            float percent = Mathf.Clamp01(timeElapsed / textDisplayDuration);
+            speechText.maxVisibleCharacters = Mathf.RoundToInt(percent * totalChars);
+            yield return null;
+        }
+
+        speechText.maxVisibleCharacters = totalChars;
+        if (nextButton != null) nextButton.gameObject.SetActive(true);
     }
 
     public void AdvanceDialogue()
@@ -111,16 +144,7 @@ public class AnubisTutorialManager : MonoBehaviour
         GameManager.Instance.StartGameLoop();
     }
 
-    private void Update()
-    {
-        if (!introActive)
-            return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            AdvanceDialogue();
-        }
-    }
+    // Update method removed to prevent clicking background to advance
 
     private void OnDestroy()
     {

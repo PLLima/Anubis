@@ -2378,6 +2378,8 @@ MonoBehaviour:
   dialogueLinkHandler: {fileID: 515035548}
   dialogueTextComponent: {fileID: 515035546}
   npcNameText: {fileID: 0}
+  textDisplayDuration: 2
+  dialogueArrow: {fileID: 885926454}
 --- !u!1 &1565658509
 GameObject:
   m_ObjectHideFlags: 0
