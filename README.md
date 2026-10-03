@@ -18,13 +18,15 @@ Game developed during the CStudio Game Jam 2026 at CentraleSupélec using Unity.
 
 The project utilizes a single-scene, UI-driven architecture in Unity:
 
-* **GameManager (`GameManager.cs`)**: Central state machine controlling the game flow via the `GameState` enum (`AnubisIntro`, `CandidateEnter`, `Interview`, `CandidateExit`, `Deliberation`, `Judgment`, `ScaleEvaluation`, `EndGame`). It tracks collected clues and broadcasts state changes.
-* **UIManager (`UIManager.cs`)**: Subscribes to `GameManager` events to manage overall visibility of UI panels (speech bubbles, selections, scales) based on the game state.
-* **SpeechBubbleUI (`SpeechBubbleUI.cs`)**: A modular component attached to the speech bubble panel that listens to dialogue changes, manages dialogue layout, and controls dynamic text typing animations using character-per-second speed.
-* **DialogueLinkHandler (`DialogueLinkHandler.cs`)**: Implements `IPointerClickHandler` and utilizes `TMP_TextUtilities.FindIntersectingLink` to detect user clicks on specific words within TextMeshPro elements, dispatching the data to the `GameManager`. Includes visual hover feedback (`Color` & `Scale`).
-* **CharacterMover (`CharacterMover.cs`)**: Handles 2D sprite sliding animations, drop-in effects, and footstep audio via coroutines, reacting to `OnStateChanged` and `OnNPCChanged` events. Emits `OnCharacterEnterFinished`, `OnCharacterExitFinished`, and `OnAnubisEnterFinished`.
-* **PapyrusMover (`PapyrusMover.cs`)**: Manages the papyrus scroll UI panel animation, hiding it offscreen and animating it into place alongside typing out the character's header name using `TextMeshPro`.
-* **AnubisTutorialManager (`AnubisTutorialManager.cs`)**: Controls the opening tutorial dialog, integrating seamlessly with `CharacterMover` for initial Anubis animations.
+* **GameManager (`GameManager.cs`)**: Central state machine controlling the game flow via the `GameState` enum (`AnubisIntro`, `CandidateEnter`, `Interview`, `CandidateExit`, `Deliberation`, `Judgment`, `ScaleEvaluation`, `EndGame`). It tracks collected clues, manages `LastDeliberationResult`, and broadcasts state changes.
+* **UIManager (`UIManager.cs`)**: Subscribes to `GameManager` events to manage overall visibility of UI panels.
+* **SpeechBubbleUI (`SpeechBubbleUI.cs`)**: A modular component attached to the speech bubble panel that listens to dialogue changes, manages dialogue layout, and controls dynamic text typing animations.
+* **DialogueLinkHandler (`DialogueLinkHandler.cs`)**: Implements `IPointerClickHandler` and utilizes `TMP_TextUtilities.FindIntersectingLink` to detect user clicks on specific words within TextMeshPro elements, dispatching the data to the `GameManager`. Includes visual hover feedback.
+* **CharacterMover (`CharacterMover.cs`)**: Handles 2D sprite sliding animations, drop-in effects, and footstep audio via coroutines.
+* **PapyrusMover (`PapyrusMover.cs`)**: Manages the papyrus scroll UI panel animation, hiding it offscreen and animating it into place alongside typing out the character's header name.
+* **AnubisTutorialManager (`AnubisTutorialManager.cs`)**: Controls the opening tutorial dialog.
+* **Deliberation Phase**: Managed by `DeliberationManager.cs`, `DeliberationPapyrusManager.cs`, and `DeliberationPapyrusDrag.cs`. Handles spawning draggable clues, dialogue logic for Anubis during deliberation, and Anubis's final win/loss verdict.
+* **ScalesManager (`ScalesManager.cs`)**: Handles the Scale Evaluation sequence. Drops the scales, swaps the result sprites (Heart vs Feather), and controls the fading animations to highlight the outcome.
 * **Data Management (`GameData.cs`)**: Uses Unity ScriptableObjects (`DialogueBubble`, `NPCData`, `LevelData`) to define and serialize narrative and character data.
 
 ## NPCs
@@ -44,4 +46,5 @@ The logic loop includes three primary interview subjects:
 ## Current Status and Roadmap
 
 * **Completed**: Base UI setup, automated ScriptableObject generation (`NPCDataGenerator.cs`), game loop logic (state machine), character transitions, and interactive text parsing.
-* **Pending**: Implementation of the interaction logic during the `Deliberation` state to allow the player to select the correct soul based on clues, and finalizing the `Judgment` and `ScaleEvaluation` visual sequences.
+* **Completed (Core Loop)**: The entire core gameplay loop is now fully implemented! This includes the `Deliberation` state where the player drags their choice to Anubis, the `ScaleEvaluation` visual sequence, and the final win/loss dialogue in the `EndGame` state.
+* **Pending**: Adding sound effects/background music, expanding level data, and polishing visual micro-animations.
