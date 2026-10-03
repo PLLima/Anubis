@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     public List<string> currentNPCClues = new List<string>();
 
+    public Dictionary<string, List<string>> savedCluesByNPC =
+        new Dictionary<string, List<string>>();
+
     private void Awake() {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
@@ -92,19 +95,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnCandidateExited() {
-        if (CurrentState == GameState.CandidateExit) {
-            if (currentLevel == null || currentLevel.npcsInLevel == null) return;
+    public void OnCandidateExited()
+    {
+        if (CurrentState == GameState.CandidateExit)
+        {
+            if (currentLevel == null || currentLevel.npcsInLevel == null)
+                return;
+
+            NPCData currentNPC = currentLevel.npcsInLevel[currentNPCIndex];
+
+            savedCluesByNPC[currentNPC.npcName] =
+                new List<string>(currentNPCClues);
+
+            currentNPCClues.Clear();
 
             currentNPCIndex++;
-            if (currentNPCIndex < currentLevel.npcsInLevel.Length) {
+
+            if (currentNPCIndex < currentLevel.npcsInLevel.Length)
+            {
                 ChangeState(GameState.CandidateEnter);
-            } else {
+            }
+            else
+            {
                 ChangeState(GameState.Deliberation);
             }
         }
     }
-    
+
     public void TrySaveClue(string clueText) {
         if (currentNPCClues.Count >= 4) {
             Debug.Log("Papyrus is full! Max 4 clues allowed.");
