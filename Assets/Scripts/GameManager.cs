@@ -160,6 +160,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Safely checks if the left mouse button was clicked this frame, supporting both Input Systems.
+    /// </summary>
+    public bool WasClickedThisFrame()
+    {
+#if ENABLE_INPUT_SYSTEM
+        if (UnityEngine.InputSystem.Mouse.current != null)
+        {
+            return UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame;
+        }
+        return false;
+#else
+        return Input.GetMouseButtonDown(0);
+#endif
+    }
+
     private void UpdateCursorToCurrentState()
     {
         if (isHoveringInteractable && cursorHover != null)

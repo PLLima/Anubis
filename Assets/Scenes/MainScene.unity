@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ea7e8bf99631847a89e1be619d78b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PapyrusUI
-  clueTypingDuration: 0.8
+  typingSpeed: 40
 --- !u!114 &255724484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PapyrusMover
   npcNameText: {fileID: 2030260395}
   papyrusSlideDuration: 0.5
-  nameTypingDuration: 0.75
+  typingSpeed: 100
   offScreenRightX: 1500
   offScreenBottomY: -1500
 --- !u!1 &845876978
@@ -2435,7 +2435,7 @@ MonoBehaviour:
   - I have to go think about my start-up idea. I'll come back later to tell you what kind of person I need.
   - If you can give me someone who fits the position, I'll think about letting you into the afterlife.
   - But if you keep sending me people who are useless, I'll have to feed your heart to Ammit!
-  textDisplayDuration: 2
+  typingSpeed: 40
 --- !u!1 &1415111689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   foregroundWallImage: {fileID: 316819902}
   dialogueLinkHandler: {fileID: 515035548}
   dialogueTextComponent: {fileID: 515035546}
-  textDisplayDuration: 2
+  typingSpeed: 100
   dialogueArrow: {fileID: 885926454}
 --- !u!1 &1565658509
 GameObject:

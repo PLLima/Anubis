@@ -61,7 +61,7 @@ public class AnubisTutorialManager : MonoBehaviour
     private Coroutine typingCoroutine;
 
     [Header("Typing Effect")]
-    public float textDisplayDuration = 2.0f;
+    public float typingSpeed = 40f; // characters per second
 
     private void Start()
     {
@@ -168,12 +168,15 @@ public class AnubisTutorialManager : MonoBehaviour
         int totalChars = speechText.textInfo.characterCount;
         speechText.maxVisibleCharacters = 0;
 
-        float timeElapsed = 0f;
-        while (timeElapsed < textDisplayDuration)
+        float floatVisible = 0f;
+        while (floatVisible < totalChars)
         {
-            timeElapsed += Time.deltaTime;
-            float percent = Mathf.Clamp01(timeElapsed / textDisplayDuration);
-            speechText.maxVisibleCharacters = Mathf.RoundToInt(percent * totalChars);
+            if (GameManager.Instance != null && GameManager.Instance.WasClickedThisFrame())
+            {
+                break; // skip typing
+            }
+            floatVisible += Time.deltaTime * typingSpeed;
+            speechText.maxVisibleCharacters = Mathf.FloorToInt(floatVisible);
             yield return null;
         }
 

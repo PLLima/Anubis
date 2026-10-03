@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
     }
 
     [Header("Typing Effect")]
-    public float textDisplayDuration = 2.0f;
+    public float typingSpeed = 40f; // characters per second
     public GameObject dialogueArrow;
     
     private Coroutine typingCoroutine;
@@ -70,12 +70,16 @@ public class UIManager : MonoBehaviour
         int totalChars = dialogueTextComponent.textInfo.characterCount;
         dialogueLinkHandler.SetVisibleCharacters(0);
 
-        float timeElapsed = 0f;
-        while (timeElapsed < textDisplayDuration)
+        float floatVisible = 0f;
+        while (floatVisible < totalChars)
         {
-            timeElapsed += Time.deltaTime;
-            float percent = Mathf.Clamp01(timeElapsed / textDisplayDuration);
-            dialogueLinkHandler.SetVisibleCharacters(Mathf.RoundToInt(percent * totalChars));
+            if (GameManager.Instance != null && GameManager.Instance.WasClickedThisFrame())
+            {
+                break; // Skip typing on click
+            }
+
+            floatVisible += Time.deltaTime * typingSpeed;
+            dialogueLinkHandler.SetVisibleCharacters(Mathf.FloorToInt(floatVisible));
             yield return null;
         }
 

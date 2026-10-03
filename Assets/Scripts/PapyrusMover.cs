@@ -12,7 +12,7 @@ public class PapyrusMover : MonoBehaviour
 
     [Header("Papyrus Animation")]
     public float papyrusSlideDuration = 0.5f;
-    public float nameTypingDuration = 1.0f;
+    public float typingSpeed = 40f; // characters per second
     public float offScreenRightX = 1500f;
     public float offScreenBottomY = -1500f;
     
@@ -91,14 +91,20 @@ public class PapyrusMover : MonoBehaviour
             npcNameText.ForceMeshUpdate();
             int totalChars = npcNameText.textInfo.characterCount;
             npcNameText.maxVisibleCharacters = 0;
-            float elapsed = 0f;
-            while (elapsed < nameTypingDuration)
+            
+            float floatVisible = 0f;
+            while (floatVisible < totalChars)
             {
-                elapsed += Time.deltaTime;
-                float percent = Mathf.Clamp01(elapsed / nameTypingDuration);
-                npcNameText.maxVisibleCharacters = Mathf.RoundToInt(percent * totalChars);
+                if (GameManager.Instance != null && GameManager.Instance.WasClickedThisFrame())
+                {
+                    break;
+                }
+
+                floatVisible += Time.deltaTime * typingSpeed;
+                npcNameText.maxVisibleCharacters = Mathf.FloorToInt(floatVisible);
                 yield return null;
             }
+            
             npcNameText.maxVisibleCharacters = totalChars;
         }
 

@@ -12,7 +12,7 @@ public class PapyrusUI : MonoBehaviour
     private Coroutine typingCoroutine;
 
     [Header("Typing Effect")]
-    public float clueTypingDuration = 0.8f;
+    public float typingSpeed = 40f; // characters per second
 
     private void Awake()
     {
@@ -87,24 +87,18 @@ public class PapyrusUI : MonoBehaviour
 
         papyrusText.maxVisibleCharacters = oldCharacterCount;
 
-        float elapsed = 0f;
+        float floatVisible = oldCharacterCount;
 
-        while (elapsed < clueTypingDuration)
+        while (floatVisible < totalCharacterCount)
         {
-            elapsed += Time.deltaTime;
+            if (GameManager.Instance != null && GameManager.Instance.WasClickedThisFrame())
+            {
+                break;
+            }
 
-            float percent = Mathf.Clamp01(elapsed / clueTypingDuration);
-
-            int visibleCharacters = Mathf.RoundToInt(
-                Mathf.Lerp(
-                    oldCharacterCount,
-                    totalCharacterCount,
-                    percent
-                )
-            );
-
-            papyrusText.maxVisibleCharacters = visibleCharacters;
-
+            floatVisible += Time.deltaTime * typingSpeed;
+            papyrusText.maxVisibleCharacters = Mathf.FloorToInt(floatVisible);
+            
             yield return null;
         }
 
