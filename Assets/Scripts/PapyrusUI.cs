@@ -6,10 +6,15 @@ using UnityEngine;
 /// Handles appending text clues to the Papyrus UI and clearing it when necessary.
 /// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
+[RequireComponent(typeof(AudioSource))]
 public class PapyrusUI : MonoBehaviour
 {
     private TextMeshProUGUI papyrusText;
     private Coroutine typingCoroutine;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
 
     [Header("Typing Effect")]
     public float typingSpeed = 40f; // characters per second
@@ -18,6 +23,11 @@ public class PapyrusUI : MonoBehaviour
     {
         papyrusText = GetComponent<TextMeshProUGUI>();
         
+        if (audioSource == null) 
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         if (papyrusText != null)
         {
             papyrusText.color = Color.black;
@@ -88,6 +98,14 @@ public class PapyrusUI : MonoBehaviour
         papyrusText.maxVisibleCharacters = oldCharacterCount;
 
         float floatVisible = oldCharacterCount;
+        
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.clip = clickSound;
+            audioSource.loop = true; // Faz o som repetir continuamente
+            audioSource.volume = 1f;
+            audioSource.Play();
+        }
 
         while (floatVisible < totalCharacterCount)
         {
@@ -103,6 +121,11 @@ public class PapyrusUI : MonoBehaviour
         }
 
         papyrusText.maxVisibleCharacters = totalCharacterCount;
+        
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
     }
 
     public void ClearPapyrus()
@@ -113,10 +136,16 @@ public class PapyrusUI : MonoBehaviour
             typingCoroutine = null;
         }
 
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
         if (papyrusText != null)
         {
             papyrusText.text = string.Empty;
             papyrusText.maxVisibleCharacters = int.MaxValue;
         }
+        
     }
 }

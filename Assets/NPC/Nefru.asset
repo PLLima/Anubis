@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Nefru
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Nefru
-  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
+  npcSprite: {fileID: 0}
   dialogueBubbles:
   - snippets:
     - My name was Nefru.
-    - During the flood season, we paid taxes by hauling stones for the temples.
+    - During the flood season, we paid taxes with labor.
+    - We hauled stones for the temples.
   - snippets:
-    - I was incredibly strong, but I hated delays. Give me a task, and I just want it done.
+    - I was incredibly strong.
+    - I hated delays.
+    - Give me a task, and I just want it done.
   - snippets:
-    - I ordered my crew to use frayed lifting ropes to finish early. A pillar fell and crushed my chest.
-  - snippets:
-    - I am reckless. I value finishing the job quickly over planning and safety.
+    - I ordered my crew to use frayed lifting ropes.
+    - I wanted to finish early.
+    - A pillar fell and crushed my chest.
