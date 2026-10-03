@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(GameState.CandidateEnter);
+        ChangeState(GameState.AnubisIntro);
     }
 
     public void ChangeState(GameState newState)
@@ -124,9 +124,9 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (CurrentState == GameState.AnubisIntro)
+        if (CurrentState == GameState.CandidateEnter)
         {
-            StartGameLoop();
+            OnCandidateEntered();
             return;
         }
 

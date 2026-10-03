@@ -1,4 +1,6 @@
+
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
@@ -11,6 +13,15 @@ public class AnubisTutorialManager : MonoBehaviour
     public TMP_Text speechText;
     public Button nextButton;
     public GameObject gameplayCanvas;
+
+    [Header("Tutorial Character")]
+    public Sprite anubisSprite;
+
+    [Header("Character Movement")]
+    public RectTransform activeCharacterRect;
+    public float slideDuration = 0.5f;
+    public float offScreenLeftX = -1200f;
+    public float targetScreenX = -400f;
 
     [Header("Dialogue Content")]
     [TextArea(2, 5)]
@@ -26,7 +37,9 @@ public class AnubisTutorialManager : MonoBehaviour
 
         "People who have died are gonna start coming in soon. They'll tell you about their lives and what kind of person they were.",
 
-        "I gave you a pen and some papyrus sheets. Unfortunately, because of budget cuts, you can only record four things about each person!",
+        "I gave you a pen and some papyrus sheets.",
+
+        "Unfortunately, because of budget cuts, you can only record four things about each person!",
 
         "When people are talking, click on the things you think are important to write them down.",
 
@@ -65,16 +78,103 @@ public class AnubisTutorialManager : MonoBehaviour
         currentPhraseIndex = 0;
         introActive = true;
 
-        if (activeCharacter != null)
-            activeCharacter.SetActive(true);
+        // Make sure Active Character exists.
+        if (activeCharacter == null)
+        {
+            Debug.LogError("AnubisTutorialManager: Active Character is not assigned!");
+            return;
+        }
 
+        // Make sure RectTransform exists.
+        if (activeCharacterRect == null)
+        {
+            activeCharacterRect = activeCharacter.GetComponent<RectTransform>();
+        }
+
+        if (activeCharacterRect == null)
+        {
+            Debug.LogError("AnubisTutorialManager: Active Character needs a RectTransform!");
+            return;
+        }
+
+        // Show Active Character.
+        activeCharacter.SetActive(true);
+
+        // Change sprite to Anubis.
+        Image characterImage = activeCharacter.GetComponent<Image>();
+
+        if (characterImage != null && anubisSprite != null)
+        {
+            characterImage.sprite = anubisSprite;
+        }
+        else if (characterImage == null)
+        {
+            Debug.LogError("AnubisTutorialManager: Active Character does not have an Image component!");
+        }
+        else if (anubisSprite == null)
+        {
+            Debug.LogError("AnubisTutorialManager: Anubis Sprite is not assigned!");
+        }
+
+        // Show speech bubble.
         if (speechBubbleUI != null)
+        {
             speechBubbleUI.SetActive(true);
+        }
 
-        if (gameplayCanvas != null)
-            gameplayCanvas.SetActive(false);
+        // Put Anubis off-screen BEFORE starting the animation.
+        Vector2 position = activeCharacterRect.anchoredPosition;
+        position.x = offScreenLeftX;
+        activeCharacterRect.anchoredPosition = position;
 
+        // Display first dialogue.
         DisplayCurrentPhrase();
+
+        // Start Anubis sliding in.
+        StartCoroutine(SlideAnubisIn());
+    }
+
+    private IEnumerator SlideAnubisIn()
+    {
+        yield return StartCoroutine(
+            SlideRoutine(offScreenLeftX, targetScreenX)
+        );
+    }
+
+    private IEnumerator SlideRoutine(float startX, float endX)
+    {
+        if (activeCharacterRect == null)
+            yield break;
+
+        float timeElapsed = 0f;
+
+        Vector2 pos = activeCharacterRect.anchoredPosition;
+
+        // Same starting position as CharacterMover.
+        pos.x = startX;
+        activeCharacterRect.anchoredPosition = pos;
+
+        while (timeElapsed < slideDuration)
+        {
+            timeElapsed += Time.deltaTime;
+
+            // EXACT same animation calculation as CharacterMover.
+            float t = Mathf.SmoothStep(
+                0f,
+                1f,
+                timeElapsed / slideDuration
+            );
+
+            pos.x = Mathf.Lerp(startX, endX, t);
+
+            activeCharacterRect.anchoredPosition = pos;
+
+            yield return null;
+        }
+
+        // Make absolutely sure we end at the target.
+        pos.x = endX;
+        activeCharacterRect.anchoredPosition = pos;
     }
 
     private void DisplayCurrentPhrase()
@@ -83,11 +183,15 @@ public class AnubisTutorialManager : MonoBehaviour
         {
             if (speechText != null)
             {
+<<<<<<< Updated upstream
                 if (typingCoroutine != null)
                 {
                     StopCoroutine(typingCoroutine);
                 }
                 typingCoroutine = StartCoroutine(TypeDialogue(dialoguePhrases[currentPhraseIndex]));
+=======
+                speechText.text = dialoguePhrases[currentPhraseIndex];
+>>>>>>> Stashed changes
             }
         }
         else
@@ -130,6 +234,7 @@ public class AnubisTutorialManager : MonoBehaviour
 
     private void EndIntroSequence()
     {
+<<<<<<< Updated upstream
         introActive = false;
 
         if (activeCharacter != null)
@@ -145,6 +250,33 @@ public class AnubisTutorialManager : MonoBehaviour
     }
 
     // Update method removed to prevent clicking background to advance
+=======
+        if (!introActive)
+            return;
+
+        introActive = false;
+
+        //if (activeCharacter != null)
+        //{
+        //    activeCharacter.SetActive(false);
+        //}
+
+        if (speechBubbleUI != null)
+        {
+            speechBubbleUI.SetActive(false);
+        }
+
+        if (gameplayCanvas != null)
+        {
+            gameplayCanvas.SetActive(true);
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StartGameLoop();
+        }
+    }
+>>>>>>> Stashed changes
 
     private void OnDestroy()
     {
@@ -154,3 +286,4 @@ public class AnubisTutorialManager : MonoBehaviour
         }
     }
 }
+

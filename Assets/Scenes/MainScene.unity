@@ -1312,9 +1312,15 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< Updated upstream
     m_PressedColor: {r: 0.5764706, g: 0, b: 0.02745098, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.5764706, g: 0, b: 0.02745098, a: 0.5019608}
+=======
+    m_PressedColor: {r: 0.5764706, g: 0.007843138, b: 0.02745098, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 0.5764706, g: 0.007843138, b: 0.02745098, a: 0.5019608}
+>>>>>>> Stashed changes
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2293,6 +2299,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1309990393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309990394}
+  - component: {fileID: 1309990395}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309990394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309990393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309990395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309990393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da696c342afb1749933c56817439291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnubisTutorialManager
+  activeCharacter: {fileID: 1217084347}
+  speechBubbleUI: {fileID: 1565658509}
+  speechText: {fileID: 515035546}
+  nextButton: {fileID: 885926456}
+  gameplayCanvas: {fileID: 1511848223}
+  anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
+  activeCharacterRect: {fileID: 1217084348}
+  slideDuration: 0.5
+  offScreenLeftX: -1200
+  targetScreenX: -440
+  dialoguePhrases:
+  - What's up man! It's me, Anubis, Egyptian God of the dead!
+  - So basically, that means that you died. But you weren't good enough of a person to get to the afterlife!
+  - Good thing is, you came at a good time. I decided that being a God doesn't pay enough, so I want to create a start-up.
+  - And you're going to help me with that!
+  - People who have died are gonna start coming in soon. They'll tell you about their lives and what kind of person they were.
+  - 'I gave you a pen and some papyrus sheets. '
+  - Unfortunately, because of budget cuts, you can only record four things about each person!
+  - When people are talking, click on the things you think are important to write them down.
+  - Be careful! You can't ask them to repeat themselves, so think hard about what you write down!
+  - I'm a busy guy, since I'm a God and stuff, so I have to go think about my start-up idea.
+  - I'll come back later to tell you what kind of person I need.
+  - If you can give me someone who fits the position, I'll think about letting you into the afterlife.
+  - But if you keep sending me people who are useless, I'll have to feed your heart to Ammit!
+  - Alright, I have to go do my God duties. I'll see you later!
 --- !u!1 &1415111689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,4 +3048,8 @@ SceneRoots:
   - {fileID: 1245904525}
   - {fileID: 1511848227}
   - {fileID: 845876980}
+<<<<<<< Updated upstream
   - {fileID: 886291341}
+=======
+  - {fileID: 1309990394}
+>>>>>>> Stashed changes
