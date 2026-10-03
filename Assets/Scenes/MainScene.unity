@@ -1926,10 +1926,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMover
   activeCharacterRect: {fileID: 1217084348}
-  slideDuration: 0.5
-  activeCharacterImage: {fileID: 0}
-  offScreenLeftX: -1200
+  activeCharacterImage: {fileID: 1217084349}
+  offScreenLeftX: -1500
   targetScreenX: -470
+  waitBeforeDropTime: 0.4
+  dropDuration: 0.5
+  dropYOffset: -125
+  slideDuration: 0.8
 --- !u!1 &1245904522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,7 +2402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentLevel: {fileID: 11400000, guid: 836cc714c1a35fa1eb6b81cc3baee60c, type: 2}
-  currentNPCClues: []
 --- !u!1 &1983034787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2603,8 +2605,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278290142
+  m_fontColor: {r: 0.87058824, g: 0.5254902, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
