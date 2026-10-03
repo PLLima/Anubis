@@ -62,6 +62,8 @@ public class ScaleManager : MonoBehaviour
         }
     }
 
+
+
     //private IEnumerator Start()
     //{
      //   Debug.Log("ScaleManager STARTED!");
