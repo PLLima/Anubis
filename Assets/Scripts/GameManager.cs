@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        ChangeState(GameState.CandidateEnter);
+        ChangeState(GameState.AnubisIntro);
     }
 
     public void ChangeState(GameState newState) {
