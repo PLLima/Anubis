@@ -1,30 +1,39 @@
-// writes the clicked text os the pipyrus. U just have to put this script in the papyrus object and it will do everything
-
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Handles appending text clues to the Papyrus UI and clearing it when necessary.
+/// </summary>
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class PapyrusUI : MonoBehaviour
 {
     private TextMeshProUGUI papyrusText;
 
     private void Awake()
     {
-        papyrusText = GetComponentInChildren<TextMeshProUGUI>(true);
+        papyrusText = GetComponent<TextMeshProUGUI>();
 
         if (papyrusText == null)
         {
-            Debug.LogError("PapyrusUI: No TextMeshProUGUI found inside Papyrus.");
+            // Fallback for previous setup
+            papyrusText = GetComponentInChildren<TextMeshProUGUI>(true);
+            if (papyrusText == null)
+            {
+                Debug.LogError("PapyrusUI: No TextMeshProUGUI found.");
+            }
         }
     }
 
     private void OnEnable()
     {
         GameManager.OnClueAdded += AddClue;
+        GameManager.OnPapyrusCleared += ClearPapyrus;
     }
 
     private void OnDisable()
     {
         GameManager.OnClueAdded -= AddClue;
+        GameManager.OnPapyrusCleared -= ClearPapyrus;
     }
 
     private void Start()
@@ -39,11 +48,11 @@ public class PapyrusUI : MonoBehaviour
 
         if (string.IsNullOrEmpty(papyrusText.text))
         {
-            papyrusText.text = "- " + clue;
+            papyrusText.text = $"- {clue}";
         }
         else
         {
-            papyrusText.text += "\n- " + clue;
+            papyrusText.text += $"\n- {clue}";
         }
     }
 
@@ -51,7 +60,7 @@ public class PapyrusUI : MonoBehaviour
     {
         if (papyrusText != null)
         {
-            papyrusText.text = "";
+            papyrusText.text = string.Empty;
         }
     }
 }
