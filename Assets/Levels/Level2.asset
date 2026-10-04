@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Level2
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   npcsInLevel:
-  - {fileID: 11400000, guid: 50cc3f929bd2be6a7b4248be6bad41f7, type: 2}
-  - {fileID: 11400000, guid: 6899bf5850f21ad73b9bcc59ecb9f43c, type: 2}
-  - {fileID: 11400000, guid: 293077d37b92412dab4a5e909a64f503, type: 2}
-  correctNPC: {fileID: 11400000, guid: 293077d37b92412dab4a5e909a64f503, type: 2}
+  - {fileID: 11400000, guid: af7c83a8684ec26f2a61e14b5caf5d34, type: 2}
+  - {fileID: 11400000, guid: 657f61665b5cf40f0ae19d767530a76c, type: 2}
+  - {fileID: 11400000, guid: 8e5e51d0b106f1001a420c24959174d3, type: 2}
+  correctNPC: {fileID: 11400000, guid: 8e5e51d0b106f1001a420c24959174d3, type: 2}
   deliberationDialogue:
   - Yo dude, I'm back! Did you interview everyone?
   - I've got a great idea for a start-up.
-  - I'm going to start a pyramid construction company! Drag the papyrus of the guy who you think would do the best job to me.
+  - I'm going to construct a crocodile petting zoo! Drag the papyrus of the guy who you think would do the best job to me.

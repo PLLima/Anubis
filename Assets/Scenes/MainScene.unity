@@ -2107,7 +2107,7 @@ MonoBehaviour:
   - When people are talking, click on the things you think are important to write them down.
   - Be careful! You can't ask them to repeat themselves, so think hard about what you write down!
   - I have to go think about my start-up idea. I'll come back later to tell you what kind of person I need.
-  - If you can give me someone who fits the position, I'll think about letting you into the afterlife.
+  - If you can give me two people who fit the position, I'll think about letting you into the afterlife.
   - But if you keep sending me people who are useless, I'll have to feed your heart to Ammit!
 --- !u!1 &1327360984
 GameObject:
@@ -2163,7 +2163,7 @@ MonoBehaviour:
   resultFadeDuration: 1
   finalFadeDuration: 1
   pauseAfterNeutral: 1
-  pauseAfterResult: 2.1
+  pauseAfterResult: 2
 --- !u!1 &1384928464
 GameObject:
   m_ObjectHideFlags: 0

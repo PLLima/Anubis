@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     [Header("Level Configuration")]
     public LevelData currentLevel;
 
+
     [Header("Audio Settings")]
     public AudioSource audioSource;
     public AudioClip advanceDialogueSound;

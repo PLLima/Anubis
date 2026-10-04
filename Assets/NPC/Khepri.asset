@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
-  m_Name: 
+  m_Name: Khepri
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Khepri
   npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
