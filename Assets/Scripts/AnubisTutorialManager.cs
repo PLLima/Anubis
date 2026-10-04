@@ -12,6 +12,7 @@ public class AnubisTutorialManager : MonoBehaviour
     public GameObject speechBubbleUI;
     public TMP_Text speechText;
     public Button nextButton;
+    public Button skipButton;
     public GameObject gameplayCanvas;
 
     [Header("Tutorial Character")]
@@ -61,6 +62,10 @@ public class AnubisTutorialManager : MonoBehaviour
         {
             nextButton.onClick.AddListener(AdvanceDialogue);
         }
+        if (skipButton != null)
+        {
+            skipButton.onClick.AddListener(SkipIntro);
+        }
 
         CharacterMover.OnAnubisEnterFinished += HandleAnubisEnterFinished;
         GameManager.OnStateChanged += HandleStateChange;
@@ -71,6 +76,10 @@ public class AnubisTutorialManager : MonoBehaviour
         if (nextButton != null)
         {
             nextButton.onClick.RemoveListener(AdvanceDialogue);
+        }
+        if (skipButton != null)
+        {
+            skipButton.onClick.RemoveListener(SkipIntro);
         }
         CharacterMover.OnAnubisEnterFinished -= HandleAnubisEnterFinished;
         GameManager.OnStateChanged -= HandleStateChange;
@@ -88,6 +97,8 @@ public class AnubisTutorialManager : MonoBehaviour
     {
         currentPhraseIndex = 0;
         introActive = true;
+        
+        if (skipButton != null) skipButton.gameObject.SetActive(false);
 
         // Make sure Active Character exists.
         if (activeCharacter == null)
@@ -121,10 +132,14 @@ public class AnubisTutorialManager : MonoBehaviour
 
     private void HandleAnubisEnterFinished()
     {
+        if (!introActive)
+            return;
+
         if (speechBubbleUI != null)
         {
             speechBubbleUI.SetActive(true);
         }
+        if (skipButton != null) skipButton.gameObject.SetActive(true);
         DisplayCurrentPhrase();
     }
 
@@ -217,6 +232,8 @@ public class AnubisTutorialManager : MonoBehaviour
             speechBubbleUI.SetActive(false);
         }
 
+        if (skipButton != null) skipButton.gameObject.SetActive(false);
+
         StartCoroutine(TutorialExitRoutine());
     }
 
@@ -243,5 +260,18 @@ public class AnubisTutorialManager : MonoBehaviour
 
     // Update method removed to prevent clicking background to advance
 
+    public void SkipIntro()
+    {
+        if (!introActive)
+            return;
+
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
+        EndIntroSequence();
+    }
 }
 

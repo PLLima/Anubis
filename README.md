@@ -34,6 +34,7 @@ Built with a single-scene, robust UI-driven architecture in Unity, prioritizing 
 * **`GameManager.cs`**: The central state machine driving the game flow (from `TitleScreen` to `GameOver` / endless loop). It broadcasts state changes and tracks player progression.
 * **`UIManager.cs`**: Subscribes to core events to manage global panel visibility seamlessly.
 * **`SpeechBubbleUI.cs` & `DialogueLinkHandler.cs`**: Modular components handling dynamic text typing and interactive text parsing via `TMP_TextUtilities.FindIntersectingLink`.
+* **`AnubisTutorialManager.cs`**: Orchestrates the introductory sequence and includes a skip intro functionality for faster pacing.
 * **`CharacterMover.cs` & `PapyrusMover.cs`**: Singleton-based handling of smooth 2D sprite sliding, UI drop-ins, and audio synchronization via coroutines.
 * **`DeliberationManager.cs` & `ScalesManager.cs`**: Manages the final judgment phase, including draggable clues, dynamic Anubis dialogue, and the dramatic Scale Evaluation visual sequence.
 
