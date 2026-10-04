@@ -1,73 +1,92 @@
-# Anubis
+<div align="center">
+  <h1>⚖️ Anubis</h1>
+  <p><i>The choice only comes after.</i></p>
+  <p>
+    <b>A 2D UI-based narrative puzzle game developed during the CStudio Game Jam 2026 at CentraleSupélec.</b>
+  </p>
+</div>
 
-Game developed during the CStudio Game Jam 2026 at CentraleSupélec using Unity.
+---
 
-## Game Concept
+## 📖 Overview
 
-* **Theme**: The choice only comes after.
-* **Genre**: 2D UI-based narrative/puzzle.
-* **Core Mechanic**: The player works for Anubis, the founder and boss of an afterlife startup. The player's task is to interview souls, read their dialogue, and interact with specific words to save them as clues in the 'Papyrus' menu (maximum of 4 clues). These clues are evaluated during the deliberation phase to choose the correct soul for the final judgment on the Scales of Justice. Ultimately, Anubis delivers the final verdict on the player's performance: if the selected soul's heart is heavier than the feather (the scale falls), the player loses, has their own heart eaten by Ammit, and faces a Game Over screen. If the player makes the right choice, they continue their job infinitely until they make a mistake.
+**Anubis** is a narrative puzzle game where you play as an employee at an afterlife startup founded by the Egyptian god Anubis. Your task is to interview deceased souls, gather clues from their stories, and make the ultimate judgment on the Scales of Justice. 
 
-## Core Mechanics
+> **Will you ascend to heaven, or will your heart be devoured by Ammit?**
 
-* **Dialogue & Investigation**: The game loop revolves around interviewing candidates. Clickable words within the dialogue text are processed and stored as actionable clues.
-* **Papyrus System**: A dedicated UI panel stores up to 4 gathered clues per session.
-* **Judgment Phase**: Using collected evidence, the player makes the final choice of which soul to weigh on the scales. This aligns with the game jam's theme, where choices follow the initial data gathering phase.
+---
 
-## Technical Architecture
+## 🎮 Core Mechanics
 
-The project utilizes a single-scene, UI-driven architecture in Unity:
+| Mechanic | Description |
+| :--- | :--- |
+| **🗣️ Dialogue & Investigation** | Interview candidates and click specific words to gather actionable evidence. |
+| **📜 Papyrus System** | Strategically store up to 4 vital clues per session in your dedicated UI panel. |
+| **⚖️ Judgment Phase** | Weigh the gathered evidence to choose the correct soul for the final judgment. If successful, continue your divine job infinitely. Make a mistake, and face an instant Game Over. |
 
-* **GameManager (`GameManager.cs`)**: Central state machine controlling the game flow via the `GameState` enum (`TitleScreen`, `AnubisIntro`, `CandidateEnter`, `Interview`, `CandidateExit`, `Deliberation`, `Judgment`, `ScaleEvaluation`, `EndGame`, `GameOver`). It tracks collected clues, manages `LastDeliberationResult`, and broadcasts state changes. Initiates endless random levels as long as the player's judgment is correct.
-* **UIManager (`UIManager.cs`)**: Subscribes to `GameManager` events to manage overall visibility of UI panels.
-* **SpeechBubbleUI (`SpeechBubbleUI.cs`)**: A modular component attached to the speech bubble panel that listens to dialogue changes, manages dialogue layout, and controls dynamic text typing animations.
-* **DialogueLinkHandler (`DialogueLinkHandler.cs`)**: Implements `IPointerClickHandler` and utilizes `TMP_TextUtilities.FindIntersectingLink` to detect user clicks on specific words within TextMeshPro elements, dispatching the data to the `GameManager`. Includes visual hover feedback.
-* **CharacterMover (`CharacterMover.cs`)**: Singleton handling 2D sprite sliding animations, drop-in effects, unified character exits (including Anubis), and footstep audio via coroutines.
-* **PapyrusMover (`PapyrusMover.cs`)**: Manages the papyrus scroll UI panel animation, hiding it offscreen and animating it into place alongside typing out the character's header name.
-* **AnubisTutorialManager (`AnubisTutorialManager.cs`)**: Controls the opening tutorial dialog, utilizing `CharacterMover` for seamless entrance and exit transitions.
-* **Deliberation Phase**: Managed by `DeliberationManager.cs`, `DeliberationPapyrusManager.cs`, and `DeliberationPapyrusDrag.cs`. Handles spawning draggable clues, dialogue logic for Anubis during deliberation, and Anubis's final win/loss verdict.
-* **ScalesManager (`ScalesManager.cs`)**: Handles the Scale Evaluation sequence. Drops the scales, swaps the result sprites (Heart vs Feather), and controls the fading animations to highlight the outcome.
-* **MainMenuManager (`MainMenuManager.cs`)**: Handles the Title Screen logic (Play, Credits, Quit buttons) and toggling the Credits overlay.
-* **AnimatedMenuButton (`AnimatedMenuButton.cs`)**: Attaches to UI buttons to provide premium hover/click scaling animations and color transitions, replacing standard button backgrounds.
-* **UICursorHover (`UICursorHover.cs`)**: Dynamically attached to UI elements by the `GameManager` to provide global custom hover cursor feedback.
-* **Data Management (`GameData.cs`)**: Uses Unity ScriptableObjects (`DialogueBubble`, `NPCData`, `LevelData`) to define and serialize narrative and character data. The `LevelData` supports randomized `LevelScenario` structs (Winning Condition + Deliberation Dialogue) per level.
+---
 
-## NPCs
+## 🏗️ Technical Architecture
 
-The logic loop includes three primary interview subjects:
-1. **Khepri (Merchant)**: Focused on persuasion, salesmanship, and human behavior.
-2. **Nefru (Builder)**: Focused on manual labor, temple construction, and practical problem-solving.
-3. **Hori (Scribe)**: Focused on observation, record-keeping, calculation, and distrust of memory.
+Built with a single-scene, robust UI-driven architecture in Unity, prioritizing modularity and scalability.
 
-## Installation and Execution
+### Core Systems
+* **`GameManager.cs`**: The central state machine driving the game flow (from `TitleScreen` to `GameOver` / endless loop). It broadcasts state changes and tracks player progression.
+* **`UIManager.cs`**: Subscribes to core events to manage global panel visibility seamlessly.
+* **`SpeechBubbleUI.cs` & `DialogueLinkHandler.cs`**: Modular components handling dynamic text typing and interactive text parsing via `TMP_TextUtilities.FindIntersectingLink`.
+* **`CharacterMover.cs` & `PapyrusMover.cs`**: Singleton-based handling of smooth 2D sprite sliding, UI drop-ins, and audio synchronization via coroutines.
+* **`DeliberationManager.cs` & `ScalesManager.cs`**: Manages the final judgment phase, including draggable clues, dynamic Anubis dialogue, and the dramatic Scale Evaluation visual sequence.
 
-1. Clone the repository.
-2. Open the project using a compatible Unity Editor version.
-3. Open the primary main scene.
-4. Press Play in the Unity Editor to initiate the game loop.
+### Data Management
+Uses Unity **ScriptableObjects** (`DialogueBubble`, `NPCData`, `LevelData`) to define narrative branching and randomized win conditions, keeping logic strictly separated from content.
 
-## Current Status and Roadmap
+---
 
-* **Completed**: Base UI setup, automated ScriptableObject generation (`NPCDataGenerator.cs`), game loop logic (state machine), character transitions, and interactive text parsing.
-* **Completed (Core Loop)**: The entire core gameplay loop is now fully implemented! This includes the `Deliberation` state where the player drags their choice to Anubis, the `ScaleEvaluation` visual sequence, and the final win/loss dialogue in the `EndGame` state leading into an endless loop (on win) or Game Over screen (on loss).
-* **Pending**: Adding sound effects/background music, expanding level data, and polishing visual micro-animations.
+## 👥 Interview Subjects
 
-## Credits
+1. 🏺 **Khepri (Merchant)**: Focused on persuasion, salesmanship, and human behavior.
+2. 🧱 **Nefru (Builder)**: Focused on manual labor, temple construction, and practical problem-solving.
+3. ✍️ **Hori (Scribe)**: Focused on observation, record-keeping, calculation, and distrust of memory.
 
-* **Head Programmer**: Pedro Lubaszewski Lima 
-* **Assistant Programmers**: Artur Bandeira Chan Jorge, Sabina Wang
-* **Art Designer**: Sabina Wang
-* **Sound Designer**: Gabriel Flores Coelho
-* **Game Designers**: Pedro Lubaszewski Lima, Artur Bandeira Chan Jorge, Sabina Wang, Gabriel Flores Coelho
-* **Writers**: Sabina Wang, Gabriel Flores Coelho
+---
 
-**Special Mentions**:
-* Henrique as Game Tester
-* Artur as Voice Actor and Aura Manager
+## 🚀 Installation & Execution
 
-## License
-This project uses a split license:
+1. **Clone** the repository.
+2. **Open** the project using a compatible Unity Editor version.
+3. **Load** the primary main scene.
+4. **Press Play** in the Unity Editor to initiate the game loop.
 
-Code: The source code is licensed under the MIT License ([LICENSE](LICENSE))
+---
 
-Art and Audio: All visual assets, character art, UI elements, and audio files in the Assets/Art and Assets/Audio folders are licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (link: https://creativecommons.org/licenses/by-nc/4.0/)
+## 🗺️ Roadmap & Status
+
+- [x] **Foundation**: Base UI setup, interactive text parsing, and character transitions.
+- [x] **Core Loop**: Fully implemented state machine, dynamic dialogue, and clue saving.
+- [x] **Judgment Phase**: Draggable UI clues, Scale Evaluation visual sequence, and endless loop / Game Over mechanics.
+- [ ] **Polish**: Expand level data, add comprehensive sound effects and background music, and refine micro-animations.
+
+---
+
+## 🌟 Credits
+
+| Role | Team Members |
+| :--- | :--- |
+| **Head Programmer** | Pedro Lubaszewski Lima |
+| **Assistant Programmers** | Artur Bandeira Chan Jorge, Sabina Wang |
+| **Art Designer** | Sabina Wang |
+| **Sound Designer** | Gabriel Flores Coelho |
+| **Game Designers** | Pedro Lubaszewski Lima, Artur Bandeira Chan Jorge, Sabina Wang, Gabriel Flores Coelho |
+| **Writers** | Sabina Wang, Gabriel Flores Coelho |
+
+**✨ Special Mentions**:
+* **Henrique**: Game Tester
+* **Artur**: Voice Actor & Aura Manager
+
+---
+
+## 📄 License
+
+This project operates under a split license model:
+* **Code**: MIT License ([LICENSE](LICENSE))
+* **Art & Audio**: Creative Commons Attribution-NonCommercial 4.0 International ([CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/))
