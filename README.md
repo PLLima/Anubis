@@ -5,6 +5,19 @@
   <p>
     <b>A 2D UI-based narrative puzzle game developed during the CStudio Game Jam 2026 at CentraleSupélec.</b>
   </p>
+  <p>
+    <img src="https://img.shields.io/badge/Style-2D-lightgrey?style=flat-square" alt="2d">
+    <img src="https://img.shields.io/badge/Monster-Ammit-red?style=flat-square" alt="ammit">
+    <img src="https://img.shields.io/badge/God-Anubis-black?style=flat-square" alt="anubis">
+    <img src="https://img.shields.io/badge/Language-C%23-239120?style=flat-square&logo=c-sharp&logoColor=white" alt="csharp">
+    <img src="https://img.shields.io/badge/Theme-Egyptian%20Mythology-gold?style=flat-square" alt="egyptian-mythology">
+    <img src="https://img.shields.io/badge/Event-Game%20Jam-orange?style=flat-square" alt="game-jam">
+    <img src="https://img.shields.io/badge/Genre-Narrative%20Game-blue?style=flat-square" alt="narrative-game">
+    <img src="https://img.shields.io/badge/Genre-Puzzle%20Game-blue?style=flat-square" alt="puzzle-game">
+    <img src="https://img.shields.io/badge/Lore-Startup-success?style=flat-square" alt="startup">
+    <img src="https://img.shields.io/badge/Architecture-UI--Driven-blueviolet?style=flat-square" alt="ui-driven">
+    <img src="https://img.shields.io/badge/Engine-Unity-black?style=flat-square&logo=unity" alt="unity">
+  </p>
 </div>
 
 ---
@@ -71,6 +84,13 @@ Uses Unity **ScriptableObjects** (`DialogueBubble`, `NPCData`, `LevelData`) to d
 
 ## 🚀 Installation & Execution
 
+### 📥 Playing the Release Build
+1. Go to the **Releases** tab and download the compressed archive (`.zip`) for your operating system (Windows or Linux).
+2. **Extract** the entire archive into an empty folder. *(Do not run the executable directly from inside the `.zip`.)*
+3. **Windows**: Run `Anubis.exe`.
+4. **Linux**: Ensure the executable has correct execution permissions (e.g., `chmod +x Anubis.x86_64`), then run `./Anubis.x86_64`.
+
+### 🛠️ Developer Setup (Unity)
 1. **Clone** the repository.
 2. **Open** the project using a compatible Unity Editor version.
 3. **Load** the primary main scene.
