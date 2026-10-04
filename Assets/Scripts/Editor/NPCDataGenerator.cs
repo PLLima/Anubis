@@ -11,19 +11,19 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I sailed from Memphis.",
-                "Trade was how I made my living.",
-                "Linen and copper were common goods."
+                "I was a sailor from Memphis.",
+                "Trade was how I made my living!",
+                "I worked with linen and copper everyday."
             },
             new string[]
             {
                 "Words were my greatest weapon.",
-                "I knew what people wanted to hear.",
-                "I sold ordinary lapis amulets.",
-                "I claimed they were blessed by Ptah."
+                "I always knew what people wanted to hear.",
+                "I consider myself a great salesman.",
+                "I sometimes sold phony amulets."
             },
             new string[]
-            {
+            {s
                 "A rival merchant grew tired of my lies.",
                 "He poisoned my beer during a festival.",
                 "I finally swindled the wrong man."
@@ -41,13 +41,13 @@ public class NPCDataGenerator
             new string[]
             {
                 "I hauled stones for the temples.",
-                "Labor was how many of us paid taxes."
+                "Physical labor was part of my everyday!."
             },
             new string[]
             {
                 "Strength was never a problem for me.",
                 "I could not stand delays.",
-                "I wanted every task finished quickly."
+                "I was a master at construction!"
             },
             new string[]
             {
@@ -59,8 +59,8 @@ public class NPCDataGenerator
             new string[]
             {
                 "Speed mattered more than planning.",
-                "I often ignored safety.",
-                "Impatience was my greatest weakness."
+                "Still, I loved labouring!",
+                "I was foolishly brave and reckless!"
             }
         });
 
@@ -74,8 +74,8 @@ public class NPCDataGenerator
             new string[]
             {
                 "I kept hidden copies of the ledgers.",
-                "I did not trust other people's memories.",
-                "Written evidence felt safer."
+                "All of my days were spent writing and transcribing.",
+                "I became a master at remembering and recording."
             },
             new string[]
             {
@@ -96,13 +96,13 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I led trade caravans south.",
-                "We brought back gold and myrrh."
+                "Well, I led trade caravans south.",
+                "We brought back gold and myrrh. I handled luxury goods, you see."
             },
             new string[]
             {
-                "I learned the tongues of Nubian kings.",
-                "Language gave me an advantage.",
+                "Why, I learned the tongues of Nubian kings.",
+                "Language gave me an advantage and I was a good talker.",
                 "Control the talk, control the deal."
             },
             new string[]
@@ -152,13 +152,13 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I prepared the dead for eternity.",
-                "I worked in Abydos."
+                "In life, I prepared the dead for eternity...",
+                "I handled corpses all day..."
             },
             new string[]
             {
-                "Brains came out through the nose.",
-                "Bodies were packed with natron.",
+                "I pulled brains out through the nose...",
+                "I became completely used to dead bodies...",
                 "The work demanded precision."
             },
             new string[]
@@ -180,14 +180,14 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I played the sistrum at court.",
-                "Most people barely noticed musicians."
+                "I loved playing the sistrum at court!",
+                "Most people barely noticed musicians, but I was different!"
             },
             new string[]
             {
-                "That made people careless around me.",
+                "People felt totally at ease with me!.",
                 "Viziers whispered secrets nearby.",
-                "I remembered what they said."
+                "I always remembered the nastiest and juiciest they said."
             },
             new string[]
             {
@@ -208,19 +208,19 @@ public class NPCDataGenerator
             new string[]
             {
                 "I managed the irrigation canals.",
-                "A broken dam could starve a village."
+                "A broken dam could starve a village, so I had a lot of responsibility."
             },
             new string[]
             {
                 "Floods forced me to think fast.",
-                "I once saved a harvest at night.",
-                "A mud wall stopped the water."
+                "I wasn't scared of any Nile creatures.",
+                "I was a skilled and efficient worker."
             },
             new string[]
             {
                 "A heavy sluice gate needed securing.",
                 "My workers offered to help.",
-                "I refused.",
+                "I refused, since I believed myself strong.",
                 "The current pulled me under."
             },
             new string[]
@@ -236,13 +236,13 @@ public class NPCDataGenerator
             new string[]
             {
                 "I carved royal tombs.",
-                "I lived in the workers' village."
+                "I lived in the workers' village, hehe. But I wanted more."
             },
             new string[]
             {
-                "I knew where the false doors were.",
-                "I knew the hidden paths.",
-                "I stole lapis amulets."
+                "I knew where the false doors and hidden paths were.",
+                "I had sticky fingers, hehe.",
+                "I had eyes for gold and jewelry."
             },
             new string[]
             {
@@ -253,7 +253,7 @@ public class NPCDataGenerator
             },
             new string[]
             {
-                "Loyalty mattered little to me.",
+                "Loyalty mattered little to me, hehe.",
                 "I trusted the wrong people.",
                 "Dishonesty came naturally."
             }
