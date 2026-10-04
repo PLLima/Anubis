@@ -3369,11 +3369,11 @@ MonoBehaviour:
   speechText: {fileID: 515035546}
   nextButton: {fileID: 885926456}
   anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
-  offScreenLeftX: -1200
-  targetScreenX: -270
-  waitBeforeDropTime: 0.4
-  dropDuration: 0.2
-  slideDuration: 0.5
+  offScreenLeftX: -1500
+  targetScreenX: -470
+  waitBeforeDropTime: 0.5
+  dropDuration: 0.5
+  slideDuration: 0.8
   footstepSource: {fileID: 0}
   footstepClip: {fileID: 0}
   papyrusManager: {fileID: 427629268}

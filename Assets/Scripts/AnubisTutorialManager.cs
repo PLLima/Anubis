@@ -17,12 +17,6 @@ public class AnubisTutorialManager : MonoBehaviour
     [Header("Tutorial Character")]
     public Sprite anubisSprite;
 
-    [Header("Character Movement")]
-    public RectTransform activeCharacterRect;
-    public float slideDuration = 0.5f;
-    public float offScreenLeftX = -1200f;
-    public float targetScreenX = -400f;
-
     [Header("Dialogue Content")]
     [TextArea(2, 5)]
     public List<string> dialoguePhrases = new List<string>()
@@ -99,18 +93,6 @@ public class AnubisTutorialManager : MonoBehaviour
         if (activeCharacter == null)
         {
             Debug.LogError("AnubisTutorialManager: Active Character is not assigned!");
-            return;
-        }
-
-        // Make sure RectTransform exists.
-        if (activeCharacterRect == null)
-        {
-            activeCharacterRect = activeCharacter.GetComponent<RectTransform>();
-        }
-
-        if (activeCharacterRect == null)
-        {
-            Debug.LogError("AnubisTutorialManager: Active Character needs a RectTransform!");
             return;
         }
 
@@ -219,15 +201,23 @@ public class AnubisTutorialManager : MonoBehaviour
 
         introActive = false;
 
-        //if (activeCharacter != null)
-        //{
-        //    activeCharacter.SetActive(false);
-        //}
-
         if (speechBubbleUI != null)
         {
             speechBubbleUI.SetActive(false);
         }
+
+        StartCoroutine(TutorialExitRoutine());
+    }
+
+    private IEnumerator TutorialExitRoutine()
+    {
+        if (CharacterMover.Instance != null)
+        {
+            yield return StartCoroutine(CharacterMover.Instance.AnubisExitSequence());
+        }
+
+        // Slight delay to prevent Anubis exit footsteps from overlapping with candidate entrance footsteps
+        yield return new WaitForSeconds(0.5f);
 
         if (gameplayCanvas != null)
         {

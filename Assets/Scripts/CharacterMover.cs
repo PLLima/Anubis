@@ -11,6 +11,8 @@ public class CharacterMover : MonoBehaviour
     public static event System.Action OnCharacterExitFinished;
     public static event System.Action OnAnubisEnterFinished;
 
+    public static CharacterMover Instance { get; private set; }
+
     [Header("Core References")]
     public RectTransform activeCharacterRect;
     public Image activeCharacterImage;
@@ -34,6 +36,7 @@ public class CharacterMover : MonoBehaviour
 
     private void Awake() 
     {
+        Instance = this;
         if (activeCharacterRect != null) 
         {
             baseY = activeCharacterRect.anchoredPosition.y;
@@ -129,6 +132,15 @@ public class CharacterMover : MonoBehaviour
         yield return StartCoroutine(SlideRoutine(targetScreenX, offScreenLeftX));
         
         OnCharacterExitFinished?.Invoke();
+    }
+
+    public IEnumerator AnubisExitSequence() 
+    {
+        yield return StartCoroutine(AnimateYOffset(0f)); // Revert drop
+        
+        yield return new WaitForSeconds(waitBeforeDropTime);
+
+        yield return StartCoroutine(SlideRoutine(targetScreenX, offScreenLeftX));
     }
 
     private void SetCharacterYPosition(float yPos)

@@ -15,13 +15,6 @@ public class DeliberationManager : MonoBehaviour
     [Header("Anubis")]
     public Sprite anubisSprite;
 
-    [Header("Anubis Exit Animation (keep in sync with CharacterMover)")]
-    public float offScreenLeftX = -1200f;
-    public float targetScreenX = -270f;
-    public float waitBeforeDropTime = 0.4f;
-    public float dropDuration = 0.2f;
-    public float slideDuration = 0.5f;
-
     [Header("Audio Settings")]
     public AudioSource footstepSource;
     public AudioClip footstepClip;
@@ -43,12 +36,6 @@ public class DeliberationManager : MonoBehaviour
 
     private void Awake()
     {
-        if (activeCharacter != null)
-        {
-            anubisRect = activeCharacter.GetComponent<RectTransform>();
-            if (anubisRect != null) baseY = anubisRect.anchoredPosition.y;
-        }
-
         if (footstepSource == null)
         {
             footstepSource = GetComponent<AudioSource>();
@@ -212,19 +199,20 @@ public class DeliberationManager : MonoBehaviour
         DisplayCurrentPhrase();
     }
 
-    // Same animation CharacterMover uses for exits: revert drop, wait, slide off screen left.
+    // Same animation CharacterMover uses for exits
     private IEnumerator AnubisLeaveRoutine()
     {
         isLeaving = true;
 
         if (speechBubbleUI != null) speechBubbleUI.SetActive(false);
 
-        if (anubisRect != null)
+        if (CharacterMover.Instance != null)
         {
-            yield return StartCoroutine(AnimateYOffset(0f)); // Revert drop
-            yield return new WaitForSeconds(waitBeforeDropTime);
-            yield return StartCoroutine(SlideRoutine(targetScreenX, offScreenLeftX));
+            yield return StartCoroutine(CharacterMover.Instance.AnubisExitSequence());
         }
+
+        // Slight delay to prevent Anubis exit footsteps from overlapping with candidate entrance footsteps
+        yield return new WaitForSeconds(0.5f);
 
         verdictActive = false;
         verdictReady = false;
@@ -234,54 +222,6 @@ public class DeliberationManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.AdvanceToNextLevel();
-        }
-    }
-
-    private IEnumerator AnimateYOffset(float targetOffset)
-    {
-        Vector2 startPos = anubisRect.anchoredPosition;
-        Vector2 endPos = new Vector2(startPos.x, baseY + targetOffset);
-
-        float timeElapsed = 0;
-        while (timeElapsed < dropDuration)
-        {
-            timeElapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0, 1, timeElapsed / dropDuration);
-            anubisRect.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
-            yield return null;
-        }
-        anubisRect.anchoredPosition = endPos;
-    }
-
-    private IEnumerator SlideRoutine(float startX, float endX)
-    {
-        if (footstepSource != null && footstepClip != null)
-        {
-            footstepSource.clip = footstepClip;
-            footstepSource.loop = true;
-            footstepSource.Play();
-        }
-
-        float timeElapsed = 0;
-        Vector2 pos = anubisRect.anchoredPosition;
-        pos.x = startX;
-        anubisRect.anchoredPosition = pos;
-
-        while (timeElapsed < slideDuration)
-        {
-            timeElapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0, 1, timeElapsed / slideDuration);
-            pos.x = Mathf.Lerp(startX, endX, t);
-            anubisRect.anchoredPosition = pos;
-            yield return null;
-        }
-
-        pos.x = endX;
-        anubisRect.anchoredPosition = pos;
-
-        if (footstepSource != null)
-        {
-            footstepSource.Stop();
         }
     }
 
