@@ -50,6 +50,10 @@ public class PapyrusMover : MonoBehaviour
     {
         if (npcNameText != null && npc != null)
         {
+            // Do not hide the text if we are already in the interview phase!
+            if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Interview)
+                return;
+
             npcNameText.text = npc.npcName;
             npcNameText.maxVisibleCharacters = 0;
         }
@@ -106,6 +110,13 @@ public class PapyrusMover : MonoBehaviour
             }
             
             npcNameText.maxVisibleCharacters = totalChars;
+            npcNameText.ForceMeshUpdate();
+        }
+
+        // Force this panel to render on top of the speech bubble
+        if (papyrusRect != null) 
+        {
+            papyrusRect.SetAsLastSibling();
         }
 
         // Proceed to Interview
