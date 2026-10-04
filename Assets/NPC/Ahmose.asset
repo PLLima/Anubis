@@ -16,7 +16,6 @@ MonoBehaviour:
   npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
-    - Call me Ahmose.
     - I carved royal tombs.
     - I lived in the workers' village.
   - snippets:

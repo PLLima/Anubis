@@ -16,7 +16,6 @@ MonoBehaviour:
   npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
-    - I sailed from Memphis.
     - Trade was how I made my living.
     - Linen and copper were common goods.
   - snippets:

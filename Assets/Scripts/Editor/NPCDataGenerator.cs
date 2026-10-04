@@ -11,7 +11,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "My name was Khepri.",
                 "I sailed from Memphis.",
                 "Trade was how I made my living.",
                 "Linen and copper were common goods."
@@ -41,7 +40,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "My name was Nefru.",
                 "I hauled stones for the temples.",
                 "Labor was how many of us paid taxes."
             },
@@ -70,7 +68,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I am Hori of Heliopolis.",
                 "I managed the state granaries.",
                 "Every sack passed through my records."
             },
@@ -99,7 +96,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I am Menna.",
                 "I led trade caravans south.",
                 "We brought back gold and myrrh."
             },
@@ -128,7 +124,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I am Bakenkhonsu.",
                 "I commanded the Medjay patrols.",
                 "We guarded the Pharaoh's gold mines."
             },
@@ -157,7 +152,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "They called me Ipuwer.",
                 "I prepared the dead for eternity.",
                 "I worked in Abydos."
             },
@@ -186,7 +180,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "My name was Kiya.",
                 "I played the sistrum at court.",
                 "Most people barely noticed musicians."
             },
@@ -214,7 +207,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "I am Senenmut.",
                 "I managed the irrigation canals.",
                 "A broken dam could starve a village."
             },
@@ -243,7 +235,6 @@ public class NPCDataGenerator
         {
             new string[]
             {
-                "Call me Ahmose.",
                 "I carved royal tombs.",
                 "I lived in the workers' village."
             },

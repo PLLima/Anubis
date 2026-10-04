@@ -16,7 +16,6 @@ MonoBehaviour:
   npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
-    - They called me Ipuwer.
     - I prepared the dead for eternity.
     - I worked in Abydos.
   - snippets:

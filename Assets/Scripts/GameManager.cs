@@ -12,11 +12,13 @@ public enum GameState
     Deliberation,
     Judgment,
     ScaleEvaluation,
-    EndGame
+    EndGame,        // Anubis delivers his verdict for the current level
+    RunComplete     // All levels finished
 }
 
 /// <summary>
 /// Manages the core game loop, states, and global data for the Anubis interview process.
+/// Supports multiple levels played once each in a random order per run.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
@@ -29,10 +31,14 @@ public class GameManager : MonoBehaviour
     public static event Action<DialogueBubble> OnDialogueChanged;
     public static event Action<NPCData> OnNPCChanged;
     public static event Action<bool> OnDeliberationSubmitted;
+    public static event Action<LevelData> OnLevelStarted;   // NEW
 
     [Header("Level Configuration")]
-    public LevelData currentLevel;
+    [Tooltip("Pool of levels. They are shuffled at the start of every run.")]
+    public LevelData[] allLevels;                            // NEW
 
+    [Tooltip("Set at runtime. If allLevels is empty, this is used as a single-level fallback.")]
+    public LevelData currentLevel;
 
     [Header("Audio Settings")]
     public AudioSource audioSource;
@@ -52,6 +58,14 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState { get; private set; }
     public bool LastDeliberationResult { get; private set; }
 
+    // Run progress (NEW)
+    private readonly List<LevelData> levelOrder = new List<LevelData>();
+    private int levelOrderIndex = -1;
+    public int LevelsCompleted { get; private set; }
+    public int CorrectJudgments { get; private set; }
+    public int TotalLevelsInRun => levelOrder.Count;
+    public bool HasMoreLevels => levelOrderIndex + 1 < levelOrder.Count;
+
     // Data tracking
     private int currentNPCIndex = 0;
     private int currentDialogueIndex = 0;
@@ -69,7 +83,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
 
-            if (audioSource == null) 
+            if (audioSource == null)
             {
                 audioSource = GetComponent<AudioSource>();
             }
@@ -97,17 +111,17 @@ public class GameManager : MonoBehaviour
 
         RenderTexture rt = RenderTexture.GetTemporary(width, height);
         RenderTexture.active = rt;
-        
+
         // Copy the texture using the GPU
         Graphics.Blit(source, rt);
-        
+
         Texture2D result = new Texture2D(width, height, TextureFormat.RGBA32, false);
         result.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         result.Apply();
-        
+
         RenderTexture.active = null;
         RenderTexture.ReleaseTemporary(rt);
-        
+
         return result;
     }
 
@@ -146,7 +160,7 @@ public class GameManager : MonoBehaviour
     public void SetCursorHoverState(bool isHovering)
     {
         isHoveringInteractable = isHovering;
-        
+
         bool isPressed = false;
 #if ENABLE_INPUT_SYSTEM
         if (UnityEngine.InputSystem.Mouse.current != null)
@@ -231,15 +245,82 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ------------------------------------------------------------------
+    // Run / level flow (NEW)
+    // ------------------------------------------------------------------
+
+    /// <summary>
+    /// Starts a fresh run: shuffles all levels and begins the first one.
+    /// </summary>
     public void StartGameLoop()
     {
+        LevelsCompleted = 0;
+        CorrectJudgments = 0;
+
+        BuildShuffledLevelOrder();
+
+        if (levelOrder.Count == 0)
+        {
+            Debug.LogError("No levels available! Assign levels to 'allLevels' (or 'currentLevel') in the Inspector.");
+            return;
+        }
+
+        levelOrderIndex = -1;
+        BeginNextLevel();
+    }
+
+    /// <summary>
+    /// Call this from your ScaleEvaluation UI (e.g. a "Continue" button / after the scale animation).
+    /// Moves to the next random level, or ends the game if all levels are done.
+    /// </summary>
+    public void AdvanceToNextLevel()
+    {
+        // The verdict is shown during EndGame; Anubis leaving triggers this call.
+        if (CurrentState != GameState.EndGame && CurrentState != GameState.ScaleEvaluation) return;
+
+        LevelsCompleted++;
+
+        if (HasMoreLevels)
+        {
+            BeginNextLevel();
+        }
+        else
+        {
+            ChangeState(GameState.RunComplete);
+        }
+    }
+
+    private void BuildShuffledLevelOrder()
+    {
+        levelOrder.Clear();
+
+        if (allLevels != null)
+        {
+            foreach (LevelData level in allLevels)
+            {
+                if (level != null) levelOrder.Add(level);
+            }
+        }
+    }
+
+    private void BeginNextLevel()
+    {
+        levelOrderIndex++;
+        currentLevel = levelOrder[levelOrderIndex];
+
         currentNPCIndex = 0;
         currentDialogueIndex = 0;
         CurrentNPCClues.Clear();
         SavedCluesByNPC.Clear();
         OnPapyrusCleared?.Invoke();
+
+        Debug.Log($"Starting level {levelOrderIndex + 1}/{levelOrder.Count}: {currentLevel.name}");
+        OnLevelStarted?.Invoke(currentLevel);
+
         ChangeState(GameState.CandidateEnter);
     }
+
+    // ------------------------------------------------------------------
 
     public void AdvanceDialogue()
     {
@@ -295,7 +376,7 @@ public class GameManager : MonoBehaviour
         )
         {
             Debug.LogError(
-                "Current Level is missing or empty! Please assign Level1 to GameManager in the Inspector."
+                "Current Level is missing or empty! Please assign levels to GameManager in the Inspector."
             );
 
             return;
@@ -384,11 +465,12 @@ public class GameManager : MonoBehaviour
     public void SubmitDeliberationChoice(NPCData chosenNPC)
     {
         if (CurrentState != GameState.Deliberation && CurrentState != GameState.Judgment) return;
-        
+
         ChangeState(GameState.ScaleEvaluation);
-        
+
         bool isCorrect = (currentLevel != null && currentLevel.correctNPC == chosenNPC);
         LastDeliberationResult = isCorrect;
+        if (isCorrect) CorrectJudgments++;
         OnDeliberationSubmitted?.Invoke(isCorrect);
     }
 

@@ -16,7 +16,6 @@ MonoBehaviour:
   npcSprite: {fileID: -2256948484998397059, guid: 75acfd848ff0e7816aa2a2b5f8732369, type: 3}
   dialogueBubbles:
   - snippets:
-    - I am Menna.
     - I led trade caravans south.
     - We brought back gold and myrrh.
   - snippets:

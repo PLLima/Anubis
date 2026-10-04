@@ -23,6 +23,7 @@ public class ScaleManager : MonoBehaviour
 
     public float pauseAfterNeutral = 1f;
     public float pauseAfterResult = 2.0f;
+    public float scaleLinger = 0.5f;
 
     private RectTransform scaleRect;
     private Vector2 scaleStartPosition;
@@ -160,6 +161,12 @@ public class ScaleManager : MonoBehaviour
         {
             GameManager.Instance.ChangeState(GameState.EndGame);
         }
+
+        //scale fades out
+
+        yield return StartCoroutine(
+            FadeScaleOut(scaleLinger)
+        );
     }
 
     private IEnumerator FadeOverlay(
@@ -396,6 +403,43 @@ public class ScaleManager : MonoBehaviour
             color.a = 0f;
             blackOverlay.color = color;
         }
+    }
+
+    private IEnumerator FadeScaleOut(float duration)
+    {
+        if (scaleImage == null)
+            yield break;
+
+        float elapsed = 0f;
+        Color startColor = scaleImage.color;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            float t =
+                Mathf.SmoothStep(
+                    0f,
+                    1f,
+                    elapsed / duration
+                );
+
+            Color color = startColor;
+            color.a =
+                Mathf.Lerp(
+                    startColor.a,
+                    0f,
+                    t
+                );
+
+            scaleImage.color = color;
+
+            yield return null;
+        }
+
+        Color finalColor = scaleImage.color;
+        finalColor.a = 0f;
+        scaleImage.color = finalColor;
     }
 
     public void SetNeutral()
