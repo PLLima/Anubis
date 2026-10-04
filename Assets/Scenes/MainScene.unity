@@ -3998,6 +3998,24 @@ MonoBehaviour:
   dialogueTextComponent: {fileID: 515035546}
   dialogueArrow: {fileID: 885926454}
   typingSpeed: 75
+  voiceAudioSource: {fileID: 0}
+  overlapMode: 0
+  voiceSoundInterval: 0.6
+  charactersPerSound: 4
+  anubisVoice:
+    audioClips:
+    - {fileID: 8300000, guid: fb561b48199ddd5bca0cf2a1e312140b, type: 3}
+    basePitch: 1
+    pitchVariation: 0.05
+    charFrequency: 0
+    customInterval: 0
+  defaultNPCVoice:
+    audioClips:
+    - {fileID: 8300000, guid: be54b468e78d3c8aabb9eed315c72eaa, type: 3}
+    basePitch: 1
+    pitchVariation: 0.05
+    charFrequency: 0
+    customInterval: 0
 --- !u!1 &1591540645
 GameObject:
   m_ObjectHideFlags: 0
