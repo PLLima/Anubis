@@ -27,7 +27,7 @@ The project utilizes a single-scene, UI-driven architecture in Unity:
 * **AnubisTutorialManager (`AnubisTutorialManager.cs`)**: Controls the opening tutorial dialog, utilizing `CharacterMover` for seamless entrance and exit transitions.
 * **Deliberation Phase**: Managed by `DeliberationManager.cs`, `DeliberationPapyrusManager.cs`, and `DeliberationPapyrusDrag.cs`. Handles spawning draggable clues, dialogue logic for Anubis during deliberation, and Anubis's final win/loss verdict.
 * **ScalesManager (`ScalesManager.cs`)**: Handles the Scale Evaluation sequence. Drops the scales, swaps the result sprites (Heart vs Feather), and controls the fading animations to highlight the outcome.
-* **MainMenuManager (`MainMenuManager.cs`)**: Handles the Title Screen logic (Play, Settings, Quit buttons).
+* **MainMenuManager (`MainMenuManager.cs`)**: Handles the Title Screen logic (Play, Credits, Quit buttons) and toggling the Credits overlay.
 * **AnimatedMenuButton (`AnimatedMenuButton.cs`)**: Attaches to UI buttons to provide premium hover/click scaling animations and color transitions, replacing standard button backgrounds.
 * **UICursorHover (`UICursorHover.cs`)**: Dynamically attached to UI elements by the `GameManager` to provide global custom hover cursor feedback.
 * **Data Management (`GameData.cs`)**: Uses Unity ScriptableObjects (`DialogueBubble`, `NPCData`, `LevelData`) to define and serialize narrative and character data. The `LevelData` supports randomized `LevelScenario` structs (Winning Condition + Deliberation Dialogue) per level.
@@ -51,6 +51,19 @@ The logic loop includes three primary interview subjects:
 * **Completed**: Base UI setup, automated ScriptableObject generation (`NPCDataGenerator.cs`), game loop logic (state machine), character transitions, and interactive text parsing.
 * **Completed (Core Loop)**: The entire core gameplay loop is now fully implemented! This includes the `Deliberation` state where the player drags their choice to Anubis, the `ScaleEvaluation` visual sequence, and the final win/loss dialogue in the `EndGame` state leading into an endless loop (on win) or Game Over screen (on loss).
 * **Pending**: Adding sound effects/background music, expanding level data, and polishing visual micro-animations.
+
+## Credits
+
+* **Head Programmer**: Pedro Lubaszewski Lima 
+* **Assistant Programmers**: Artur Bandeira Chan Jorge, Sabina Wang
+* **Art Designer**: Sabina Wang
+* **Sound Designer**: Gabriel Flores Coelho
+* **Game Designers**: Pedro Lubaszewski Lima, Artur Bandeira Chan Jorge, Sabina Wang, Gabriel Flores Coelho
+* **Writers**: Sabina Wang, Gabriel Flores Coelho
+
+**Special Mentions**:
+* Henrique as Game Tester
+* Artur as Voice Actor and Aura Manager
 
 ## License
 This project uses a split license:
