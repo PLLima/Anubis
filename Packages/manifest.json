@@ -16,6 +16,7 @@
     "com.unity.render-pipelines.universal": "17.6.0",
     "com.unity.sdk.linux-arm64": "1.1.0",
     "com.unity.sdk.linux-x86_64": "1.1.0",
+    "com.unity.services.cloud-build": "2.1.0",
     "com.unity.test-framework": "1.8.0",
     "com.unity.timeline": "6.6.0",
     "com.unity.toolchain.linux-x86_64-linux": "1.1.0",
