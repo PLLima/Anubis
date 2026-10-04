@@ -5347,6 +5347,8 @@ MonoBehaviour:
   allLevels:
   - {fileID: 11400000, guid: 836cc714c1a35fa1eb6b81cc3baee60c, type: 2}
   - {fileID: 11400000, guid: 7f554792c13cb0241a7fa2a82e466988, type: 2}
+  - {fileID: 11400000, guid: 0b11a1696ef8d66e98dd17f5511b6dfd, type: 2}
+  - {fileID: 11400000, guid: f6c0d4809b95bef4cb863ad325e08b27, type: 2}
   currentLevel: {fileID: 11400000, guid: 836cc714c1a35fa1eb6b81cc3baee60c, type: 2}
   audioSource: {fileID: 845876979}
   advanceDialogueSound: {fileID: 8300000, guid: 7f91d741956c522419ceaad4aa60e3ad, type: 3}

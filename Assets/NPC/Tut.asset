@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67bdf615a298a9ca6a32537659c825b8, type: 3}
+  m_Name: Tut
+  m_EditorClassIdentifier: Assembly-CSharp::NPCData
+  npcName: Tut
+  npcSprite: {fileID: 6542371343288760746, guid: 8c173654e73a549d59a55c8f7a8c132c, type: 3}
+  dialogueBubbles:
+  - snippets:
+    - I am Tut from Amun!
+    - A lowly peasant who worked in the fields.
+  - snippets:
+    - 'Everyday I spent harvesting wheat, barley and flax. '
+    - I couldn't help that I flunked out of scribe school.
+    - I guess I was happy with a simple life.
+  - snippets:
+    - I was a pretty good swimmer!
+    - While I was swimming, a hippo grabbed me.
+    - I became the hippo's next meal!
+  - snippets:
+    - I was scatterbrained in life.
+    - Working long hours was how I spent my days.
+    - I died of carelessness!
+  voiceProfile:
+    audioClips: []
+    basePitch: 1.215
+    pitchVariation: 0.0355
+    charFrequency: 0
+    customInterval: 0
