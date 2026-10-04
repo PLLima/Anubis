@@ -50,3 +50,10 @@ The logic loop includes three primary interview subjects:
 * **Completed**: Base UI setup, automated ScriptableObject generation (`NPCDataGenerator.cs`), game loop logic (state machine), character transitions, and interactive text parsing.
 * **Completed (Core Loop)**: The entire core gameplay loop is now fully implemented! This includes the `Deliberation` state where the player drags their choice to Anubis, the `ScaleEvaluation` visual sequence, and the final win/loss dialogue in the `EndGame` state.
 * **Pending**: Adding sound effects/background music, expanding level data, and polishing visual micro-animations.
+
+## License
+This project uses a split license:
+
+Code: The source code is licensed under the MIT License ([LICENSE](LICENSE))
+
+Art and Audio: All visual assets, character art, UI elements, and audio files in the Assets/Art and Assets/Audio folders are licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (link: https://creativecommons.org/licenses/by-nc/4.0/)
