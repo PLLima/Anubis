@@ -22,3 +22,13 @@ MonoBehaviour:
     - I just came up with a killer startup idea.
     - I'm going to construct a crocodile petting zoo! Drag the papyrus of the guy who you think would do the best job to me.
     correctNPC: {fileID: 11400000, guid: 8e5e51d0b106f1001a420c24959174d3, type: 2}
+  - deliberationDialogue:
+    - Hey, I'm back! Did you finish chatting with everyone?
+    - I think I've just stumbled onto a really good startup idea.
+    - I'm going to start a how-to-pickpocket workshop! Drag the papyrus of the guy who you think would do the best job to me.
+    correctNPC: {fileID: 11400000, guid: af7c83a8684ec26f2a61e14b5caf5d34, type: 2}
+  - deliberationDialogue:
+    - I'm back! So, did you get through all the interviews?
+    - Because I just came up with an idea for a startup that's actually pretty sick.
+    - I'm going to start a soft skills class! Drag the papyrus of the guy who you think would do the best job to me.
+    correctNPC: {fileID: 11400000, guid: 657f61665b5cf40f0ae19d767530a76c, type: 2}

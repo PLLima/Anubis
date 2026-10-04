@@ -22,3 +22,13 @@ MonoBehaviour:
     - I've just thought of a brilliant idea for a new business.
     - I'm going to start a gossip journal! Drag the papyrus of the guy who you think would do the best job to me.
     correctNPC: {fileID: 11400000, guid: 6a12cd6ea3929eee9b558cc1edce51bb, type: 2}
+  - deliberationDialogue:
+    - Guess who's back! Have you talked to everyone yet?
+    - I've just had a business idea that could be absolutely genius.
+    - I'm going to start a personal bodyguard business! Drag the papyrus of the guy who you think would do the best job to me.
+    correctNPC: {fileID: 11400000, guid: bec72944b045c19289fa4b08678b0d1b, type: 2}
+  - deliberationDialogue:
+    - I'm back, dude! Did you manage to interview the whole lot?
+    - I've got what I think could be a brilliant startup idea.
+    - I'm going to start a corpse disposal business! Drag the papyrus of the guy who you think would do the best job to me.
+    correctNPC: {fileID: 11400000, guid: 3c28421abdd1c2d938bd37135286baec, type: 2}
