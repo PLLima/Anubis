@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("Set at runtime. If allLevels is empty, this is used as a single-level fallback.")]
     public LevelData currentLevel;
 
+    public LevelScenario CurrentScenario { get; private set; }
+
     [Header("Audio Settings")]
     public AudioSource audioSource;
     public AudioClip advanceDialogueSound;
@@ -79,6 +81,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        UnityEngine.Random.InitState(System.Environment.TickCount);
+
         if (Instance == null)
         {
             Instance = this;
@@ -300,6 +304,15 @@ public class GameManager : MonoBehaviour
             {
                 if (level != null) levelOrder.Add(level);
             }
+
+            // Fisher-Yates shuffle for true randomization
+            for (int i = 0; i < levelOrder.Count; i++)
+            {
+                int rnd = UnityEngine.Random.Range(i, levelOrder.Count);
+                LevelData temp = levelOrder[i];
+                levelOrder[i] = levelOrder[rnd];
+                levelOrder[rnd] = temp;
+            }
         }
     }
 
@@ -307,6 +320,16 @@ public class GameManager : MonoBehaviour
     {
         levelOrderIndex++;
         currentLevel = levelOrder[levelOrderIndex];
+
+        if (currentLevel != null && currentLevel.scenarios != null && currentLevel.scenarios.Length > 0)
+        {
+            int rnd = UnityEngine.Random.Range(0, currentLevel.scenarios.Length);
+            CurrentScenario = currentLevel.scenarios[rnd];
+        }
+        else
+        {
+            CurrentScenario = new LevelScenario();
+        }
 
         currentNPCIndex = 0;
         currentDialogueIndex = 0;
@@ -468,7 +491,7 @@ public class GameManager : MonoBehaviour
 
         ChangeState(GameState.ScaleEvaluation);
 
-        bool isCorrect = (currentLevel != null && currentLevel.correctNPC == chosenNPC);
+        bool isCorrect = (CurrentScenario.correctNPC != null && CurrentScenario.correctNPC == chosenNPC);
         LastDeliberationResult = isCorrect;
         if (isCorrect) CorrectJudgments++;
         OnDeliberationSubmitted?.Invoke(isCorrect);

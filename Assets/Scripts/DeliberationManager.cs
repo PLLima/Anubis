@@ -108,9 +108,9 @@ public class DeliberationManager : MonoBehaviour
 
         // Load dialogue from LevelData
         dialoguePhrases.Clear();
-        if (GameManager.Instance != null && GameManager.Instance.currentLevel != null && GameManager.Instance.currentLevel.deliberationDialogue != null)
+        if (GameManager.Instance != null && GameManager.Instance.CurrentScenario.deliberationDialogue != null)
         {
-            dialoguePhrases.AddRange(GameManager.Instance.currentLevel.deliberationDialogue);
+            dialoguePhrases.AddRange(GameManager.Instance.CurrentScenario.deliberationDialogue);
         }
 
         // Fallback if level data has no dialogue

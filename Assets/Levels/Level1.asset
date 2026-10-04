@@ -16,8 +16,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 50cc3f929bd2be6a7b4248be6bad41f7, type: 2}
   - {fileID: 11400000, guid: 6899bf5850f21ad73b9bcc59ecb9f43c, type: 2}
   - {fileID: 11400000, guid: 293077d37b92412dab4a5e909a64f503, type: 2}
-  correctNPC: {fileID: 11400000, guid: 293077d37b92412dab4a5e909a64f503, type: 2}
-  deliberationDialogue:
-  - Yo dude, I'm back! Did you interview everyone?
-  - I've got a great idea for a start-up.
-  - I'm going to start a pyramid construction company! Drag the papyrus of the guy who you think would do the best job to me.
+  scenarios:
+  - deliberationDialogue:
+    - Yo dude, I'm back! Did you interview everyone?
+    - I've got a great idea for a start-up.
+    - I'm going to start a pyramid construction company! Drag the papyrus of the guy who you think would do the best job to me.
+    correctNPC: {fileID: 11400000, guid: 293077d37b92412dab4a5e909a64f503, type: 2}
+  - deliberationDialogue:
+    - Alright, I'm back! Did you manage to chat with all the candidates?
+    - Because I've just had what might be a genius startup idea.
+    - I'm going to start a door-to-door sales business! Drag the papyrus of the guy who you think would do the best job to me.
+    correctNPC: {fileID: 11400000, guid: 6899bf5850f21ad73b9bcc59ecb9f43c, type: 2}
