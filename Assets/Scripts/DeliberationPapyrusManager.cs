@@ -41,11 +41,24 @@ public class DeliberationPapyrusManager : MonoBehaviour
         }
     }
 
+    public void ClearPapyruses()
+    {
+        foreach (var p in activePapyruses)
+        {
+            if (p != null) Destroy(p);
+        }
+        activePapyruses.Clear();
+        
+        if (cycleArrowButton != null)
+        {
+            cycleArrowButton.gameObject.SetActive(false);
+        }
+    }
+
     public void SpawnPapyruses()
     {
         // Clear existing
-        foreach (var p in activePapyruses) Destroy(p);
-        activePapyruses.Clear();
+        ClearPapyruses();
 
         if (GameManager.Instance == null || GameManager.Instance.currentLevel == null) return;
 

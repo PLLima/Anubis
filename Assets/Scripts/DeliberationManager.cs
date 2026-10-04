@@ -101,6 +101,11 @@ public class DeliberationManager : MonoBehaviour
         // Clear text
         if (speechText != null) speechText.text = string.Empty;
 
+        if (papyrusManager != null)
+        {
+            papyrusManager.ClearPapyruses();
+        }
+
         // Load dialogue from LevelData
         dialoguePhrases.Clear();
         if (GameManager.Instance != null && GameManager.Instance.currentLevel != null && GameManager.Instance.currentLevel.deliberationDialogue != null)
@@ -187,7 +192,7 @@ public class DeliberationManager : MonoBehaviour
         // Verdict screen: the arrow sends Anubis away and starts the next level
         if (verdictActive)
         {
-            if (!isLeaving)
+            if (!isLeaving && verdictReady)
             {
                 StartCoroutine(AnubisLeaveRoutine());
             }
