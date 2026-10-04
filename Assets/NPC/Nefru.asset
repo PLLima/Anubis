@@ -31,3 +31,10 @@ MonoBehaviour:
     - Speed mattered more than planning.
     - I often ignored safety.
     - Impatience was my greatest weakness.
+  voiceProfile:
+    audioClips:
+    - {fileID: 8300000, guid: be54b468e78d3c8aabb9eed315c72eaa, type: 3}
+    basePitch: 0.8
+    pitchVariation: 0.05
+    charFrequency: 2
+    customInterval: 0

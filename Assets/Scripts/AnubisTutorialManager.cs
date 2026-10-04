@@ -132,6 +132,17 @@ public class AnubisTutorialManager : MonoBehaviour
     {
         if (currentPhraseIndex < dialoguePhrases.Count)
         {
+            SpeechBubbleUI bubbleUI = speechBubbleUI != null ? speechBubbleUI.GetComponent<SpeechBubbleUI>() : null;
+            if (bubbleUI != null)
+            {
+                if (nextButton != null) nextButton.gameObject.SetActive(false);
+                bubbleUI.TypeStandardText(dialoguePhrases[currentPhraseIndex], false, () =>
+                {
+                    if (nextButton != null) nextButton.gameObject.SetActive(true);
+                });
+                return;
+            }
+
             if (speechText != null)
             {
                 if (typingCoroutine != null)

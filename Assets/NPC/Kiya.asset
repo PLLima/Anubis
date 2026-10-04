@@ -30,3 +30,10 @@ MonoBehaviour:
     - Information felt like leverage.
     - I pushed people too far.
     - Knowing too much made me dangerous.
+  voiceProfile:
+    audioClips:
+    - {fileID: 8300000, guid: be54b468e78d3c8aabb9eed315c72eaa, type: 3}
+    basePitch: 1.4
+    pitchVariation: 0.05
+    charFrequency: 2
+    customInterval: 0

@@ -290,7 +290,11 @@ public class NPCDataGenerator
 
         if (existing != null)
         {
+            Sprite savedSprite = existing.npcSprite;
+            VoiceProfile savedVoice = existing.voiceProfile;
             EditorUtility.CopySerialized(npc, existing);
+            existing.npcSprite = savedSprite;
+            if (savedVoice != null) existing.voiceProfile = savedVoice;
             EditorUtility.SetDirty(existing);
         }
         else

@@ -31,3 +31,10 @@ MonoBehaviour:
     - Profit mattered more than honesty.
     - That earned me many enemies.
     - Ethics rarely stopped a good deal.
+  voiceProfile:
+    audioClips:
+    - {fileID: 8300000, guid: be54b468e78d3c8aabb9eed315c72eaa, type: 3}
+    basePitch: 1.3
+    pitchVariation: 0.05
+    charFrequency: 2
+    customInterval: 0

@@ -102,7 +102,7 @@ public class PapyrusUI : MonoBehaviour
         {
             audioSource.clip = clickSound;
             audioSource.loop = true;
-            audioSource.volume = 1f;
+            audioSource.volume = 2.0f;
             audioSource.Play();
         }
 

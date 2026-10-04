@@ -31,3 +31,10 @@ MonoBehaviour:
     - Proof mattered more than instinct.
     - Strategy was never my strength.
     - Being right mattered more than survival.
+  voiceProfile:
+    audioClips:
+    - {fileID: 8300000, guid: be54b468e78d3c8aabb9eed315c72eaa, type: 3}
+    basePitch: 1
+    pitchVariation: 0.05
+    charFrequency: 2
+    customInterval: 0

@@ -69,6 +69,18 @@ public class GameManager : MonoBehaviour
     public int TotalLevelsInRun => levelOrder.Count;
     public bool HasMoreLevels => levelOrderIndex + 1 < levelOrder.Count;
 
+    public NPCData CurrentNPC
+    {
+        get
+        {
+            if (currentLevel != null && currentLevel.npcsInLevel != null && currentNPCIndex >= 0 && currentNPCIndex < currentLevel.npcsInLevel.Length)
+            {
+                return currentLevel.npcsInLevel[currentNPCIndex];
+            }
+            return null;
+        }
+    }
+
     // Data tracking
     private int currentNPCIndex = 0;
     private int currentDialogueIndex = 0;
@@ -439,6 +451,8 @@ public class GameManager : MonoBehaviour
         currentDialogueIndex = 0;
 
         ChangeState(GameState.Interview);
+
+        OnNPCChanged?.Invoke(currentNPC);
 
         OnDialogueChanged?.Invoke(
             currentNPC.dialogueBubbles[currentDialogueIndex]
