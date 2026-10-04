@@ -30,6 +30,14 @@ public class DeliberationPapyrusDrag : MonoBehaviour, IBeginDragHandler, IDragHa
             return;
         }
 
+        // TOCA O SOM AQUI (Aproveitando as variáveis públicas já configuradas no Manager)
+        if (manager.audioSource != null && manager.slideSound != null)
+        {
+            manager.audioSource.clip = manager.slideSound;
+            manager.audioSource.loop = true;
+            manager.audioSource.Play();
+        }
+
         startPosition = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
         transform.SetAsLastSibling(); // Ensure it renders on top while dragging
@@ -60,6 +68,12 @@ public class DeliberationPapyrusDrag : MonoBehaviour, IBeginDragHandler, IDragHa
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        // PARA O SOM AQUI (Quando o jogador solta o clique do rato)
+        if (manager != null && manager.audioSource != null)
+        {
+            manager.audioSource.Stop();
+        }
+
         canvasGroup.blocksRaycasts = true;
         rectTransform.localScale = Vector3.one; // Reset scale
 

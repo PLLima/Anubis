@@ -2,8 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))] // Garante que o AudioSource é adicionado
 public class ScaleManager : MonoBehaviour
 {
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip scaleDropSound;    // Som quando a balança cai na tela
+    public AudioClip scaleResultSound;  // Som quando o resultado (vitória/derrota) é revelado
+
     [Header("Scale Image")]
     public Image scaleImage;
 
@@ -33,6 +39,12 @@ public class ScaleManager : MonoBehaviour
 
     private void Awake()
     {
+        // Associa o AudioSource automaticamente
+        if (audioSource == null) 
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         // Force Canvas to finalize layout positions before reading anchoredPosition
         Canvas.ForceUpdateCanvases();
 
@@ -214,6 +226,12 @@ public class ScaleManager : MonoBehaviour
         if (scaleRect == null)
             yield break;
 
+        // Toca o som da balança a cair
+        if (audioSource != null && scaleDropSound != null)
+        {
+            audioSource.PlayOneShot(scaleDropSound, 1f);
+        }
+
         float elapsed = 0f;
 
         while (elapsed < scaleFallDuration)
@@ -245,6 +263,12 @@ public class ScaleManager : MonoBehaviour
     {
         if (scaleImage == null)
             yield break;
+
+        // Toca o som do resultado (mágico, dramático, etc.)
+        if (audioSource != null && scaleResultSound != null)
+        {
+            audioSource.PlayOneShot(scaleResultSound, 1f);
+        }
 
         // Create a temporary result Image
         // on top of the neutral scale.

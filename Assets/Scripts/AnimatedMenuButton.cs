@@ -6,8 +6,14 @@ using TMPro;
 /// <summary>
 /// Adds premium hover and click animations (scaling, color transition) to UI buttons, removing the need for basic button backgrounds.
 /// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class AnimatedMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
+    public AudioClip hoverSound; // Novo campo para o som de passar o rato
+
     [Header("Scaling Animation")]
     public float hoverScale = 1.15f;
     public float clickScale = 0.9f;
@@ -27,6 +33,12 @@ public class AnimatedMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         button = GetComponent<Button>();
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
+
+        // Associa o AudioSource automaticamente
+        if (audioSource == null) 
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
         if (buttonText != null)
         {
@@ -76,6 +88,12 @@ public class AnimatedMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         if (!IsInteractable()) return;
 
+        // Toca o som quando o rato passa por cima
+        if (audioSource != null && hoverSound != null)
+        {
+            audioSource.PlayOneShot(hoverSound, 1f);
+        }
+
         targetScale = Vector3.one * hoverScale;
         
         if (buttonText != null) 
@@ -109,6 +127,12 @@ public class AnimatedMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!IsInteractable()) return;
+
+        // Toca o som imediatamente ao clicar
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.PlayOneShot(clickSound, 1f);
+        }
 
         targetScale = Vector3.one * clickScale;
         

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource))] // Adicionado para garantir o AudioSource
 public class DeliberationPapyrusManager : MonoBehaviour
 {
     [Header("Prefabs & References")]
@@ -21,8 +22,21 @@ public class DeliberationPapyrusManager : MonoBehaviour
     public float dragScale = 0.8f;
     public Vector2 dragOffset = new Vector2(-100f, 0f);
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip slideSound; // Som do papel a arrastar
+
     private List<GameObject> activePapyruses = new List<GameObject>();
     private bool isAnimating = false;
+
+    private void Awake()
+    {
+        // Garante que o AudioSource é atribuído
+        if (audioSource == null) 
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+    }
 
     private void OnEnable()
     {
@@ -174,6 +188,14 @@ public class DeliberationPapyrusManager : MonoBehaviour
     {
         isAnimating = true;
 
+        // Toca o som de arrastar o papel no momento em que a animação começa
+        if (audioSource != null && slideSound != null)
+        {
+            audioSource.clip = slideSound;
+            audioSource.loop = true; // Mantém o som a tocar enquanto a animação durar
+            audioSource.Play();
+        }
+
         GameObject frontPapyrus = activePapyruses[0];
         RectTransform rt = frontPapyrus.GetComponent<RectTransform>();
         
@@ -211,6 +233,13 @@ public class DeliberationPapyrusManager : MonoBehaviour
         }
         
         rt.anchoredPosition = finalPos;
+
+        // Para o som assim que o papel chegar ao destino
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
         isAnimating = false;
     }
 

@@ -11,12 +11,21 @@ public class PapyrusUI : MonoBehaviour
     private TextMeshProUGUI papyrusText;
     private Coroutine typingCoroutine;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip clickSound;
+
     [Header("Typing Effect")]
     public float typingSpeed = 40f; // characters per second
 
     private void Awake()
     {
         papyrusText = GetComponent<TextMeshProUGUI>();
+
+        if (audioSource == null) 
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         
         if (papyrusText != null)
         {
@@ -89,6 +98,14 @@ public class PapyrusUI : MonoBehaviour
 
         float floatVisible = oldCharacterCount;
 
+        if (audioSource != null && clickSound != null)
+        {
+            audioSource.clip = clickSound;
+            audioSource.loop = true;
+            audioSource.volume = 1f;
+            audioSource.Play();
+        }
+
         while (floatVisible < totalCharacterCount)
         {
             if (GameManager.Instance != null && GameManager.Instance.WasClickedThisFrame())
@@ -103,6 +120,11 @@ public class PapyrusUI : MonoBehaviour
         }
 
         papyrusText.maxVisibleCharacters = totalCharacterCount;
+
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
     }
 
     public void ClearPapyrus()
@@ -111,6 +133,11 @@ public class PapyrusUI : MonoBehaviour
         {
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.Stop();
         }
 
         if (papyrusText != null)
