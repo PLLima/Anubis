@@ -16,11 +16,11 @@ MonoBehaviour:
   npcSprite: {fileID: -2256948484998397059, guid: 75acfd848ff0e7816aa2a2b5f8732369, type: 3}
   dialogueBubbles:
   - snippets:
-    - I led trade caravans south.
-    - We brought back gold and myrrh.
+    - Well, I led trade caravans south.
+    - We brought back gold and myrrh. I handled luxury goods, you see.
   - snippets:
-    - I learned the tongues of Nubian kings.
-    - Language gave me an advantage.
+    - Why, I learned the tongues of Nubian kings.
+    - Language gave me an advantage and I was a good talker.
     - Control the talk, control the deal.
   - snippets:
     - I wanted to save time.

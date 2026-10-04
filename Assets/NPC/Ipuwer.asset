@@ -16,11 +16,11 @@ MonoBehaviour:
   npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
-    - I prepared the dead for eternity.
-    - I worked in Abydos.
+    - In life, I prepared the dead for eternity...
+    - I handled corpses all day...
   - snippets:
-    - Brains came out through the nose.
-    - Bodies were packed with natron.
+    - I pulled brains out through the nose...
+    - I became completely used to dead bodies...
     - The work demanded precision.
   - snippets:
     - Years of repetition made me careless.

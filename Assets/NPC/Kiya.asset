@@ -16,12 +16,12 @@ MonoBehaviour:
   npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
-    - I played the sistrum at court.
-    - Most people barely noticed musicians.
+    - I loved playing the sistrum at court!
+    - Most people barely noticed musicians, but I was different!
   - snippets:
-    - That made people careless around me.
+    - People felt totally at ease with me!
     - Viziers whispered secrets nearby.
-    - I remembered what they said.
+    - I always remembered the nastiest and juiciest they said.
   - snippets:
     - I tried to blackmail a general.
     - I thought his secrets gave me power.

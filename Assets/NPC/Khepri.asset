@@ -16,13 +16,13 @@ MonoBehaviour:
   npcSprite: {fileID: 8165316572449679646, guid: c6ad9002a5010e8caba6392c8a3ba15c, type: 3}
   dialogueBubbles:
   - snippets:
-    - Trade was how I made my living.
-    - Linen and copper were common goods.
+    - I was a sailor from Memphis.
+    - Trade was how I made my living!
+    - I worked with linen and copper everyday.
   - snippets:
-    - Words were my greatest weapon.
-    - I knew what people wanted to hear.
-    - I sold ordinary lapis amulets.
-    - I claimed they were blessed by Ptah.
+    - I always knew what people wanted to hear.
+    - I consider myself a great salesman.
+    - I sometimes sold phony amulets.
   - snippets:
     - A rival merchant grew tired of my lies.
     - He poisoned my beer during a festival.

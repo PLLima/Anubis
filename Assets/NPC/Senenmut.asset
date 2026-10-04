@@ -16,16 +16,16 @@ MonoBehaviour:
   npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
   dialogueBubbles:
   - snippets:
-    - I constructed the irrigation canals.
-    - I was a skilled worker with my hands.
+    - I managed the irrigation canals.
+    - A broken dam could starve a village, so I had a lot of responsibility.
   - snippets:
     - Floods forced me to think fast.
-    - I once saved a harvest at night.
-    - A mud wall stopped the water.
+    - I wasn't scared of any Nile creatures.
+    - I was a skilled and efficient worker.
   - snippets:
     - A heavy sluice gate needed securing.
     - My workers offered to help.
-    - I refused.
+    - I refused, since I believed myself strong.
     - The current pulled me under.
   - snippets:
     - I struggled to trust others.

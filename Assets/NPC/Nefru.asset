@@ -17,11 +17,11 @@ MonoBehaviour:
   dialogueBubbles:
   - snippets:
     - I hauled stones for the temples.
-    - Labor was how many of us paid taxes.
+    - Physical labor was part of my everyday!
   - snippets:
     - Strength was never a problem for me.
     - I could not stand delays.
-    - I wanted every task finished quickly.
+    - I was a master at construction!
   - snippets:
     - My crew used frayed lifting ropes.
     - I refused to replace them.
@@ -29,8 +29,8 @@ MonoBehaviour:
     - A pillar fell and crushed me.
   - snippets:
     - Speed mattered more than planning.
-    - I often ignored safety.
-    - Impatience was my greatest weakness.
+    - Still, I loved labouring!
+    - I was foolishly brave and reckless!
   voiceProfile:
     audioClips:
     - {fileID: 8300000, guid: be54b468e78d3c8aabb9eed315c72eaa, type: 3}
