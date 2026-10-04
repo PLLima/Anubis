@@ -23,7 +23,7 @@ public class NPCDataGenerator
                 "I sometimes sold phony amulets."
             },
             new string[]
-            {s
+            {
                 "A rival merchant grew tired of my lies.",
                 "He poisoned my beer during a festival.",
                 "I finally swindled the wrong man."
