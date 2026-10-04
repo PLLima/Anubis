@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject selectionPanel;
     public GameObject scalesPanel;
     public GameObject titleScreenPanel;
+    public GameObject gameOverPanel;
     [Header("Environment")]
     public GameObject background;
     
@@ -25,10 +26,19 @@ public class UIManager : MonoBehaviour
         GameManager.OnStateChanged -= HandleStateChange;
     }
 
+    private void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            HandleStateChange(GameManager.Instance.CurrentState);
+        }
+    }
+
     private void HandleStateChange(GameState state) 
     {
         // Toggle visibility based on states
         bool isTitleScreen = state == GameState.TitleScreen;
+        bool isGameOver = state == GameState.GameOver;
         bool showSpeechBubble = state == GameState.Interview;
         bool showSelection = state == GameState.Deliberation || state == GameState.Judgment;
         bool showScales = state == GameState.ScaleEvaluation;
@@ -37,9 +47,10 @@ public class UIManager : MonoBehaviour
         if (selectionPanel != null) selectionPanel.SetActive(showSelection);
         if (scalesPanel != null) scalesPanel.SetActive(showScales);
         if (titleScreenPanel != null) titleScreenPanel.SetActive(isTitleScreen);
+        if (gameOverPanel != null) gameOverPanel.SetActive(isGameOver);
 
-        // Hide environment during Title Screen
-        if (background != null) background.SetActive(!isTitleScreen);
+        // Hide environment during Title Screen and GameOver
+        if (background != null) background.SetActive(!isTitleScreen && !isGameOver);
     }
 
 }

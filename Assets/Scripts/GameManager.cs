@@ -13,6 +13,7 @@ public enum GameState
     Judgment,
     ScaleEvaluation,
     EndGame,        // Anubis delivers his verdict for the current level
+    GameOver,
     RunComplete     // All levels finished
 }
 
@@ -291,6 +292,12 @@ public class GameManager : MonoBehaviour
         // The verdict is shown during EndGame; Anubis leaving triggers this call.
         if (CurrentState != GameState.EndGame && CurrentState != GameState.ScaleEvaluation) return;
 
+        if (!LastDeliberationResult)
+        {
+            ChangeState(GameState.GameOver);
+            return;
+        }
+
         LevelsCompleted++;
 
         if (HasMoreLevels)
@@ -299,7 +306,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ChangeState(GameState.RunComplete);
+            // The game never ends as long as you win
+            BuildShuffledLevelOrder();
+            levelOrderIndex = -1;
+            BeginNextLevel();
         }
     }
 
