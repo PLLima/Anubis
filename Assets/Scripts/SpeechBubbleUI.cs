@@ -104,7 +104,7 @@ public class SpeechBubbleUI : MonoBehaviour
             activeVoiceProfile = defaultNPCVoice;
         }
 
-        Debug.Log($"[SpeechBubbleUI] Candidato falando: {(currentSpeakerNPC != null ? currentSpeakerNPC.npcName : "Desconhecido")} | Base Pitch: {(activeVoiceProfile != null ? activeVoiceProfile.basePitch : 1f)}");
+        Debug.Log($"[SpeechBubbleUI] Candidate speaking: {(currentSpeakerNPC != null ? currentSpeakerNPC.npcName : "Unknown")} | Base Pitch: {(activeVoiceProfile != null ? activeVoiceProfile.basePitch : 1f)}");
 
         if (typingCoroutine != null)
         {
