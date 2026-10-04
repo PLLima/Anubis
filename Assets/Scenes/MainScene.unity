@@ -2743,10 +2743,6 @@ MonoBehaviour:
   nextButton: {fileID: 885926456}
   gameplayCanvas: {fileID: 1511848223}
   anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
-  activeCharacterRect: {fileID: 1217084348}
-  slideDuration: 0.5
-  offScreenLeftX: -1200
-  targetScreenX: -440
   dialoguePhrases:
   - What's up man! It's me, Anubis, Egyptian God of the dead!
   - So basically, that means that you died. But you weren't good enough of a person to get to the afterlife!
@@ -3369,11 +3365,6 @@ MonoBehaviour:
   speechText: {fileID: 515035546}
   nextButton: {fileID: 885926456}
   anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
-  offScreenLeftX: -1500
-  targetScreenX: -470
-  waitBeforeDropTime: 0.5
-  dropDuration: 0.5
-  slideDuration: 0.8
   footstepSource: {fileID: 0}
   footstepClip: {fileID: 0}
   papyrusManager: {fileID: 427629268}
@@ -3952,8 +3943,8 @@ MonoBehaviour:
   audioSource: {fileID: 845876979}
   advanceDialogueSound: {fileID: 8300000, guid: 7f91d741956c522419ceaad4aa60e3ad, type: 3}
   cursorNormal: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
-  cursorClicked: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
-  cursorHover: {fileID: 2800000, guid: a3d10d5c421727847a154a23714d995d, type: 3}
+  cursorClicked: {fileID: 2800000, guid: 7f3fe427263eb2ac4a0dc6a7d08865cb, type: 3}
+  cursorHover: {fileID: 2800000, guid: b350289ba91d72c2a8bc4d03d7b3ac83, type: 3}
   cursorSize: {x: 32, y: 32}
   cursorHotSpot: {x: 0, y: 0}
   cursorMode: 0

@@ -106,6 +106,18 @@ public class GameManager : MonoBehaviour
         cursorHover = ResizeCursorTexture(cursorHover, (int)cursorSize.x, (int)cursorSize.y);
 
         SetCursor(cursorNormal);
+
+        // Dynamically add UICursorHover to all buttons in the scene if missing
+        UnityEngine.UI.Button[] allButtons = Resources.FindObjectsOfTypeAll<UnityEngine.UI.Button>();
+        foreach (var btn in allButtons)
+        {
+            // Only add to buttons in the active scene (skip prefabs)
+            if (btn.gameObject.scene.name != null && btn.GetComponent<UICursorHover>() == null)
+            {
+                btn.gameObject.AddComponent<UICursorHover>();
+            }
+        }
+
         ChangeState(GameState.TitleScreen);
     }
 
@@ -147,10 +159,7 @@ public class GameManager : MonoBehaviour
 
         if (isDown)
         {
-            if (isHoveringInteractable)
-            {
-                SetCursor(cursorClicked);
-            }
+            SetCursor(cursorClicked);
         }
         else if (isUp)
         {
