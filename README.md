@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="Assets/Art/Icon.png" width="150" alt="Anubis Logo">
   <h1>⚖️ Anubis</h1>
   <p><i>The choice only comes after.</i></p>
   <p>
@@ -14,6 +15,12 @@
 
 > **Will you ascend to heaven, or will your heart be devoured by Ammit?**
 
+<br>
+<div align="center">
+  <img src="img/TitleScreen.png" width="48%" alt="Title Screen">
+  <img src="img/Intro.png" width="48%" alt="Introduction Scene">
+</div>
+
 ---
 
 ## 🎮 Core Mechanics
@@ -23,6 +30,17 @@
 | **🗣️ Dialogue & Investigation** | Interview candidates and click specific words to gather actionable evidence. |
 | **📜 Papyrus System** | Strategically store up to 4 vital clues per session in your dedicated UI panel. |
 | **⚖️ Judgment Phase** | Weigh the gathered evidence to choose the correct soul for the final judgment. If successful, continue your divine job infinitely. Make a mistake, and face an instant Game Over. |
+
+<br>
+<div align="center">
+  <img src="img/Interview.png" width="48%" alt="Interview Phase">
+  <img src="img/Deliberation.png" width="48%" alt="Deliberation Phase">
+</div>
+<br>
+<div align="center">
+  <img src="img/Judgement.png" width="48%" alt="Judgment Scene">
+  <img src="img/Gameover.png" width="48%" alt="Game Over Scene">
+</div>
 
 ---
 
@@ -70,6 +88,11 @@ Uses Unity **ScriptableObjects** (`DialogueBubble`, `NPCData`, `LevelData`) to d
 ---
 
 ## 🌟 Credits
+
+<div align="center">
+  <img src="img/Credits.png" width="80%" alt="Credits Screen">
+</div>
+<br>
 
 | Role | Team Members |
 | :--- | :--- |
