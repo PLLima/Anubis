@@ -2744,17 +2744,14 @@ MonoBehaviour:
   gameplayCanvas: {fileID: 1511848223}
   anubisSprite: {fileID: 4264317810600858832, guid: 5fc1e1586851bcc9481d27033a952326, type: 3}
   dialoguePhrases:
-  - What's up man! It's me, Anubis, Egyptian God of the dead!
-  - So basically, that means that you died. But you weren't good enough of a person to get to the afterlife!
+  - It's me, Anubis, Egyptian God of the dead ! You died, but you weren't good enough of a person to get to the afterlife!
   - Good thing is, you came at a good time. I decided that being a God doesn't pay enough, so I want to create a start-up.
   - People who have died are gonna start coming in soon. They'll tell you about their lives and what kind of person they were.
-  - 'I gave you a pen and some papyrus sheets. '
-  - Unfortunately, because of budget cuts, you can only record four things about each person!
+  - I gave you a pen and some papyrus sheets. Because of budget cuts, you can only record four things from each person!
   - When people are talking, click on the things you think are important to write them down.
-  - Be careful! You can't ask them to repeat themselves, so think hard about what you write down!
+  - You can't ask them to repeat themselves, so think hard about what you write down!
   - I have to go think about my start-up idea. I'll come back later to tell you what kind of person I need.
-  - If you can give me two people who fit the position, I'll think about letting you into the afterlife.
-  - But if you keep sending me people who are useless, I'll have to feed your heart to Ammit!
+  - If you give me the wrong person, I'll feed your heart to Ammit!
 --- !u!1 &1327360984
 GameObject:
   m_ObjectHideFlags: 0
