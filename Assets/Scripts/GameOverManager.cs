@@ -1,11 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameOverManager : MonoBehaviour
 {
+    [Header("UI Elements")]
+    public TMP_Text scoreText;
+
     [Header("Buttons")]
     public Button restartButton;
     public Button quitButton;
+
+    private void OnEnable()
+    {
+        if (scoreText != null && GameManager.Instance != null)
+        {
+            scoreText.text = $"Correct Judgments: {GameManager.Instance.CorrectJudgments}";
+        }
+    }
 
     private void Start()
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nefru
   m_EditorClassIdentifier: Assembly-CSharp::NPCData
   npcName: Nefru
-  npcSprite: {fileID: -5515134220035640716, guid: ddbceaba23c740362980f9a3adb780a2, type: 3}
+  npcSprite: {fileID: 6542371343288760746, guid: 8c173654e73a549d59a55c8f7a8c132c, type: 3}
   dialogueBubbles:
   - snippets:
     - I hauled stones for the temples.
